@@ -13,8 +13,22 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader'
+                    loader: 'babel-loader',
+                    query: {"plugins": ["transform-decorators-legacy", "transform-class-properties"]}
                 }
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            implementation: require('node-sass'),
+                        }
+                    }
+                ]
             }
         ]
     },
