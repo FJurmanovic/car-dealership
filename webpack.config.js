@@ -13,8 +13,7 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader',
-                    query: {"plugins": ["transform-decorators-legacy", "transform-class-properties"]}
+                    loader: 'babel-loader'
                 }
             },
             {
