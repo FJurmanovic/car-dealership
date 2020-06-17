@@ -11,15 +11,14 @@ import Explore from '../../pages/explore'
 @observer
 class App extends Component {
     render() {
-        const {vehicleMake} = this.props.store
         return(
             <Router>
                 <Switch>
                     <Route exact path="/">
                         <Landing />
                     </Route>
-                    <Header />
                     <Route path="/explore">
+                        <Header />
                         <Explore store={this.props.store} />
                     </Route>
                 </Switch>
