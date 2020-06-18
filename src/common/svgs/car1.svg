@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="car1.svg"
+   id="svg921"
+   version="1.1"
+   viewBox="0 0 636.44 308.57">
+  <metadata
+     id="metadata925">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:current-layer="svg903"
+     inkscape:window-maximized="1"
+     inkscape:window-y="-8"
+     inkscape:window-x="1912"
+     inkscape:cy="154.285"
+     inkscape:cx="318.22"
+     inkscape:zoom="1.6765131"
+     showgrid="false"
+     id="namedview923"
+     inkscape:window-height="1017"
+     inkscape:window-width="1920"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <defs
+     id="defs900">
+    <style
+       id="style898">.cls-1,.cls-7{opacity:1;}.cls-2{fill:#999;stroke-width:1.07px;}.cls-2,.cls-3,.cls-4,.cls-5,.cls-6,.cls-7,.cls-8,.cls-9{stroke:#000;}.cls-2,.cls-3,.cls-4,.cls-5,.cls-6,.cls-7,.cls-8{stroke-linecap:round;}.cls-3,.cls-4,.cls-5,.cls-6,.cls-7,.cls-8{fill:none;}.cls-3{stroke-width:1.66px;}.cls-4{stroke-width:1.26px;}.cls-5{stroke-width:0.96px;}.cls-6,.cls-7{stroke-width:0.87px;}.cls-7{isolation:isolate;}.cls-8{stroke-width:1.57px;}.cls-9{fill:#333;stroke-width:0.26px;}</style>
+  </defs>
+  <title
+     id="title902">Asset 1</title>
+  <g
+     data-name="Layer 2"
+     id="Layer_2">
+    <g
+       id="svg903">
+      <g
+         class="cls-1"
+         id="layer1">
+        <path
+           style="fill:#cccccc"
+           d="M8.22,130.61s-12.88-11.37-5.3-78.8c0,0,10.49,2.32,44.24-21.25,0,0,139.56-44.46,242.41-25.18,0,0,68.57,10.72,133.4,67,0,0,211.6,62.14,196.6,85.71,0,0,24.65,7.5,13.4,95.89-4.08,32-199.64,71.25-292,44.47l-74.43-21.59-209-109.66Z"
+           class="cls-2"
+           id="path1486" />
+        <ellipse
+           style="fill:#1a1a1a"
+           ry="49.57"
+           rx="34.97"
+           cy="128"
+           cx="43.2"
+           id="path1482" />
+        <ellipse
+           style="fill:#1a1a1a"
+           ry="64.82"
+           rx="61.06"
+           cy="243.76"
+           cx="285.82"
+           id="path1480" />
+        <path
+           d="M224.14,84.57S352.71,38,409,71.74"
+           class="cls-3"
+           id="path1490" />
+        <path
+           d="M100.47,25.74c10.15-1.69,90.52-9.2,64.28,179.46"
+           class="cls-4"
+           id="path1492" />
+        <path
+           d="M342.91,183s93.7-41.7,132.29,14.19"
+           class="cls-5"
+           id="path1494" />
+        <path
+           d="M594.72,173.4s-.45-24.6,15.79-28.77"
+           class="cls-5"
+           id="path1496" />
+        <path
+           d="M469.32,206.1s26.14,17,10.49,77.45"
+           class="cls-6"
+           id="path1500" />
+        <path
+           d="M600.73,180.51c-.16,0,22.86,5.3,9.73,65.72"
+           class="cls-7"
+           id="path1500-7" />
+        <path
+           d="M592.72,199.55c-30,15.95-60.67,19.6-91.67,17.42"
+           class="cls-6"
+           id="path1521" />
+        <path
+           d="M591.59,237.05c-22.2,16.78-50.87,19.8-79.93,22"
+           class="cls-6"
+           id="path1523" />
+        <path
+           d="M589.31,218.49c-24,14.25-50.67,17.76-77.65,20.08"
+           class="cls-6"
+           id="path1525" />
+        <path
+           d="M619.57,158.06S478.93,298.53,2.92,51.81"
+           class="cls-8"
+           id="path1536" />
+        <path
+           style="fill:#4d4d4d"
+           d="M422,231.28c-17.16.91-58.23,50.81-.22,51.54S476.51,228.4,422,231.28Z"
+           class="cls-9"
+           id="path1538" />
+      </g>
+    </g>
+  </g>
+</svg>

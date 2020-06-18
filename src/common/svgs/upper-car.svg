@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="upper-car.svg"
+   xml:space="preserve"
+   style="enable-background:new 0 0 985 127.3;"
+   viewBox="0 0 985 127.3"
+   y="0px"
+   x="0px"
+   id="Layer_1"
+   version="1.1"><metadata
+   id="metadata865"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+   id="defs863" /><sodipodi:namedview
+   inkscape:current-layer="g858"
+   inkscape:window-maximized="1"
+   inkscape:window-y="-8"
+   inkscape:window-x="-8"
+   inkscape:cy="249.94869"
+   inkscape:cx="406.94703"
+   inkscape:zoom="1.0165109"
+   inkscape:guide-bbox="true"
+   showguides="true"
+   showgrid="false"
+   id="namedview861"
+   inkscape:window-height="1017"
+   inkscape:window-width="1920"
+   inkscape:pageshadow="2"
+   inkscape:pageopacity="0"
+   guidetolerance="10"
+   gridtolerance="10"
+   objecttolerance="10"
+   borderopacity="1"
+   bordercolor="#666666"
+   pagecolor="#ffffff" />
+<style
+   id="style850"
+   type="text/css">
+	.st0{fill:#333333;}
+</style>
+<title
+   id="title852">Asset 2</title>
+<g
+   id="g858">
+	<g
+   style="fill:#666666;paint-order:normal"
+   id="svg8">
+		<g
+   style="fill:#666666;paint-order:normal"
+   id="layer1">
+			<path
+   sodipodi:nodetypes="cccc"
+   style="fill:#666666;paint-order:normal"
+   d="M 984.2,61.1 C 78.9,68.6 1.1918787,128.07564 1.1918787,128.07564 c 0,0 244.2192313,-57.191879 367.4081213,-20.47564 102.8,36 519.2,-62.5 615.6,-46.5 z"
+   class="st0"
+   id="path847" />
+			<path
+   style="fill:#666666;paint-order:normal"
+   sodipodi:nodetypes="czcc"
+   d="m 979.7,61.1 c 0.20128,-2.824245 -51.94601,0.268569 -86.06992,-1.891243 C 859.50617,57.048945 635.2,-81 329.1,71.3 c 0,0 247.92262,-134.692924 557.02262,-8.992924"
+   class="st0"
+   id="path849" />
+		</g>
+	</g>
+</g>
+</svg>
