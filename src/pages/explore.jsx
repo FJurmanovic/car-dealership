@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react'
+import {Link} from 'react-router-dom'
 
-export default class Explore extends Component {
+class Explore extends Component {
     render() {
         const {vehicleMake, vehicleModel, vehicleList, vehicleTransmission, vehicleEngine, vehicleBody} = this.props.store
         return (
             <div className="explore">
-                {
-                    vehicleList.map((vehicle) => {
+                {vehicleList.map(vehicle => {
                         const title = `${vehicleMake[vehicleModel[vehicle.modelId].makeId].name} ${vehicleModel[vehicle.modelId].name} ${vehicle.year}`;
                         return (
                             <Fragment key={vehicle.id}>
@@ -26,16 +26,16 @@ export default class Explore extends Component {
                                                 <span>{vehicleTransmission[vehicle.transmissionId].name}</span>
                                             </div>
                                             <div className="lower-info">
-                                                <button className="btn btn-squared btn-blue width-full">More</button>
+                                                <Link to={`vehicle/${vehicle.id}`} className="btn btn-squared btn-blue width-full">More</Link>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </Fragment>
                         )
-                    })
-                }
+                })}
             </div>
-        )
-    }
+        )}
 }
+
+export default Explore;

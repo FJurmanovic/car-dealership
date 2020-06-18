@@ -7,6 +7,7 @@ import Header from '../../layouts/header'
 
 import Landing from '../../pages/landing'
 import Explore from '../../pages/explore'
+import CarInformation from '../../pages/carInformation'
 
 @observer
 class App extends Component {
@@ -20,6 +21,13 @@ class App extends Component {
                     <Route path="/explore">
                         <Header />
                         <Explore store={this.props.store} />
+                    </Route>
+                    <Route path="/vehicle/:vehicleId">
+                        <Header />
+                        <CarInformation store={this.props.store} />
+                    </Route>
+                    <Route path="/vehicle">
+                        <Redirect to="/explore" />
                     </Route>
                 </Switch>
             </Router>

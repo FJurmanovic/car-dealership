@@ -5,7 +5,7 @@ const upperCar = require("../common/svgs/upper-car.svg")
 const car1 = require("../common/svgs/car1.svg")
 const car2 = require("../common/svgs/car2.svg")
 
-export default class Landing extends Component {
+class Landing extends Component {
     render() {
         return (
             <div className="landing text-center d-flex flex-justify-center flex-items-center full-height bg-gray-darker">
@@ -23,3 +23,5 @@ export default class Landing extends Component {
         )
     }
 }
+
+export default Landing;
