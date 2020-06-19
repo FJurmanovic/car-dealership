@@ -1,10 +1,14 @@
-import {observable} from "mobx";
+import {observable, computed} from "mobx";
 
 export class Vehicles {
     @observable vehicleMake = [
         {
             id: 0,
             name: "BMW"
+        },
+        {
+            id: 1,
+            name: "Test"
         }
     ]
     @observable vehicleModel = [
@@ -12,6 +16,11 @@ export class Vehicles {
             id: 0,
             name: "116i",
             makeId: 0
+        },
+        {
+            id: 1,
+            name: "Test",
+            makeId: 1
         }
     ]
     @observable vehicleBody = [
@@ -130,6 +139,16 @@ export class Vehicles {
         },
         
     ]
+    @observable filterList = []
+    @computed get filters() {
+        console.log(this.filterList.modelId)
+        return this.vehicleList.filter(vehicle => {
+                return ((!this.filterList.modelId || this.filterList.modelId == vehicle.modelId) && (!this.filterList.makeId || this.filterList.makeId == this.modelId[vehicle.modelId].makeId))
+        })
+    }
+    filtersSet(inputList) {
+        this.filterList = inputList
+    }
 }
 
 export default new Vehicles;

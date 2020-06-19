@@ -95,6 +95,14 @@ body {
 
     }
 
+    .filters {
+        width: 100%;
+        height: 150px;
+        background-color: #353535;
+        display: flex;
+        flex-direction: column;
+    }
+
     .explore {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
