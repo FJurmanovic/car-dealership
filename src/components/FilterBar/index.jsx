@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {observer} from 'mobx-react';
+import {observer, inject} from 'mobx-react';
 
+@inject("VehicleStore")
 @observer
 class FilterBar extends Component {
     constructor(props) {
@@ -14,11 +15,11 @@ class FilterBar extends Component {
     }
 
     filterVehicles () {
-        this.props.store.filtersSet({
+        this.props.VehicleStore.filtersSet({
             modelId: this.state.modelVal
         })
 
-        console.log(this.props.store.filters)
+        console.log(this.props.VehicleStore.filters)
     }
 
     modelChange(event) {
@@ -29,11 +30,11 @@ class FilterBar extends Component {
 
     render() {
         const {hideFilters} = this.props
-        const {vehicleBody, vehicleEngine, vehicleList, vehicleMake, vehicleModel, vehicleTransmission} = this.props.store
+        const {vehicleBody, vehicleEngine, vehicleList, vehicleMake, vehicleModel, vehicleTransmission} = this.props.VehicleStore
         
         return (
             <div className="filters d-flex">
-                <button onClick={hideFilters}>Hide</button>
+                <button className="btn btn-default btn-squared" onClick={hideFilters}>Hide</button>
                 <div>
                     <input type="range" name="minPrice" min="0" max="100000" />
                     <input type="range" name="maxPrice" min="0" max="100000" />
@@ -86,7 +87,7 @@ class FilterBar extends Component {
                     <input type="range" name="minTrunkCapacity" min="100" max="1000" />
                     <input type="range" name="maxTrunkCapacity" min="100" max="1000" />
                 </div>
-                <button onClick={this.filterVehicles}>Filter</button>
+                <button className="btn btn-blue btn-squared" onClick={this.filterVehicles}>Filter</button>
             </div>
         );
     }

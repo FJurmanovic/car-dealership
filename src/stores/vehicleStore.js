@@ -1,6 +1,11 @@
-import {observable, computed} from "mobx";
+import {observable, computed, runInAction} from "mobx";
 
-export class Vehicles {
+import VehicleService from './vehicleService';
+
+class VehicleStore {
+    constructor() {
+        this.vehicleService = new VehicleService();
+    }
     @observable vehicleMake = [
         {
             id: 0,
@@ -97,51 +102,15 @@ export class Vehicles {
             name: "CVT"
         }
     ]
-    @observable vehicleList = [
-        {
-            id: 0,
-            modelId: 0,
-            price: 27500,
-            year: 2012,
-            bodyId: 0,
-            doorCount: 3,
-            engineId: 0,
-            transmissionId: 0,
-            topSpeed: 210,
-            fuelTank: 52,
-            trunkCapacity: 360,
-        },
-        {
-            id: 1,
-            modelId: 0,
-            price: 30000,
-            year: 2007,
-            bodyId: 0,
-            doorCount: 3,
-            engineId: 0,
-            transmissionId: 2,
-            topSpeed: 202,
-            fuelTank: 53,
-            trunkCapacity: 360
-        },
-        {
-            id: 2,
-            modelId: 0,
-            price: 30000,
-            year: 2009,
-            bodyId: 0,
-            doorCount: 3,
-            engineId: 0,
-            transmissionId: 2,
-            topSpeed: 202,
-            fuelTank: 53,
-            trunkCapacity: 330
-        },
+    @observable vehicleList = []
+    @observable vehicleData = {
         
-    ]
+    };
+    @observable searchQuery = ""
     @observable filterList = []
+    @observable status = "initial"
+
     @computed get filters() {
-        console.log(this.filterList.modelId)
         return this.vehicleList.filter(vehicle => {
                 return ((!this.filterList.modelId || this.filterList.modelId == vehicle.modelId) && (!this.filterList.makeId || this.filterList.makeId == this.modelId[vehicle.modelId].makeId))
         })
@@ -149,6 +118,20 @@ export class Vehicles {
     filtersSet(inputList) {
         this.filterList = inputList
     }
+    
+
+    getVehicleList = async () => {
+        try {
+            const data = await this.vehicleService.get()
+            runInAction(() => {
+                this.vehicleList = data.item
+            })
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error";
+            });
+        }
+    }
 }
 
-export default new Vehicles;
+export default new VehicleStore();

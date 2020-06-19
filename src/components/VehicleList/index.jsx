@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from 'react';
-import {observer} from 'mobx-react';
 import {Link} from 'react-router-dom'
 
+import { observer, inject } from 'mobx-react';
+
+@inject("VehicleStore")
 @observer
 class VehicleList extends Component {
     render() {
-        const {vehicleMake, vehicleModel, vehicleList, vehicleTransmission, vehicleEngine, vehicleBody} = this.props.store
+        const {vehicleMake, vehicleModel, vehicleList, vehicleTransmission, vehicleEngine, vehicleBody} = this.props.VehicleStore
         return (
             <>
                 {vehicleList.map(vehicle => {

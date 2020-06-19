@@ -1,7 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
-import Vehicles from './stores/vehicleStore';
+import VehicleStore from './stores/vehicleStore';
+
+import {Provider} from 'mobx-react'
+
+const Application = () => 
+    <Provider VehicleStore={VehicleStore}>
+        <App />
+    </Provider>
 
 
-ReactDOM.render(<App store={Vehicles} />, document.getElementById('app'));
+ReactDOM.render(<Application />, document.getElementById('app'));
