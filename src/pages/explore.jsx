@@ -19,11 +19,11 @@ class Explore extends Component {
 
         return (
             <>
-                {showFilters 
-                ?<FilterBar 
+                <FilterBar 
+                    className={!showFilters ? "hidden" : ""}
                     hideFilters={() => this.setState({showFilters: false})}
                  />
-                :<button className="btn btn-blue btn-rounder m-5" onClick={() => this.setState({showFilters: true})}>Filters</button>
+                {!showFilters && <button className="btn btn-blue btn-rounder m-5" onClick={() => this.setState({showFilters: true})}>Filters</button>
                 }
                 <div className="explore">
                     <VehicleList />
