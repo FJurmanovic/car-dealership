@@ -100,7 +100,107 @@ body {
         height: 150px;
         background-color: #353535;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        align-items: stretch;
+    
+        .filter-row{
+            flex: 1;
+            margin: 25px;
+            min-width: 115px;
+            > select, div select  {
+                width: 100%;
+                min-width: 45px;
+            }
+
+            > div input {
+                width: calc(45% - 20px);
+                min-width: 45px;
+            }
+
+            > label, div label {
+                color: #ffffff;
+                font-weight: 500;
+                font-size: 16px;
+            }
+
+            > span, div span {
+                color: #ffffff;
+                margin-left: 5px;
+                margin-right: 5px;
+                font-size: 16px;
+                font-weight: 500;
+            }
+
+            > .range input, .range select {
+                width: calc(45% - 20px);
+                min-width: 45px;
+            }
+
+            > input {
+                width: calc(45% - 20px);
+                min-width: 45px;
+            }
+
+            > input, select, div input, div select {
+                border-radius: .7em;
+                border: 2px solid #c3c3c3;
+
+                &:hover {
+                    border-color: #727272;
+                }
+            }
+
+            @media screen and (max-width: 1165px) {
+                > label, div label {
+                    color: #ffffff;
+                    font-weight: 500;
+                    font-size: 12px;
+                }
+            }
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            input[type=number] {
+                -moz-appearance:textfield;
+                text-align: center;
+            }
+        }
+        
+        .hide-btn {
+            position: absolute;
+            margin-top: 150px;
+            margin-left: 25px;
+            height: 22px;
+            width: 40px;
+            background-color: #008cff;
+            color: #ffffff;
+
+            &:hover {
+                background-color: #50b0ff;
+            }
+
+            &::after {
+                content: "";
+                display: block;
+                box-sizing: border-box;
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-top: 2px solid;
+                border-right: 2px solid;
+                transform: rotate(-45deg);
+                left: 4px;
+                bottom: 2px;
+                margin-left: calc(50% - 8px);
+            }
+        }
+        @media screen and (max-width: 1165px) {
+            overflow: auto;
+        }
     }
 
     .explore {

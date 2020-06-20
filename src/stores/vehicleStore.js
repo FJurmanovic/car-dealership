@@ -107,14 +107,15 @@ class VehicleStore {
         
     };
     @observable searchQuery = ""
-    @observable filterList = []
+    @observable filterList = {}
     @observable status = "initial"
 
     @computed get filters() {
         return this.vehicleList.filter(vehicle => {
-                return ((!this.filterList.modelId || this.filterList.modelId == vehicle.modelId) && (!this.filterList.makeId || this.filterList.makeId == this.modelId[vehicle.modelId].makeId))
+                return ((!this.filterList.modelId || this.filterList.modelId == vehicle.modelId) && (!this.filterList.makeId || this.filterList.makeId == this.vehicleModel[vehicle.modelId].makeId))
         })
     }
+
     filtersSet(inputList) {
         this.filterList = inputList
     }

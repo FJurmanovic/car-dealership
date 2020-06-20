@@ -15,8 +15,15 @@ class CarInformation extends Component {
 
         let title, bodyType, doorCount, engineType, fuelCapacity, topSpeed, transmissionType, trunkCapacity, price = ''
 
-        if(!vehicle) {
+        if(!vehicleList.length > 0) {
+            this.props.VehicleStore.getVehicleList()
+        }
+
+        if(vehicleList.length > 0 && !vehicle) {
             this.props.history.push("/explore")
+        }
+        
+        if((vehicleList.length > 0 && !vehicle) || !vehicleList.length > 0){
         }else {
             title = `${vehicleMake[vehicleModel[vehicle.modelId].makeId].name} ${vehicleModel[vehicle.modelId].name} ${vehicle.year}`
             price = vehicle.price
