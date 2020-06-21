@@ -242,7 +242,7 @@ class FilterBar extends Component {
                 <button className="hide-btn btn btn-squared" onClick={hideFilters}></button>
                 <div className="filter-row">
                     <div className="range">
-                        <label>Price</label><br />
+                        <label>Price (€)</label><br />
                         <select name="minPrice" onChange={this.minPriceChange}>
                             <option>any</option>
                             {[...range(1, 30)].map(price => {
@@ -336,20 +336,20 @@ class FilterBar extends Component {
                 </div>
                 <div className="filter-row">
                     <div>
-                        <label>Fuel tank capacity(l)</label><br />
+                        <label>Fuel tank capacity (l)</label><br />
                         <input type="number" name="minFuelTank" min="0" max={maxFuelVal} value={minFuelVal} onChange={this.minFuelChange} />
                         <span>-</span>
                         <input type="number" name="maxFuelTank" min={minFuelVal} max="150" value={maxFuelVal} onChange={this.maxFuelChange} />
                     </div>
                     <div>
-                        <label>Top speed(km/h)</label><br />
+                        <label>Top speed (km/h)</label><br />
                         <input type="number" name="minTopSpeed" min="100" max="400" value={minSpeedVal} onChange={this.minSpeedChange} />
                         <span>-</span>
                         <input type="number" name="maxTopSpeed" min="100" max="400" value={maxSpeedVal} onChange={this.maxSpeedChange} />
                     </div>
                 </div>
                 <div className="filter-row">
-                    <label>Trunk capacity(l)</label><br />
+                    <label>Trunk capacity (l)</label><br />
                     <input type="number" name="minTrunkCapacity" min="100" max="1000" value={minTrunkVal} onChange={this.minTrunkChange} />
                     <span>-</span>
                     <input type="number" name="maxTrunkCapacity" min="100" max="1000" value={maxTrunkVal} onChange={this.maxTrunkChange} />

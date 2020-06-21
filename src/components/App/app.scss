@@ -254,12 +254,12 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         column-gap: 25px;
         row-gap: 25px;
-        margin-left: 25px;
         margin-top: 25px;
         margin-bottom: 25px;
         .vehicle-card {
             width: 300px;
             height: 300px;
+            margin: auto;
             border: 1px solid #797979;
             border-radius: 5px;
             display: flex;
@@ -368,7 +368,6 @@ body {
         @media screen and (max-width: 840px) {
             margin-left: 0;
             .vehicle-card {
-                display: block;
                 margin: auto;
             }
         }

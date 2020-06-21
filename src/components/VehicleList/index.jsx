@@ -11,7 +11,7 @@ class VehicleList extends Component {
         return (
             <>
                 {this.props.VehicleStore.pageList.map(vehicle => {
-                        const title = `${vehicleMake[vehicleModel[vehicle.modelId].makeId].name} ${vehicleModel[vehicle.modelId].name} ${vehicle.year}`;
+                        const title = `${vehicleMake[vehicleModel[vehicle.modelId].makeId].name} ${vehicleModel[vehicle.modelId].name} ${vehicle.year}.`;
                         return (
                             <Fragment key={vehicle.id}>
                                 <div className="vehicle-card">
