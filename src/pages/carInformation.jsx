@@ -41,7 +41,7 @@ class CarInformation extends Component {
                 <div className="car-image"></div>
                 <div className="d-flex upper-info h2">
                     <span className="--full">{title}</span>
-                    <span className="h1">{price}€</span>
+                    <span className="h1">{price.toLocaleString()}€</span>
                 </div>
                 <div className="lower-info my-4">
                     <div className="f4"><span className="text-bold">Body type:</span> {bodyType}</div>

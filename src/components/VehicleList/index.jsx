@@ -21,7 +21,7 @@ class VehicleList extends Component {
                                             <span className="title --full">
                                                 <span data={title}>{title}</span>
                                             </span>
-                                            <span className="price">{vehicle.price}€</span>
+                                            <span className="price">{vehicle.price.toLocaleString()}€</span>
                                         </div>
                                         <div className="hidden-info">
                                             <div className="middle-info">

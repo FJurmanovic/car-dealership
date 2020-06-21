@@ -1,0 +1,34 @@
+[
+    {
+        "id": 0,
+        "name": "hatchback"
+    },
+    {
+        "id": 1,
+        "name": "SUV"
+    },
+    {
+        "id": 2,
+        "name": "convertible"
+    },
+    {
+        "id": 3,
+        "name": "coupe"
+    },
+    {
+        "id": 4,
+        "name": "sedan"
+    },
+    {
+        "id": 5,
+        "name": "wagon"
+    },
+    {
+        "id": 6,
+        "name": "minivan"
+    },
+    {
+        "id": 7,
+        "name": "luxury"
+    }
+]

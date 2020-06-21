@@ -6,102 +6,11 @@ class VehicleStore {
     constructor() {
         this.vehicleService = new VehicleService();
     }
-    @observable vehicleMake = [
-        {
-            id: 0,
-            name: "BMW"
-        },
-        {
-            id: 1,
-            name: "Test"
-        }
-    ]
-    @observable vehicleModel = [
-        {
-            id: 0,
-            name: "116i",
-            makeId: 0
-        },
-        {
-            id: 1,
-            name: "Test",
-            makeId: 1
-        }
-    ]
-    @observable vehicleBody = [
-        {
-            id: 0,
-            name: "hatchback",
-        },
-        {
-            id: 1,
-            name: "SUV"
-        },
-        {
-            id: 2,
-            name: "convertible"
-        },
-        {
-            id: 3,
-            name: "coupe"
-        },
-        {
-            id: 4,
-            name: "sedan"
-        },
-        {
-            id: 5,
-            name: "wagon"
-        },
-        {
-            id: 6,
-            name: "minivan"
-        },
-        {
-            id: 7,
-            name: "luxury"
-        }
-    ]
-    @observable vehicleEngine = [
-        {
-            id: 0,
-            name: "gasoline"
-        },
-        {
-            id: 1,
-            name: "diesel"
-        },
-        {
-            id: 2,
-            name: "electric"
-        },
-        {
-            id: 3,
-            name: "gasoline-hybrid"
-        },
-        {
-            id: 4,
-            name: "compressed-natural-gas"
-        }
-    ]
-    @observable vehicleTransmission = [
-        {
-            id: 0,
-            name: "manual"
-        },
-        {
-            id: 1,
-            name: "automatic" 
-        },
-        {
-            id: 2,
-            name: "semi-automatic"
-        },
-        {
-            id: 3,
-            name: "CVT"
-        }
-    ]
+    @observable vehicleMake = require("../common/data/vehicleMake.json")
+    @observable vehicleModel = require("../common/data/vehicleModel.json")
+    @observable vehicleBody = require("../common/data/vehicleBody.json")
+    @observable vehicleEngine = require("../common/data/vehicleEngine.json")
+    @observable vehicleTransmission = require("../common/data/vehicleTransmission.json")
     @observable vehicleList = []
     @observable vehicleData = {
         
@@ -111,7 +20,10 @@ class VehicleStore {
     @observable status = "initial"
 
     @computed get filters() {
+        let count = 0;
         return this.vehicleList.filter(vehicle => {
+            count ++
+            if (count < 11){
                 return (
                     (!this.filterList.modelId || this.filterList.modelId == vehicle.modelId)
                  && (!this.filterList.makeId || this.filterList.makeId == this.vehicleModel[vehicle.modelId].makeId)
@@ -130,6 +42,7 @@ class VehicleStore {
                  && (!this.filterList.minTrunk || this.filterList.minTrunk <= vehicle.trunkCapacity)
                  && (!this.filterList.maxTrunk || this.filterList.maxTrunk >= vehicle.trunkCapacity)
                  )
+            }   
         })
     }
 

@@ -1,0 +1,22 @@
+[
+    {
+        "id": 0,
+        "name": "gasoline"
+    },
+    {
+        "id": 1,
+        "name": "diesel"
+    },
+    {
+        "id": 2,
+        "name": "electric"
+    },
+    {
+        "id": 3,
+        "name": "gasoline-hybrid"
+    },
+    {
+        "id": 4,
+        "name": "compressed-natural-gas"
+    }
+]

@@ -1,0 +1,214 @@
+[
+    {
+        "id": 0,
+        "name": "BMW"
+    },
+    {
+        "id": 1,
+        "name": "Hyundai"
+    },
+    {
+        "id": 2,
+        "name": "Audi"
+    },
+    {
+        "id": 3,
+        "name": "Mercedes"
+    },
+    {
+        "id": 4,
+        "name": "Abarth"
+    },
+    {
+        "id": 5,
+        "name": "Alfa Romeo"
+    },
+    {
+        "id": 6,
+        "name": "Nissan"
+    },
+    {
+        "id": 7,
+        "name": "Aston Martin"
+    },
+    {
+        "id": 8,
+        "name": "Opel"
+    },
+    {
+        "id": 9,
+        "name": "Bentley"
+    },
+    {
+        "id": 10,
+        "name": "Bugatti"
+    },
+    {
+        "id": 11,
+        "name": "Buick"
+    },
+    {
+        "id": 12,
+        "name": "Cadillac"
+    },
+    {
+        "id": 13,
+        "name": "Chevrolet"
+    },
+    {
+        "id": 14,
+        "name": "Chrysler"
+    },
+    {
+        "id": 15,
+        "name": "Citroen"
+    },
+    {
+        "id": 16,
+        "name": "Corvette"
+    },
+    {
+        "id": 17,
+        "name": "Dacia"
+    },
+    {
+        "id": 18,
+        "name": "Daewoo"
+    },
+    {
+        "id": 19,
+        "name": "Dodge"
+    },
+    {
+        "id": 20,
+        "name": "Ferrari"
+    },
+    {
+        "id": 21,
+        "name": "Fiat"
+    },
+    {
+        "id": 22,
+        "name": "Ford"
+    },
+    {
+        "id": 23,
+        "name": "Honda"
+    },
+    {
+        "id": 24,
+        "name": "Hummer"
+    },
+    {
+        "id": 25,
+        "name": "Hyundai"
+    },
+    {
+        "id": 26,
+        "name": "Peugeot"
+    },
+    {
+        "id": 27,
+        "name": "Jaguar"
+    },
+    {
+        "id": 28,
+        "name": "Jeep"
+    },
+    {
+        "id": 29,
+        "name": "Kia"
+    },
+    {
+        "id": 30,
+        "name": "Lada"
+    },
+    {
+        "id": 31,
+        "name": "Lamborghini"
+    },
+    {
+        "id": 32,
+        "name": "Porsche"
+    },
+    {
+        "id": 33,
+        "name": "Land Rover"
+    },
+    {
+        "id": 34,
+        "name": "Lexus"
+    },
+    {
+        "id": 35,
+        "name": "Lincoln"
+    },
+    {
+        "id": 36,
+        "name": "Lotus"
+    },
+    {
+        "id": 37,
+        "name": "Maserati"
+    },
+    {
+        "id": 38,
+        "name": "Mazda"
+    },
+    {
+        "id": 39,
+        "name": "McLaren"
+    },
+    {
+        "id": 40,
+        "name": "Mini"
+    },
+    {
+        "id": 41,
+        "name": "Mitsubishi"
+    },
+    {
+        "id": 42,
+        "name": "Renault"
+    },
+    {
+        "id": 43,
+        "name": "Rolls-Royce"
+    },
+    {
+        "id": 44,
+        "name": "Seat"
+    },
+    {
+        "id": 45,
+        "name": "Skoda"
+    },
+    {
+        "id": 46,
+        "name": "Subaru"
+    },
+    {
+        "id": 47,
+        "name": "Suzuki"
+    },
+    {
+        "id": 48,
+        "name": "Tesla"
+    },
+    {
+        "id": 49,
+        "name": "Volkswagen"
+    },
+    {
+        "id": 50,
+        "name": "Toyota"
+    },
+    {
+        "id": 51,
+        "name": "Volvo"
+    },
+    {
+        "id": 52,
+        "name": "Rimac"
+    }
+]

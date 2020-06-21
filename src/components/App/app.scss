@@ -196,6 +196,11 @@ body {
                 -moz-appearance:textfield;
                 text-align: center;
             }
+
+            select:focus {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+            }
         }
         
         .hide-btn {

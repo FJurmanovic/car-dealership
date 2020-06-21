@@ -248,7 +248,7 @@ class FilterBar extends Component {
                             {[...range(1, 30)].map(price => {
                                 price = price * 25000
                                 if(maxPriceVal == null || price < maxPriceVal)
-                                return <option value={price}>{price}</option>
+                                return <option value={price}>{price.toLocaleString()}€</option>
                             })}
                         </select>
                         <span>-</span>
@@ -257,7 +257,7 @@ class FilterBar extends Component {
                             {[...range(1, 30)].map(price => {
                                 price = price * 25000
                                 if(minPriceVal == null || price > minPriceVal)
-                                return <option value={price}>{price}</option>
+                                return <option value={price}>{price.toLocaleString()}€</option>
                             })}
                         </select>
                     </div>
@@ -328,7 +328,9 @@ class FilterBar extends Component {
                     <label>Door count</label><br />
                     <select name="doorCount" onChange={this.doorChange}>
                         <option>any</option>
+                        <option value="2">2</option>
                         <option value="3">3</option>
+                        <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
                 </div>
