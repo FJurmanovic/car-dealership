@@ -364,6 +364,14 @@ body {
                 }
             }
         }
+
+        @media screen and (max-width: 840px) {
+            margin-left: 0;
+            .vehicle-card {
+                display: block;
+                margin: auto;
+            }
+        }
     }
 
     .info-page {
