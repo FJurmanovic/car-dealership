@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import VehicleList from '../components/VehicleList'
 import FilterBar from '../components/FilterBar'
+import Pagination from '../components/Pagination'
 
 class Explore extends Component {
     constructor(props){
@@ -9,9 +10,6 @@ class Explore extends Component {
         this.state = {
             showFilters: false
         }
-    }
-
-    componentDidMount() {
     }
 
     render() {
@@ -25,9 +23,11 @@ class Explore extends Component {
                  />
                 {!showFilters && <button className="btn btn-blue btn-rounder m-5" onClick={() => this.setState({showFilters: true})}>Filters</button>
                 }
+                <Pagination />
                 <div className="explore">
                     <VehicleList />
                 </div>
+                <Pagination />
             </>
         )}
 }

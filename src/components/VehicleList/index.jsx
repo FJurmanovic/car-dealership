@@ -10,7 +10,7 @@ class VehicleList extends Component {
         const {vehicleMake, vehicleModel, vehicleList, vehicleTransmission, vehicleEngine, vehicleBody} = this.props.VehicleStore
         return (
             <>
-                {this.props.VehicleStore.filters.map(vehicle => {
+                {this.props.VehicleStore.pageList.map(vehicle => {
                         const title = `${vehicleMake[vehicleModel[vehicle.modelId].makeId].name} ${vehicleModel[vehicle.modelId].name} ${vehicle.year}`;
                         return (
                             <Fragment key={vehicle.id}>

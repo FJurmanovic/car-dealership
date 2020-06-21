@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 
 import { observer, inject } from 'mobx-react';
 
@@ -38,6 +38,7 @@ class CarInformation extends Component {
         
         return (
             <div className="info-page container">
+                <Link to="/explore" className="back-btn btn btn-blue">Go back</Link>
                 <div className="car-image"></div>
                 <div className="d-flex upper-info h2">
                     <span className="--full">{title}</span>

@@ -69,7 +69,7 @@ class FilterBar extends Component {
             maxTrunk: this.state.maxTrunkVal
         })
 
-        console.log(this.props.VehicleStore.filters)
+        this.props.VehicleStore.pageSet(1)
     }
 
     modelChange(event) {
@@ -248,7 +248,7 @@ class FilterBar extends Component {
                             {[...range(1, 30)].map(price => {
                                 price = price * 25000
                                 if(maxPriceVal == null || price < maxPriceVal)
-                                return <option value={price}>{price.toLocaleString()}€</option>
+                                return <option key={price} value={price}>{price.toLocaleString()}€</option>
                             })}
                         </select>
                         <span>-</span>
@@ -257,7 +257,7 @@ class FilterBar extends Component {
                             {[...range(1, 30)].map(price => {
                                 price = price * 25000
                                 if(minPriceVal == null || price > minPriceVal)
-                                return <option value={price}>{price.toLocaleString()}€</option>
+                                return <option key={price} value={price}>{price.toLocaleString()}€</option>
                             })}
                         </select>
                     </div>
@@ -267,7 +267,7 @@ class FilterBar extends Component {
                             <option>any</option>
                             {[...range(1900, new Date().getFullYear())].map(year => {
                                 if(maxYearVal == null || year < maxYearVal)
-                                return <option value={year}>{year}</option>
+                                return <option key={year} value={year}>{year}</option>
                             })}
                         </select>
                         <span>-</span>
@@ -275,7 +275,7 @@ class FilterBar extends Component {
                             <option>any</option>
                             {[...range(1900, new Date().getFullYear())].map(year => {
                                 if(minYearVal == null || year > minYearVal)
-                                return <option value={year}>{year}</option>
+                                return <option key={year} value={year}>{year}</option>
                             })}
                         </select>
                     </div>
@@ -286,7 +286,7 @@ class FilterBar extends Component {
                         <select name="makeFilter" onChange={this.makeChange}>
                             <option>any</option>
                             {vehicleMake.map(make => {
-                                return <option value={make.id}>{firstUpper(make.name)}</option>
+                                return <option key={make.id} value={make.id}>{firstUpper(make.name)}</option>
                             })}
                         </select>
                         <br />
@@ -294,7 +294,7 @@ class FilterBar extends Component {
                         <select name="modelFilter" onChange={this.modelChange}>
                             <option>any</option>
                             {vehicleModel.filter(model => model.makeId == this.state.makeVal).map(model => {
-                                return <option value={model.id}>{firstUpper(model.name)}</option>
+                                return <option key={model.id} value={model.id}>{firstUpper(model.name)}</option>
                             })}
                         </select>
                     </div>
@@ -304,7 +304,7 @@ class FilterBar extends Component {
                     <select name="bodyFilter" onChange={this.bodyChange}>
                         <option>any</option>
                         {vehicleBody.map(body => {
-                            return <option value={body.id}>{firstUpper(body.name)}</option>
+                            return <option key={body.id} value={body.id}>{firstUpper(body.name)}</option>
                         })}
                     </select>
                     <br />
@@ -312,7 +312,7 @@ class FilterBar extends Component {
                     <select name="engineFilter" onChange={this.engineChange}>
                         <option>any</option>
                         {vehicleEngine.map(engine => {
-                            return <option value={engine.id}>{firstUpper(engine.name)}</option>
+                            return <option key={engine.id} value={engine.id}>{firstUpper(engine.name)}</option>
                         })}
                     </select>
                 </div>
@@ -321,7 +321,7 @@ class FilterBar extends Component {
                      <select name="transmissionFilter" onChange={this.transmissionChange}>
                         <option>any</option>
                         {vehicleTransmission.map(transmission => {
-                            return <option value={transmission.id}>{firstUpper(transmission.name)}</option>
+                            return <option key={transmission.id} value={transmission.id}>{firstUpper(transmission.name)}</option>
                         })}
                     </select>
                     <br />

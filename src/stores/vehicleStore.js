@@ -18,42 +18,67 @@ class VehicleStore {
     @observable searchQuery = ""
     @observable filterList = {}
     @observable status = "initial"
+    @observable pageNumber = 1
 
     @computed get filters() {
-        let count = 0;
-        return this.vehicleList.filter(vehicle => {
-            count ++
-            if (count < 11){
+        let filtered = 
+            this.vehicleList.filter(vehicle => {
                 return (
                     (!this.filterList.modelId || this.filterList.modelId == vehicle.modelId)
-                 && (!this.filterList.makeId || this.filterList.makeId == this.vehicleModel[vehicle.modelId].makeId)
-                 && (!this.filterList.bodyId || this.filterList.bodyId == vehicle.bodyId)
-                 && (!this.filterList.engineId || this.filterList.engineId == vehicle.engineId)
-                 && (!this.filterList.transmissionId || this.filterList.transmissionId == vehicle.transmissionId)
-                 && (!this.filterList.doorCount || this.filterList.doorCount == vehicle.doorCount)
-                 && (!this.filterList.minPrice || this.filterList.minPrice <= vehicle.price)
-                 && (!this.filterList.maxPrice || this.filterList.maxPrice >= vehicle.price)
-                 && (!this.filterList.minYear || this.filterList.minYear <= vehicle.year)
-                 && (!this.filterList.maxYear || this.filterList.maxYear >= vehicle.year)
-                 && (!this.filterList.minFuel || this.filterList.minFuel <= vehicle.fuelTank)
-                 && (!this.filterList.maxFuel || this.filterList.maxFuel >= vehicle.fuelTank)
-                 && (!this.filterList.minSpeed || this.filterList.minSpeed <= vehicle.topSpeed)
-                 && (!this.filterList.maxSpeed || this.filterList.maxSpeed >= vehicle.topSpeed)
-                 && (!this.filterList.minTrunk || this.filterList.minTrunk <= vehicle.trunkCapacity)
-                 && (!this.filterList.maxTrunk || this.filterList.maxTrunk >= vehicle.trunkCapacity)
-                 )
-            }   
+                && (!this.filterList.makeId || this.filterList.makeId == this.vehicleModel[vehicle.modelId].makeId)
+                && (!this.filterList.bodyId || this.filterList.bodyId == vehicle.bodyId)
+                && (!this.filterList.engineId || this.filterList.engineId == vehicle.engineId)
+                && (!this.filterList.transmissionId || this.filterList.transmissionId == vehicle.transmissionId)
+                && (!this.filterList.doorCount || this.filterList.doorCount == vehicle.doorCount)
+                && (!this.filterList.minPrice || this.filterList.minPrice <= vehicle.price)
+                && (!this.filterList.maxPrice || this.filterList.maxPrice >= vehicle.price)
+                && (!this.filterList.minYear || this.filterList.minYear <= vehicle.year)
+                && (!this.filterList.maxYear || this.filterList.maxYear >= vehicle.year)
+                && (!this.filterList.minFuel || this.filterList.minFuel <= vehicle.fuelTank)
+                && (!this.filterList.maxFuel || this.filterList.maxFuel >= vehicle.fuelTank)
+                && (!this.filterList.minSpeed || this.filterList.minSpeed <= vehicle.topSpeed)
+                && (!this.filterList.maxSpeed || this.filterList.maxSpeed >= vehicle.topSpeed)
+                && (!this.filterList.minTrunk || this.filterList.minTrunk <= vehicle.trunkCapacity)
+                && (!this.filterList.maxTrunk || this.filterList.maxTrunk >= vehicle.trunkCapacity)
+                )   
+            })
+
+
+        return filtered
+    }
+
+    @computed get pageList() {
+        return this.filters.filter((vehicle, index) => {
+            return (index < (this.pageNumber * 10) && index > (this.pageNumber * 10) - 11)
         })
     }
 
+    @computed get pageCount() {
+        return Math.ceil(this.filters.length / 10)
+    }
+
+
     filtersSet(inputList) {
         this.filterList = inputList
+    }
+
+    pageSet(page) {
+        this.pageNumber = page
     }
     
 
     getVehicleList = async () => {
         try {
-            const data = await this.vehicleService.get()
+            let params = {
+                rpp: 200
+            }
+            let urlParams = new URLSearchParams(Object.entries(params))
+            let data = await this.vehicleService.get(urlParams)
+            if (data.recordsPerPage < data.totalRecords) { // Safety -- if total items count is bigger than 200
+                params.rpp = data.totalRecords
+                urlParams = new URLSearchParams(Object.entries(params))
+                data = await this.vehicleService.get(urlParams)
+            }
             runInAction(() => {
                 this.vehicleList = data.item
             })
