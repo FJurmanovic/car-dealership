@@ -5,7 +5,7 @@ import FilterBar from '../components/FilterBar'
 import Pagination from '../components/Pagination'
 import SortList from '../components/SortList'
 
-class Explore extends Component {
+class ExplorePage extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -33,4 +33,4 @@ class Explore extends Component {
         )}
 }
 
-export default Explore;
+export default ExplorePage;

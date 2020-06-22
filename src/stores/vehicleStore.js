@@ -119,9 +119,8 @@ class VehicleStore {
                 && (!this.filterList.minSpeed || this.filterList.minSpeed <= vehicle.topSpeed)
                 && (!this.filterList.maxSpeed || this.filterList.maxSpeed >= vehicle.topSpeed)
                 && (!this.filterList.minTrunk || this.filterList.minTrunk <= vehicle.trunkCapacity)
-                && (!this.filterList.maxTrunk || this.filterList.maxTrunk >= vehicle.trunkCapacity)
-                )   
-            })
+                && (!this.filterList.maxTrunk || this.filterList.maxTrunk >= vehicle.trunkCapacity)  
+            )})
 
             filtered = this.sortList(filtered)
 
@@ -168,6 +167,11 @@ class VehicleStore {
                 this.status = "error";
             });
         }
+    }
+
+    updateVehicle = (vehicleObject) => {
+        let index = this.vehicleList.findIndex(x => x.id === vehicleObject.id)
+        this.vehicleList[index] = vehicleObject
     }
 }
 

@@ -5,9 +5,10 @@ import './app.scss'
 
 import Header from '../../layouts/header'
 
-import Landing from '../../pages/landing'
-import Explore from '../../pages/explore'
-import CarInformation from '../../pages/carInformation'
+import LandingPage from '../../pages/landingPage'
+import ExplorePage from '../../pages/explorePage'
+import InfoPage from '../../pages/infoPage'
+import EditPage from '../../pages/editPage'
 
 @inject("VehicleStore")
 @observer
@@ -21,15 +22,19 @@ class App extends Component {
             <Router>
                 <Switch>
                     <Route exact path="/">
-                        <Landing />
+                        <LandingPage />
                     </Route>
                     <Route path="/explore">
                         <Header />
-                        <Explore />
+                        <ExplorePage />
+                    </Route>
+                    <Route path="/vehicle/:vehicleId/edit">
+                        <Header />
+                        <EditPage />
                     </Route>
                     <Route path="/vehicle/:vehicleId">
                         <Header />
-                        <CarInformation />
+                        <InfoPage />
                     </Route>
                     <Route path="/vehicle">
                         <Redirect to="/explore" />

@@ -5,7 +5,7 @@ import { observer, inject } from 'mobx-react';
 
 @inject("VehicleStore")
 @observer
-class CarInformation extends Component {
+class VehicleInformation extends Component {
 
     render() {
         const {vehicleBody, vehicleEngine, vehicleList, vehicleMake, vehicleModel, vehicleTransmission} = this.props.VehicleStore
@@ -39,6 +39,7 @@ class CarInformation extends Component {
         return (
             <div className="info-page container">
                 <Link to="/explore" className="back-btn btn btn-blue">Go back</Link>
+                <Link to={`/vehicle/${vehicleId}/edit`} className="back-btn btn btn-blue float-right">Edit</Link>
                 <div className="car-image"></div>
                 <div className="d-flex upper-info h2">
                     <span className="--full">{title}</span>
@@ -58,4 +59,4 @@ class CarInformation extends Component {
     }
 }
 
-export default withRouter(CarInformation);
+export default withRouter(VehicleInformation);

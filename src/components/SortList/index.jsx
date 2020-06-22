@@ -17,16 +17,17 @@ class SortList extends Component {
     }
 
     render() {
+
         return (
             <div className="sort">
                 <span>Sort By: </span>
-                <select onChange={this.handleChange}>
-                    <option value="nameAsc">Name (Asc.)</option>
-                    <option value="nameDesc">Name (Desc.)</option>
-                    <option value="yearAsc">Year (Asc.)</option>
-                    <option value="yearDesc">Year (Desc.)</option>
-                    <option value="priceAsc">Price (Asc.)</option>
-                    <option value="priceDesc">Price (Desc.)</option>
+                <select onChange={this.handleChange} value={this.props.VehicleStore.sortBy}>
+                    <option value="nameAsc">Name (A-Z)</option>
+                    <option value="nameDesc">Name (Z-A)</option>
+                    <option value="yearAsc">Year (Low to High)</option>
+                    <option value="yearDesc">Year (High to Low)</option>
+                    <option value="priceAsc">Price (Low to High)</option>
+                    <option value="priceDesc">Price (High to Low)</option>
                 </select>
             </div>
         );
