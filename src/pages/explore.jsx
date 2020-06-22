@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import VehicleList from '../components/VehicleList'
 import FilterBar from '../components/FilterBar'
 import Pagination from '../components/Pagination'
+import SortList from '../components/SortList'
 
 class Explore extends Component {
     constructor(props){
@@ -20,9 +21,9 @@ class Explore extends Component {
                 <FilterBar 
                     className={!showFilters ? "hidden" : ""}
                     hideFilters={() => this.setState({showFilters: false})}
-                 />
-                {!showFilters && <button className="btn btn-blue btn-rounder m-5" onClick={() => this.setState({showFilters: true})}>Filters</button>
-                }
+                />
+                {!showFilters && <button className="btn btn-blue btn-rounder m-5" onClick={() => this.setState({showFilters: true})}>Filters</button>}
+                <SortList />
                 <Pagination />
                 <div className="explore">
                     <VehicleList />

@@ -15,10 +15,90 @@ class VehicleStore {
     @observable vehicleData = {
         
     };
+    @observable sortBy = "alphabet"
     @observable searchQuery = ""
     @observable filterList = {}
     @observable status = "initial"
     @observable pageNumber = 1
+
+    
+
+    sortList(list) {
+        let sortedList = list
+
+        switch(this.sortBy){
+            case "nameAsc":
+                sortedList = list.sort((a, b) => {
+                    if(this.vehicleMake[this.vehicleModel[a.modelId].makeId].name > this.vehicleMake[this.vehicleModel[b.modelId].makeId].name){
+                        return 1
+                    }
+                    if(this.vehicleMake[this.vehicleModel[a.modelId].makeId].name < this.vehicleMake[this.vehicleModel[b.modelId].makeId].name){
+                        return -1
+                    }
+                    return 0
+                })
+                break;
+            case "nameDesc":
+                sortedList = list.sort((a, b) => {
+                    if(this.vehicleMake[this.vehicleModel[a.modelId].makeId].name < this.vehicleMake[this.vehicleModel[b.modelId].makeId].name){
+                        return 1
+                    }
+                    if(this.vehicleMake[this.vehicleModel[a.modelId].makeId].name > this.vehicleMake[this.vehicleModel[b.modelId].makeId].name){
+                        return -1
+                    }
+                    return 0
+                })
+                break;
+            case "yearAsc":
+                sortedList = list.sort((a, b) => {
+                    if(a.year > b.year){
+                        return 1
+                    }
+                    if(a.year < b.year){
+                        return -1
+                    }
+                    return 0
+                })
+                break;
+            case "yearDesc":
+                sortedList = list.sort((a, b) => {
+                    if(a.year < b.year){
+                        return 1
+                    }
+                    if(a.year > b.year){
+                        return -1
+                    }
+                    return 0
+                })
+                break;
+            case "priceAsc":
+                sortedList = list.sort((a, b) => {
+                    if(a.price > b.price){
+                        return 1
+                    }
+                    if(a.price < b.price){
+                        return -1
+                    }
+                    return 0
+                })
+                break;
+            case "priceDesc":
+                sortedList = list.sort((a, b) => {
+                    if(a.price < b.price){
+                        return 1
+                    }
+                    if(a.price > b.price){
+                        return -1
+                    }
+                    return 0
+                })
+                break;
+            default:
+                sortedList = list
+        }
+
+        return sortedList
+    }
 
     @computed get filters() {
         let filtered = 
@@ -43,6 +123,7 @@ class VehicleStore {
                 )   
             })
 
+            filtered = this.sortList(filtered)
 
         return filtered
     }
