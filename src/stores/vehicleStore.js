@@ -69,6 +69,10 @@ class VehicleStore {
         trunkVal: undefined
     }
 
+    @observable infoState = {
+        vehicleObject: {}
+    }
+
     @computed get pageCount() {
         return Math.ceil(this.totalRecords / 10)
     }
@@ -112,6 +116,22 @@ class VehicleStore {
             runInAction(() => {
                 this.vehicleList = data.item
                 this.totalRecords = data.totalRecords
+            })
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error";
+            });
+        }
+    }
+
+    getVehicleById = async (id) => {
+        try {
+            let params = {
+            }
+            let urlParams = new URLSearchParams(Object.entries(params))
+            let data = await this.vehicleService.getId(urlParams, id)
+            runInAction(() => {
+                this.infoState.vehicleObject = data
             })
         } catch (error) {
             runInAction(() => {

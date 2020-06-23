@@ -9,6 +9,14 @@ class VehicleService {
         const res = await fetch(req);
         return res.json();
     } 
+    getId = async (urlParams, id) => {
+        const options = {
+            method: "GET"
+        }
+        const req = new Request(webApiUrl + "/" + id + "?" + urlParams, options);
+        const res = await fetch(req);
+        return res.json();
+    }
     post = async (object) => {
         const headers = new Headers();
         headers.append("Content-Type", "application/json");

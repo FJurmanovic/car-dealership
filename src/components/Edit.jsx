@@ -30,7 +30,7 @@ class Edit extends Component {
         const {vehicleId} = this.props.match.params
 
         const vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]
-        if (vehicleList.length > 0 && !!vehicle) {
+        if (!!vehicle) {
             this.props.VehicleStore.editState = {
                 nameVal: `${vehicleMake[vehicleModel[vehicle.modelId].makeId].name} ${vehicleModel[vehicle.modelId].name} ${vehicle.year}.`,
                 modelVal: vehicle.modelId || 0,
@@ -53,7 +53,7 @@ class Edit extends Component {
         const {vehicleId} = this.props.match.params
 
         const vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]
-        if (vehicleList.length > 0 && !!vehicle && !this.props.VehicleStore.editState.componentUpdated) {
+        if (!!vehicle && !this.props.VehicleStore.editState.componentUpdated) {
             this.props.VehicleStore.editState = {
                 nameVal: `${vehicleMake[vehicleModel[vehicle.modelId].makeId].name} ${vehicleModel[vehicle.modelId].name} ${vehicle.year}.`,
                 modelVal: vehicle.modelId || 0,
@@ -187,12 +187,12 @@ class Edit extends Component {
     render() {
         const {vehicleBody, vehicleEngine, vehicleList, vehicleMake, vehicleModel, vehicleTransmission} = this.props.VehicleStore
         const {vehicleId} = this.props.match.params
-        const vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]
-        if(!vehicleList.length > 0) {
-            this.props.VehicleStore.getVehicleList()
+        let vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]
+        if(!vehicle) {
+            this.props.VehicleStore.getVehicleById(vehicleId)
         }
 
-        if(vehicleList.length > 0 && !vehicle) {
+        if(!this.props.VehicleStore.infoState.vehicleObject && !vehicle) {
             this.props.history.push("/explore")
         }
         

@@ -11,15 +11,16 @@ class VehicleInformation extends Component {
         const {vehicleBody, vehicleEngine, vehicleList, vehicleMake, vehicleModel, vehicleTransmission} = this.props.VehicleStore
         const {vehicleId} = this.props.match.params
 
-        const vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]
+        let vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]
 
         let name, bodyType, doorCount, engineType, fuelCapacity, topSpeed, transmissionType, trunkCapacity, price = ''
 
-        if(!vehicleList.length > 0) {
-            this.props.VehicleStore.getVehicleList()
+        if(!vehicle) {
+            this.props.VehicleStore.getVehicleById(vehicleId)
+            vehicle = this.props.VehicleStore.infoState.vehicleObject
         }
 
-        if(vehicleList.length > 0 && !vehicle) {
+        if(!vehicle && !this.props.VehicleStore.infoState.vehicleObject) {
             this.props.history.push("/explore")
         }
         
