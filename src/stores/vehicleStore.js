@@ -182,6 +182,22 @@ class VehicleStore {
         }
     }
 
+    putVehicleList = async (object) => {
+        try {
+            let data = await this.vehicleService.put(object)
+            if (data.status == 204){
+                runInAction(() => {
+                    this.status = "update"
+                    this.updateVehicle(object)
+                }
+            )}
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error"
+            })
+        }
+    }
+
     updateVehicle = (vehicleObject) => {
         let index = this.vehicleList.findIndex(x => x.id === vehicleObject.id)
         this.vehicleList[index] = vehicleObject

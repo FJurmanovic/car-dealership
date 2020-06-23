@@ -178,7 +178,8 @@ class Edit extends Component {
                 year: Number(yearVal)
             }
 
-            this.props.VehicleStore.updateVehicle(vehicleObject)
+            this.props.VehicleStore.putVehicleList(vehicleObject)
+            this.props.history.push(`/vehicle/${vehicleId}`)
     }
 
     render() {

@@ -22,6 +22,19 @@ class VehicleService {
         const res = await fetch(req);
         return res.json();
     }
+    put = async (object) => {
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json");
+ 
+        const options = {
+            method: "PUT",
+            headers,
+            body: JSON.stringify(object)
+        }
+        const req = new Request(webApiUrl + `/${object.id}`, options);
+        const res = await fetch(req);
+        return res;
+    }
 }
 
 export default VehicleService;
