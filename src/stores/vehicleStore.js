@@ -169,6 +169,19 @@ class VehicleStore {
         }
     }
 
+    postVehicleList = async (object) => {
+        try {
+            let data = await this.vehicleService.post(object)
+            runInAction(() => {
+                this.vehicleList.push(data)
+            })
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error"
+            })
+        }
+    }
+
     updateVehicle = (vehicleObject) => {
         let index = this.vehicleList.findIndex(x => x.id === vehicleObject.id)
         this.vehicleList[index] = vehicleObject

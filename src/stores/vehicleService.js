@@ -9,6 +9,19 @@ class VehicleService {
         const res = await fetch(req);
         return res.json();
     } 
+    post = async (object) => {
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json");
+ 
+        const options = {
+            method: "POST",
+            headers,
+            body: JSON.stringify(object)
+        }
+        const req = new Request(webApiUrl, options);
+        const res = await fetch(req);
+        return res.json();
+    }
 }
 
 export default VehicleService;

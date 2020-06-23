@@ -9,6 +9,9 @@ export default class Header extends Component {
                     <Link to="/" className="btn btn-link t-yellow text-uppercase h3">Car Dealership</Link>
                 </div>
                 <div className="header-item">
+                    <Link to="/add" className="btn btn-rounder btn-default">Add</Link>
+                </div>
+                <div className="header-item">
                     <Link to="/explore" className="btn btn-rounder btn-white">Explore</Link>
                 </div>
             </header>

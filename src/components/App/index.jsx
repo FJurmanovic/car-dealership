@@ -9,6 +9,7 @@ import LandingPage from '../../pages/landingPage'
 import ExplorePage from '../../pages/explorePage'
 import InfoPage from '../../pages/infoPage'
 import EditPage from '../../pages/editPage'
+import AddPage from '../../pages/addPage'
 
 @inject("VehicleStore")
 @observer
@@ -38,6 +39,10 @@ class App extends Component {
                     </Route>
                     <Route path="/vehicle">
                         <Redirect to="/explore" />
+                    </Route>
+                    <Route path="/add">
+                        <Header />
+                        <AddPage />
                     </Route>
                 </Switch>
             </Router>
