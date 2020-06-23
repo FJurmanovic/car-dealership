@@ -13,7 +13,7 @@ class VehicleInformation extends Component {
 
         const vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]
 
-        let title, bodyType, doorCount, engineType, fuelCapacity, topSpeed, transmissionType, trunkCapacity, price = ''
+        let name, bodyType, doorCount, engineType, fuelCapacity, topSpeed, transmissionType, trunkCapacity, price = ''
 
         if(!vehicleList.length > 0) {
             this.props.VehicleStore.getVehicleList()
@@ -25,7 +25,7 @@ class VehicleInformation extends Component {
         
         if((vehicleList.length > 0 && !vehicle) || !vehicleList.length > 0){
         }else {
-            title = `${vehicleMake[vehicleModel[vehicle.modelId].makeId].name} ${vehicleModel[vehicle.modelId].name} ${vehicle.year}`
+            name = vehicle.name
             price = vehicle.price
             bodyType = vehicleBody[vehicle.bodyId].name || ''
             doorCount = vehicle.doorCount || ''
@@ -42,7 +42,7 @@ class VehicleInformation extends Component {
                 <Link to={`/vehicle/${vehicleId}/edit`} className="back-btn btn btn-blue float-right">Edit</Link>
                 <div className="car-image"></div>
                 <div className="d-flex upper-info h2">
-                    <span className="--full">{title}</span>
+                    <span className="--full">{name}</span>
                     <span className="h1">{price.toLocaleString()}€</span>
                 </div>
                 <div className="lower-info my-4">

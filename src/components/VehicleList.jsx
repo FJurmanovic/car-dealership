@@ -10,8 +10,8 @@ class VehicleList extends Component {
         const {vehicleMake, vehicleModel, vehicleList, vehicleTransmission, vehicleEngine, vehicleBody} = this.props.VehicleStore
         return (
             <>
-                {this.props.VehicleStore.pageList.map(vehicle => {
-                        const title = `${vehicleMake[vehicleModel[vehicle.modelId].makeId].name} ${vehicleModel[vehicle.modelId].name} ${vehicle.year}.`;
+                {vehicleList.map(vehicle => {
+                        const name = vehicle.name;
                         return (
                             <Fragment key={vehicle.id}>
                                 <div className="vehicle-card">
@@ -19,7 +19,7 @@ class VehicleList extends Component {
                                     <div className="vehicle-card-info">
                                         <div className="upper-info">
                                             <span className="title --full">
-                                                <span data={title}>{title}</span>
+                                                <span data={name}>{name}</span>
                                             </span>
                                             <span className="price">{vehicle.price.toLocaleString()}€</span>
                                         </div>
