@@ -14,8 +14,19 @@ class AddMake extends Component {
 
     saveClick(event) {
         event.preventDefault();
+        const {nameVal} = this.props.VehicleStore.newMakeState
 
-        console.log(this.props.VehicleStore.newMakeState)
+        if(!!nameVal){
+            let makeObject = 
+            {
+               name: nameVal
+            }
+
+            this.props.VehicleStore.postVehicleMake(makeObject)
+            //this.props.history.push("/manufacturers")
+        } else {
+            alert("All boxes need to be filled")
+        }
     }
 
     render() {

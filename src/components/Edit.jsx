@@ -32,9 +32,9 @@ class Edit extends Component {
         const vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]
         if (!!vehicle) {
             this.props.VehicleStore.editState = {
-                nameVal: `${vehicleMake[vehicleModel[vehicle.modelId].makeId].name} ${vehicleModel[vehicle.modelId].name} ${vehicle.year}.`,
+                nameVal: vehicle.name || '',
                 modelVal: vehicle.modelId || 0,
-                makeVal: vehicleMake[vehicleModel[vehicle.modelId].makeId].id || 0,
+                makeVal: vehicle.makeId || 0,
                 yearVal: vehicle.year || 0,
                 priceVal: vehicle.price || 0,
                 bodyVal: vehicle.bodyId || 0,
@@ -55,9 +55,9 @@ class Edit extends Component {
         const vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]
         if (!!vehicle && !this.props.VehicleStore.editState.componentUpdated) {
             this.props.VehicleStore.editState = {
-                nameVal: `${vehicleMake[vehicleModel[vehicle.modelId].makeId].name} ${vehicleModel[vehicle.modelId].name} ${vehicle.year}.`,
+                nameVal:  vehicle.name || '',
                 modelVal: vehicle.modelId || 0,
-                makeVal: vehicleMake[vehicleModel[vehicle.modelId].makeId].id || 0,
+                makeVal: vehicle.makeId || 0,
                 yearVal: vehicle.year || 0,
                 priceVal: vehicle.price || 0,
                 bodyVal: vehicle.bodyId || 0,
@@ -83,7 +83,7 @@ class Edit extends Component {
         const {makeVal, modelVal, yearVal} = this.props.VehicleStore.editState
         const {vehicleMake, vehicleModel} = this.props.VehicleStore
 
-        this.props.VehicleStore.editState.nameVal = `${vehicleMake[makeVal].name} ${vehicleModel[modelVal].name} ${yearVal}.`
+        this.props.VehicleStore.editState.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
     }
 
     modelChange(event) {
@@ -94,7 +94,7 @@ class Edit extends Component {
         const {makeVal, modelVal, yearVal} = this.props.VehicleStore.editState
         const {vehicleMake, vehicleModel} = this.props.VehicleStore
 
-        this.props.VehicleStore.editState.nameVal = `${vehicleMake[makeVal].name} ${vehicleModel[modelVal].name} ${yearVal}.`
+        this.props.VehicleStore.editState.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
     }
 
     yearChange(event) {
@@ -105,7 +105,7 @@ class Edit extends Component {
         const {makeVal, modelVal, yearVal} = this.props.VehicleStore.editState
         const {vehicleMake, vehicleModel} = this.props.VehicleStore
 
-        this.props.VehicleStore.editState.nameVal = `${vehicleMake[makeVal].name} ${vehicleModel[modelVal].name} ${yearVal}.`
+        this.props.VehicleStore.editState.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
     }
 
     priceChange(event) {
@@ -167,8 +167,8 @@ class Edit extends Component {
             {
                 id: vehicleId,
                 name: nameVal,
-                makeId: Number(makeVal),
-                modelId: Number(modelVal),
+                makeId: makeVal,
+                modelId: modelVal,
                 bodyId: Number(bodyVal),
                 doorCount: Number(doorVal),
                 engineId: Number(engineVal),

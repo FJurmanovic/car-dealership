@@ -1,23 +1,23 @@
-const webApiUrl = "https://api.baasic.com/v1/car-dealership-assignment/resources/vehicleList"
+const webApiUrl = "https://api.baasic.com/v1/car-dealership-assignment/resources"
 
 class VehicleService {
-    get = async (urlParams) => {
+    get = async (urlParams, scheme) => {
         const options = {
             method: "GET"
         }
-        const req = new Request(webApiUrl + "?" + urlParams, options);
+        const req = new Request(webApiUrl + "/" + scheme + "?" + urlParams, options);
         const res = await fetch(req);
         return res.json();
     } 
-    getId = async (urlParams, id) => {
+    getId = async (urlParams, id, scheme) => {
         const options = {
             method: "GET"
         }
-        const req = new Request(webApiUrl + "/" + id + "?" + urlParams, options);
+        const req = new Request(webApiUrl + "/" + scheme + "/" + id + "?" + urlParams, options);
         const res = await fetch(req);
         return res.json();
     }
-    post = async (object) => {
+    post = async (object, scheme) => {
         const headers = new Headers();
         headers.append("Content-Type", "application/json");
  
@@ -26,11 +26,11 @@ class VehicleService {
             headers,
             body: JSON.stringify(object)
         }
-        const req = new Request(webApiUrl, options);
+        const req = new Request(webApiUrl + "/" + scheme, options);
         const res = await fetch(req);
         return res.json();
     }
-    put = async (object) => {
+    put = async (object, scheme) => {
         const headers = new Headers();
         headers.append("Content-Type", "application/json");
  
@@ -39,7 +39,7 @@ class VehicleService {
             headers,
             body: JSON.stringify(object)
         }
-        const req = new Request(webApiUrl + `/${object.id}`, options);
+        const req = new Request(webApiUrl + "/" + scheme + `/${object.id}`, options);
         const res = await fetch(req);
         return res;
     }

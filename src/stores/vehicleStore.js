@@ -6,8 +6,8 @@ class VehicleStore {
     constructor() {
         this.vehicleService = new VehicleService();
     }
-    @observable vehicleMake = require("../common/data/vehicleMake.json")
-    @observable vehicleModel = require("../common/data/vehicleModel.json")
+    @observable vehicleMake = []
+    @observable vehicleModel = []
     @observable vehicleBody = require("../common/data/vehicleBody.json")
     @observable vehicleEngine = require("../common/data/vehicleEngine.json")
     @observable vehicleTransmission = require("../common/data/vehicleTransmission.json")
@@ -122,7 +122,88 @@ class VehicleStore {
 
         this.getVehicleList()
     }
-    
+
+    getVehicleMake = async () => {
+        try {
+            let params = {
+                rpp: 10
+            }
+            if (this.sortBy) {
+                params.sort = this.sortBy
+            }
+            if (this.searchQuery) {
+                params.searchQuery = this.searchQuery
+            }
+            let urlParams = new URLSearchParams(Object.entries(params))
+            let data = await this.vehicleService.get(urlParams, "vehicleMake")
+            if (data.totalRecords > params.rpp) {
+                params.rpp = data.totalRecords
+                urlParams = new URLSearchParams(Object.entries(params))
+                data = await this.vehicleService.get(urlParams, "vehicleMake")
+            }
+            runInAction(() => {
+                this.vehicleMake = data.item
+            })
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error";
+            });
+        }
+    }
+
+    postVehicleMake = async (object) => {
+        try {
+            let data = await this.vehicleService.post(object, "vehicleMake")
+            runInAction(() => {
+                this.vehicleMake.push(data)
+            })
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error"
+            })
+        }
+    }
+
+    getVehicleModel = async () => {
+        try {
+            let params = {
+                rpp: 10
+            }
+            if (this.sortBy) {
+                params.sort = this.sortBy
+            }
+            if (this.searchQuery) {
+                params.searchQuery = this.searchQuery
+            }
+            let urlParams = new URLSearchParams(Object.entries(params))
+            let data = await this.vehicleService.get(urlParams, "vehicleModel")
+            if (data.totalRecords > params.rpp) {
+                params.rpp = data.totalRecords
+                urlParams = new URLSearchParams(Object.entries(params))
+                data = await this.vehicleService.get(urlParams, "vehicleModel")
+            }
+            runInAction(() => {
+                this.vehicleModel = data.item
+            })
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error";
+            });
+        }
+    }
+
+    postVehicleModel = async (object) => {
+        try {
+            let data = await this.vehicleService.post(object, "vehicleModel")
+            runInAction(() => {
+                this.vehicleModel.push(data)
+            })
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error"
+            })
+        }
+    }
 
     getVehicleList = async () => {
         try {
@@ -137,7 +218,7 @@ class VehicleStore {
                 params.searchQuery = this.searchQuery
             }
             let urlParams = new URLSearchParams(Object.entries(params))
-            let data = await this.vehicleService.get(urlParams)
+            let data = await this.vehicleService.get(urlParams, "vehicleList")
             runInAction(() => {
                 this.vehicleList = data.item
                 this.totalRecords = data.totalRecords
@@ -154,7 +235,7 @@ class VehicleStore {
             let params = {
             }
             let urlParams = new URLSearchParams(Object.entries(params))
-            let data = await this.vehicleService.getId(urlParams, id)
+            let data = await this.vehicleService.getId(urlParams, id, "vehicleList")
             runInAction(() => {
                 this.infoState.vehicleObject = data
             })
@@ -167,7 +248,7 @@ class VehicleStore {
 
     postVehicleList = async (object) => {
         try {
-            let data = await this.vehicleService.post(object)
+            let data = await this.vehicleService.post(object, "vehicleList")
             runInAction(() => {
                 this.vehicleList.push(data)
             })
@@ -180,7 +261,7 @@ class VehicleStore {
 
     putVehicleList = async (object) => {
         try {
-            let data = await this.vehicleService.put(object)
+            let data = await this.vehicleService.put(object, "vehicleList")
             if (data.status == 204){
                 runInAction(() => {
                     this.status = "update"

@@ -14,9 +14,22 @@ class AddModel extends Component {
 
     saveClick(event) {
         event.preventDefault();
-        this.props.VehicleStore.newModelState.makeId = this.props.match.params.makeId
 
-        console.log(this.props.VehicleStore.newModelState)
+        const {makeId} = this.props.match.params
+        const {nameVal} = this.props.VehicleStore.newModelState
+
+        if(!!nameVal){
+            let makeObject = 
+            {
+               name: nameVal,
+               makeId: makeId
+            }
+
+            this.props.VehicleStore.postVehicleModel(makeObject)
+            //this.props.history.push("/manufacturers")
+        } else {
+            alert("All boxes need to be filled")
+        }
     }
 
     render() {

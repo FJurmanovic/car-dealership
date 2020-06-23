@@ -18,8 +18,10 @@ import AddModelPage from '../pages/addModelPage'
 @inject("VehicleStore")
 @observer
 class App extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.VehicleStore.getVehicleList()
+        this.props.VehicleStore.getVehicleMake()
+        this.props.VehicleStore.getVehicleModel()
     }
 
     render() {

@@ -23,15 +23,18 @@ class ModelList extends Component {
         this.props.VehicleStore.makeListState.pageNum = page
     }
 
-    modelByPage(page) {
+    modelById() {
         const {pageNum, modelCount, pageCount} = this.props.VehicleStore.modelListState
-        return (this.props.VehicleStore.vehicleModel.filter((_, index) => (index < pageNum * 15) && (index > (pageNum * 15) - 16)))
+        const {makeId} = this.props.match.params
+        return (this.props.VehicleStore.vehicleModel.filter(x => x.makeId == makeId))
     }
 
     render() {
         const {vehicleMake, vehicleModel, vehicleList, vehicleTransmission, vehicleEngine, vehicleBody, makePageCount} = this.props.VehicleStore
         const {makeId} = this.props.match.params
         const {pageNum, modelCount, pageCount} = this.props.VehicleStore.modelListState
+
+        console.log(this.modelById(), makeId)
 
 
         return (
@@ -44,7 +47,7 @@ class ModelList extends Component {
                         return <button key={page} className={`page-num btn btn-group-item btn-blue ${(pageNum === page) ? "current": ""}`} onClick={() => this.setPage(page)}>{page}</button>
                     }) }
                     </div>
-                    {this.modelByPage().filter(x => x.makeId == makeId).map(make => {
+                    {this.modelById().filter((_, index) => (index < pageNum * 15) && (index > (pageNum * 15) - 16)).map(make => {
                             const name = make.name;
                             return (
                                 <Fragment key={make.id}>
