@@ -1,6 +1,10 @@
 body {
     background-color: #ffffff;
 
+    .back-btn {
+        margin: 16px
+    }
+
     .t-yellow {
         color: #FFF700 !important;
     }
@@ -380,6 +384,39 @@ body {
 
     .add-page {
         margin-top: 25px;
+    }
+
+    .edit-btn {
+        height: 25px;
+        padding: 0;
+        padding-right: 5px;
+        padding-left: 5px;
+        font-size: 14px;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .make-info {
+        display: block;
+        width: 100%;
+        height: 40px;
+        background-color: #4680ff;
+        margin-top: 5px;
+        padding: 0;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 20px;
+        font-weight: 500;
+        color: #ffffff;
+        line-height: 2;
+
+        &:hover {
+            background-color: #6092ff;
+        }
+    }
+
+    .make-group {
+        margin-bottom: 6px;
     }
 
     .info-page {

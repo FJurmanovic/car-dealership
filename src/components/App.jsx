@@ -10,6 +10,10 @@ import ExplorePage from '../pages/explorePage'
 import InfoPage from '../pages/infoPage'
 import EditPage from '../pages/editPage'
 import AddPage from '../pages/addPage'
+import MakePage from '../pages/makePage'
+import ModelPage from '../pages/modelPage'
+import AddMakePage from '../pages/addMakePage'
+import AddModelPage from '../pages/addModelPage'
 
 @inject("VehicleStore")
 @observer
@@ -43,6 +47,22 @@ class App extends Component {
                     <Route path="/add">
                         <Header />
                         <AddPage />
+                    </Route>
+                    <Route path="/manufacturers/new">
+                        <Header />
+                        <AddMakePage />
+                    </Route>
+                    <Route path="/manufacturers/:makeId/new">
+                        <Header />
+                        <AddModelPage />
+                    </Route>
+                    <Route path="/manufacturers/:makeId">
+                        <Header />
+                        <ModelPage />
+                    </Route>
+                    <Route path="/manufacturers">
+                        <Header />
+                        <MakePage />
                     </Route>
                 </Switch>
             </Router>

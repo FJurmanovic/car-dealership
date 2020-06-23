@@ -21,7 +21,7 @@ class Pagination extends Component {
 
         return (
             <div className="pagination btn-group d-flex">
-                {[...range(1, pageCount)].map(page => {
+                {range(1, pageCount).map(page => {
                     return <button key={page} className={`page-num btn btn-group-item btn-blue ${pageNumber === page ? "current": ""}`} onClick={() => this.setPage(page)}>{page}</button>
                 }) }
             </div>

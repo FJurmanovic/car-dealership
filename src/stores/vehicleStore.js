@@ -52,7 +52,11 @@ class VehicleStore {
         speedVal: undefined,
         transmissionVal: undefined,
         trunkVal: undefined,
-        componentUpdated: false
+        componentUpdated: false,
+        newMake: false,
+        newModel: false,
+        newMakeVal: undefined,
+        newModelVal: undefined
     }
 
     @observable addState = {
@@ -71,6 +75,27 @@ class VehicleStore {
 
     @observable infoState = {
         vehicleObject: {}
+    }
+
+    @observable makeListState = {
+        makeCount: 0,
+        pageNum: 1,
+        pageCount: 1
+    }
+    
+    @observable modelListState = {
+        modelCount: 0,
+        pageNum: 1,
+        pageCount: 1
+    }
+
+    @observable newMakeState = {
+        nameVal: undefined
+    }
+
+    @observable newModelState = {
+        nameVal: undefined,
+        makeId: 0
     }
 
     @computed get pageCount() {
