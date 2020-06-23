@@ -8,21 +8,12 @@ import SortList from '../components/SortList'
 class ExplorePage extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            showFilters: false
-        }
     }
 
     render() {
-        const {showFilters} = this.state;
-
         return (
             <>
-                <FilterBar 
-                    className={!showFilters ? "hidden" : ""}
-                    hideFilters={() => this.setState({showFilters: false})}
-                />
-                {!showFilters && <button className="btn btn-blue btn-rounder m-5" onClick={() => this.setState({showFilters: true})}>Filters</button>}
+                <FilterBar />
                 <SortList />
                 <Pagination />
                 <div className="explore">

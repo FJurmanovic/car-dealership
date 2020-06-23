@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import {range} from '../../common/js/functions'
+import {range} from '../common/js/functions'
 
 
 @inject("VehicleStore")

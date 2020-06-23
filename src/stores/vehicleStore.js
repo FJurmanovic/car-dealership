@@ -12,14 +12,60 @@ class VehicleStore {
     @observable vehicleEngine = require("../common/data/vehicleEngine.json")
     @observable vehicleTransmission = require("../common/data/vehicleTransmission.json")
     @observable vehicleList = []
-    @observable vehicleData = {
-        
-    };
     @observable sortBy = "alphabet"
     @observable searchQuery = ""
     @observable filterList = {}
     @observable status = "initial"
     @observable pageNumber = 1
+    @observable showFilters = false
+
+    @observable filterState = {
+        makeVal: null,
+        modelVal: null,
+        minPriceVal: null,
+        maxPriceVal: null,
+        minYearVal: null,
+        maxYearVal: null,
+        bodyVal: null,
+        engineVal: null,
+        transmissionVal: null,
+        doorVal: null,
+        minFuelVal: 0,
+        maxFuelVal: 150,
+        minSpeedVal: 100,
+        maxSpeedVal: 400,
+        minTrunkVal: 100,
+        maxTrunkVal: 1000
+    }
+
+    @observable editState = {
+        makeVal: undefined,
+        modelVal: undefined,
+        yearVal: undefined,
+        priceVal: undefined,
+        bodyVal: undefined,
+        doorVal: undefined,
+        engineVal: undefined,
+        fuelVal: undefined,
+        speedVal: undefined,
+        transmissionVal: undefined,
+        trunkVal: undefined,
+        componentUpdated: false
+    }
+
+    @observable addState = {
+        makeVal: 0,
+        modelVal: 0,
+        yearVal: 2000,
+        priceVal: 0,
+        bodyVal: 0,
+        doorVal: 2,
+        engineVal: 0,
+        fuelVal: undefined,
+        speedVal: undefined,
+        transmissionVal: 0,
+        trunkVal: undefined
+    }
 
     
 
