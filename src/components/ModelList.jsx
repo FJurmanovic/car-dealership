@@ -47,12 +47,12 @@ class ModelList extends Component {
                         return <button key={page} className={`page-num btn btn-group-item btn-blue ${(pageNum === page) ? "current": ""}`} onClick={() => this.setPage(page)}>{page}</button>
                     }) }
                     </div>
-                    {this.modelById().filter((_, index) => (index < pageNum * 15) && (index > (pageNum * 15) - 16)).map(make => {
-                            const name = make.name;
+                    {this.modelById().filter((_, index) => (index < pageNum * 15) && (index > (pageNum * 15) - 16)).map(model => {
+                            const name = model.name;
                             return (
-                                <Fragment key={make.id}>
-                                <Link to={`/manufacturers/${make.id}`} className="make-info">
-                                        <span>{name}</span>
+                                <Fragment key={model.id}>
+                                    <Link to="/explore">
+                                        <button className="make-info btn btn-squared" onClick={() => this.props.VehicleStore.filtersSet(["modelId = " + model.id])}>{name}</button>
                                     </Link>
                                 </Fragment>
                             )

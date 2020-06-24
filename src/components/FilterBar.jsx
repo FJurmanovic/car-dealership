@@ -28,15 +28,12 @@ class FilterBar extends Component {
         this.toggleFilters = this.toggleFilters.bind(this)
     }
 
-    componentDidMount() {
-        this.props.VehicleStore.filtersSet({})
-    }
 
     filterVehicles () {
         let filterList = []
         const {makeVal, modelVal, bodyVal, engineVal, transmissionVal, doorVal, minPriceVal, maxPriceVal, minYearVal, maxYearVal, minFuelVal, maxFuelVal, minSpeedVal, maxSpeedVal, minTrunkVal, maxTrunkVal} = this.props.VehicleStore.filterState
         
-        makeVal && filterList.push("makeId = " + makeVal)
+        makeVal && !modelVal && filterList.push("makeId = " + makeVal)
         modelVal && filterList.push("modelId = " + modelVal)
         bodyVal && filterList.push("bodyId = " + bodyVal)
         engineVal && filterList.push("engineId = " + engineVal)
@@ -233,7 +230,10 @@ class FilterBar extends Component {
         
         return (
             <>
-                {!showFilters && <button className="btn btn-blue btn-rounder m-5" onClick={this.toggleFilters}>Filters</button>}
+                {!showFilters && <>
+                    <button className="btn btn-blue btn-rounder m-5" onClick={this.toggleFilters}>Filters</button>
+                    <button className="btn btn-blue-transparent btn-rounder m-5" onClick={() => this.props.VehicleStore.filtersSet([])}>Reset</button>
+                </>}
                 <div className={`filters d-flex ${className}`}>
                     <button className="hide-btn btn btn-squared" onClick={this.toggleFilters}></button>
                     <div className="filter-row">

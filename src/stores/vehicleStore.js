@@ -60,8 +60,8 @@ class VehicleStore {
     }
 
     @observable addState = {
-        makeVal: 0,
-        modelVal: 0,
+        makeVal: undefined,
+        modelVal: undefined,
         yearVal: 2000,
         priceVal: 0,
         bodyVal: 0,
@@ -74,7 +74,8 @@ class VehicleStore {
     }
 
     @observable infoState = {
-        vehicleObject: {}
+        vehicleObject: {},
+        isFetched: false
     }
 
     @observable makeListState = {
@@ -106,9 +107,8 @@ class VehicleStore {
     filtersSet(inputList) {
         this.searchQuery = "";
         if (inputList.length > 0) {
-            this.searchQuery += "WHERE "
             for (const [i, filter] of Array.entries(inputList)){
-                (inputList.length > (i + 1)) ? this.searchQuery += filter + " and " : this.searchQuery += filter
+                (inputList.length > (i + 1)) ? this.searchQuery += filter + " AND " : this.searchQuery += filter
             }
         } else {
             this.searchQuery = undefined

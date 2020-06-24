@@ -142,12 +142,17 @@ class Add extends Component {
                 <div className="car-image"></div>
                 <div className="d-flex upper-info h4 my-1">
                     <span className="--full">
-                        <select className="mr-1" value={this.props.VehicleStore.addState.makeVal} onChange={this.makeChange}>
-                            {vehicleMake.map(make => {
-                                return <option key={make.id} value={make.id}>{firstUpper(make.name)}</option>
-                            })}
-                        </select>
+                        <span className="make-group btn-group mr-2">
+                            <select className="btn-group-item" value={this.props.VehicleStore.addState.makeVal} onChange={this.makeChange}>
+                                <option>Select</option>
+                                {vehicleMake.map(make => {
+                                    return <option key={make.id} value={make.id}>{firstUpper(make.name)}</option>
+                                })}
+                            </select>
+                            <Link to="/manufacturers" className="btn-group-item btn btn-blue edit-btn">Edit</Link>
+                        </span>
                         <select className="mr-1" value={this.props.VehicleStore.addState.modelVal} onChange={this.modelChange}>
+                            <option>Select</option>
                             {vehicleModel.filter(model => model.makeId == this.props.VehicleStore.addState.makeVal).map(model => {
                                 return <option key={model.id} value={model.id}>{firstUpper(model.name)}</option>
                             })}
