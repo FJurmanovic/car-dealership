@@ -26,7 +26,7 @@ class Edit extends Component {
     }
 
     componentDidMount() {
-        const {vehicleBody, vehicleEngine, vehicleList, vehicleMake, vehicleModel, vehicleTransmission} = this.props.VehicleStore
+        const {vehicleList} = this.props.VehicleStore
         const {vehicleId} = this.props.match.params
 
         const vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]
@@ -49,7 +49,7 @@ class Edit extends Component {
     }
 
     componentDidUpdate() {
-        const {vehicleBody, vehicleEngine, vehicleList, vehicleMake, vehicleModel, vehicleTransmission} = this.props.VehicleStore
+        const {vehicleList} = this.props.VehicleStore
         const {vehicleId} = this.props.match.params
 
         const vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]

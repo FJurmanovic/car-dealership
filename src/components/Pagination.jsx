@@ -17,7 +17,7 @@ class Pagination extends Component {
     }
 
     render() {
-        const {pageNumber, pageCount, pageSet, filters} = this.props.VehicleStore
+        const {pageNumber, pageCount} = this.props.VehicleStore
 
         return (
             <div className="pagination btn-group d-flex">

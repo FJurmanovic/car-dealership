@@ -8,7 +8,7 @@ import { observer, inject } from 'mobx-react';
 class VehicleInformation extends Component {
 
     render() {
-        const {vehicleBody, vehicleEngine, vehicleList, vehicleMake, vehicleModel, vehicleTransmission} = this.props.VehicleStore
+        const {vehicleBody, vehicleEngine, vehicleList, vehicleTransmission} = this.props.VehicleStore
         const {vehicleId} = this.props.match.params
 
         let vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]

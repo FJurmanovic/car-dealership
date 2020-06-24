@@ -23,7 +23,7 @@ class AddMake extends Component {
             }
 
             this.props.VehicleStore.postVehicleMake(makeObject)
-            //this.props.history.push("/manufacturers")
+            this.props.history.push("/manufacturers")
         } else {
             alert("All boxes need to be filled")
         }

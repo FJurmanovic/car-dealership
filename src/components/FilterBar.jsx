@@ -225,8 +225,8 @@ class FilterBar extends Component {
         const showFilters = this.props.VehicleStore.showFilters
 
         const className = !showFilters ? "hidden" : ""
-        const {vehicleBody, vehicleEngine, vehicleList, vehicleMake, vehicleModel, vehicleTransmission} = this.props.VehicleStore
-        const {makeVal, modelVal, minPriceVal, maxPriceVal, minYearVal, maxYearVal, bodyVal, engineVal, transmissionVal, doorVal, minFuelVal, maxFuelVal, minSpeedVal, maxSpeedVal, minTrunkVal, maxTrunkVal} = this.props.VehicleStore.filterState
+        const {vehicleBody, vehicleEngine, vehicleMake, vehicleModel, vehicleTransmission} = this.props.VehicleStore
+        const {minPriceVal, maxPriceVal, minYearVal, maxYearVal, minFuelVal, maxFuelVal} = this.props.VehicleStore.filterState
         
         return (
             <>

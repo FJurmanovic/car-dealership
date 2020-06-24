@@ -26,7 +26,7 @@ class AddModel extends Component {
             }
 
             this.props.VehicleStore.postVehicleModel(makeObject)
-            //this.props.history.push("/manufacturers")
+            this.props.history.push("/manufacturers")
         } else {
             alert("All boxes need to be filled")
         }

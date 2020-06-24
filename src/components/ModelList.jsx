@@ -24,18 +24,13 @@ class ModelList extends Component {
     }
 
     modelById() {
-        const {pageNum, modelCount, pageCount} = this.props.VehicleStore.modelListState
         const {makeId} = this.props.match.params
         return (this.props.VehicleStore.vehicleModel.filter(x => x.makeId == makeId))
     }
 
     render() {
-        const {vehicleMake, vehicleModel, vehicleList, vehicleTransmission, vehicleEngine, vehicleBody, makePageCount} = this.props.VehicleStore
         const {makeId} = this.props.match.params
-        const {pageNum, modelCount, pageCount} = this.props.VehicleStore.modelListState
-
-        console.log(this.modelById(), makeId)
-
+        const {pageNum, pageCount} = this.props.VehicleStore.modelListState
 
         return (
             <>

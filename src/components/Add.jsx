@@ -100,7 +100,7 @@ class Add extends Component {
 
         let allEmpty = false
 
-        for (const [item, value] of Object.entries(this.props.VehicleStore.addState)) {
+        for (const [_, value] of Object.entries(this.props.VehicleStore.addState)) {
             if(value === undefined) {
                 allEmpty = true
             }
@@ -131,8 +131,7 @@ class Add extends Component {
     }
 
     render() {
-        const {vehicleBody, vehicleEngine, vehicleList, vehicleMake, vehicleModel, vehicleTransmission} = this.props.VehicleStore
-        const {vehicleId} = this.props.match.params
+        const {vehicleBody, vehicleEngine, vehicleMake, vehicleModel, vehicleTransmission} = this.props.VehicleStore
         
         return (
             <div className="container info-page">

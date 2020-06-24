@@ -24,13 +24,12 @@ class MakeList extends Component {
     }
 
     makeByPage(page) {
-        const {pageNum, makeCount, pageCount} = this.props.VehicleStore.makeListState
+        const {pageNum} = this.props.VehicleStore.makeListState
         return (this.props.VehicleStore.vehicleMake.filter((_, index) => (index < pageNum * 15) && (index > (pageNum * 15) - 16)))
     }
 
     render() {
-        const {vehicleMake, vehicleModel, vehicleList, vehicleTransmission, vehicleEngine, vehicleBody, makePageCount} = this.props.VehicleStore
-        const {pageNum, makeCount, pageCount} = this.props.VehicleStore.makeListState
+        const {pageNum, pageCount} = this.props.VehicleStore.makeListState
 
 
         return (

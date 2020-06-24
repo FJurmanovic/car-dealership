@@ -7,7 +7,7 @@ import { observer, inject } from 'mobx-react';
 @observer
 class VehicleList extends Component {
     render() {
-        const {vehicleMake, vehicleModel, vehicleList, vehicleTransmission, vehicleEngine, vehicleBody} = this.props.VehicleStore
+        const {vehicleList, vehicleTransmission, vehicleEngine, vehicleBody} = this.props.VehicleStore
         return (
             <>
                 {vehicleList.map(vehicle => {
