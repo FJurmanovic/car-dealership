@@ -5,6 +5,8 @@ import {range} from '../common/js/functions'
 
 import { observer, inject } from 'mobx-react';
 
+import EditModel from '../components/EditModel';
+
 @inject("VehicleStore")
 @observer
 class ModelList extends Component {
@@ -13,11 +15,11 @@ class ModelList extends Component {
 
         this.setPage = this.setPage.bind(this);
     }
-    
+
     componentDidMount() {
-        this.props.VehicleStore.modelListState.modelCount = this.props.VehicleStore.vehicleModel.filter(x => x.makeId == this.props.match.params.makeId).length
-        this.props.VehicleStore.modelListState.pageCount = Math.ceil(this.props.VehicleStore.modelListState.modelCount / 15)
+        this.props.VehicleStore.modelListState.makeId = this.props.match.params.makeId
     }
+
 
     setPage(page) {
         this.props.VehicleStore.makeListState.pageNum = page
@@ -30,13 +32,19 @@ class ModelList extends Component {
 
     render() {
         const {makeId} = this.props.match.params
+        let makeName = ""
+
+        if(this.props.VehicleStore.vehicleMake.filter(x => x.id == makeId)[0]) {
+            makeName = this.props.VehicleStore.vehicleMake.filter(x => x.id == makeId)[0].name || ""
+        }
         const {pageNum, pageCount} = this.props.VehicleStore.modelListState
 
         return (
             <>
-                <button className="back-btn btn btn-blue" onClick={() => this.props.history.goBack()}>Go back</button>
+                <Link to={`/manufacturers`} className="back-btn btn btn-blue">Go back</Link>
                 <Link to={`/manufacturers/${makeId}/new`} className="back-btn btn btn-blue float-right">New</Link>
                 <div className="container col-5 my-5">
+                    <h1 className="my-5 text-underline text-center">{makeName}</h1>
                     <div className="pagination btn-group d-flex">
                     {range(1, pageCount).map(page => {
                         return <button key={page} className={`page-num btn btn-group-item btn-blue ${(pageNum === page) ? "current": ""}`} onClick={() => this.setPage(page)}>{page}</button>
@@ -46,9 +54,15 @@ class ModelList extends Component {
                             const name = model.name;
                             return (
                                 <Fragment key={model.id}>
-                                    <Link to="/explore">
-                                        <button className="make-info btn btn-squared" onClick={() => this.props.VehicleStore.filtersSet(["modelId = " + model.id])}>{name}</button>
-                                    </Link>
+                                    {this.props.match.params.modelId == model.id && this.props.match.path == "/manufacturers/:makeId/:modelId/edit"
+                                    ? <div className="make-info btn btn-squared">
+                                        <EditModel model={model} />
+                                      </div>
+                                    : <div className="make-info btn btn-squared">
+                                        <Link to={`/manufacturers/${makeId}/${model.id}/edit`} className="btn btn-icon"><div className="gg-pen"></div></Link>
+                                        <Link to="/explore"><div className="text-white" onClick={() => this.props.VehicleStore.filtersSet(["modelId = " + model.id])}>{name}</div></Link>
+                                      </div>
+                                    }
                                 </Fragment>
                             )
                     })}

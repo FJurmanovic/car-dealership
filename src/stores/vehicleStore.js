@@ -87,7 +87,8 @@ class VehicleStore {
     @observable modelListState = {
         modelCount: 0,
         pageNum: 1,
-        pageCount: 1
+        pageCount: 1,
+        makeId: undefined
     }
 
     @observable newMakeState = {
@@ -101,6 +102,18 @@ class VehicleStore {
 
     @computed get pageCount() {
         return Math.ceil(this.totalRecords / 10)
+    }
+
+    
+    makeCount() {
+        this.makeListState.makeCount = this.vehicleMake.length
+        this.makeListState.pageCount = Math.ceil(this.makeListState.makeCount / 15)
+    }
+
+    modelCount() {
+        console.log("nice")
+        this.modelListState.modelCount = this.vehicleModel.filter(x => x.makeId == this.modelListState.makeId).length
+        this.modelListState.pageCount = Math.ceil(this.modelListState.modelCount / 15)
     }
 
 
@@ -143,6 +156,7 @@ class VehicleStore {
             }
             runInAction(() => {
                 this.vehicleMake = data.item
+                this.makeCount();
             })
         } catch (error) {
             runInAction(() => {
@@ -157,6 +171,22 @@ class VehicleStore {
             runInAction(() => {
                 this.vehicleMake.push(data)
             })
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error"
+            })
+        }
+    }
+
+    putVehicleMake = async (object) => {
+        try {
+            let data = await this.vehicleService.put(object, "vehicleMake")
+            if (data.status == 204){
+                runInAction(() => {
+                    this.status = "update"
+                    this.updateMake(object)
+                }
+            )}
         } catch (error) {
             runInAction(() => {
                 this.status = "error"
@@ -184,6 +214,7 @@ class VehicleStore {
             }
             runInAction(() => {
                 this.vehicleModel = data.item
+                this.modelListState.makeId && this.modelCount();
             })
         } catch (error) {
             runInAction(() => {
@@ -198,6 +229,22 @@ class VehicleStore {
             runInAction(() => {
                 this.vehicleModel.push(data)
             })
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error"
+            })
+        }
+    }
+
+    putVehicleModel = async (object) => {
+        try {
+            let data = await this.vehicleService.put(object, "vehicleModel")
+            if (data.status == 204){
+                runInAction(() => {
+                    this.status = "update"
+                    this.updateModel(object)
+                }
+            )}
         } catch (error) {
             runInAction(() => {
                 this.status = "error"
@@ -279,6 +326,17 @@ class VehicleStore {
         let index = this.vehicleList.findIndex(x => x.id === vehicleObject.id)
         this.vehicleList[index] = vehicleObject
     }
+    
+    updateModel = (modelObject) => {
+        let index = this.vehicleModel.findIndex(x => x.id === modelObject.id)
+        this.vehicleModel[index] = modelObject
+    }
+    
+    updateMake = (makeObject) => {
+        let index = this.vehicleMake.findIndex(x => x.id === makeObject.id)
+        this.vehicleMake[index] = makeObject
+    }
+
 }
 
 export default new VehicleStore();

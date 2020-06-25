@@ -5,6 +5,8 @@ import {range} from '../common/js/functions'
 
 import { observer, inject } from 'mobx-react';
 
+import EditMake from '../components/EditMake';
+
 @inject("VehicleStore")
 @observer
 class MakeList extends Component {
@@ -14,11 +16,6 @@ class MakeList extends Component {
         this.setPage = this.setPage.bind(this);
     }
     
-    componentDidMount() {
-        this.props.VehicleStore.makeListState.makeCount = this.props.VehicleStore.vehicleMake.length
-        this.props.VehicleStore.makeListState.pageCount = Math.ceil(this.props.VehicleStore.makeListState.makeCount / 15)
-    }
-
     setPage(page) {
         this.props.VehicleStore.makeListState.pageNum = page
     }
@@ -34,7 +31,7 @@ class MakeList extends Component {
 
         return (
             <>
-                <button className="back-btn btn btn-blue" onClick={() => this.props.history.goBack()}>Go back</button>
+                <Link to="/explore" className="back-btn btn btn-blue">Go back</Link>
                 <Link to={`/manufacturers/new`} className="back-btn btn btn-blue float-right">New</Link>
                 <div className="container col-5 my-5">
                     <div className="pagination btn-group d-flex">
@@ -46,9 +43,15 @@ class MakeList extends Component {
                             const name = make.name;
                             return (
                                 <Fragment key={make.id}>
-                                <Link to={`/manufacturers/${make.id}`} className="make-info">
-                                        <span>{name}</span>
-                                    </Link>
+                                    {this.props.match.params.makeId == make.id && this.props.match.path == "/manufacturers/:makeId/edit"
+                                    ? <div className="make-info btn btn-squared">
+                                        <EditMake make={make} />
+                                      </div>
+                                    : <div className="make-info btn btn-squared">
+                                        <Link to={`/manufacturers/${make.id}/edit`} className="btn btn-icon"><div className="gg-pen"></div></Link>
+                                        <Link to={`/manufacturers/${make.id}`}><div className="text-white">{name}</div></Link>
+                                      </div>
+                                    }
                                 </Fragment>
                             )
                     })}

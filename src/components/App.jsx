@@ -58,6 +58,17 @@ class App extends Component {
                         <Header />
                         <AddModelPage />
                     </Route>
+                    <Route path="/manufacturers/:makeId/edit">
+                        <Header />
+                        <MakePage />
+                    </Route>
+                    <Route path="/manufacturers/:makeId/:modelId/edit">
+                        <Header />
+                        <ModelPage />
+                    </Route>
+                    <Route path="/manufacturers/:makeId/:modelId">
+                        <Redirect to="/manufacturers" />
+                    </Route>
                     <Route path="/manufacturers/:makeId">
                         <Header />
                         <ModelPage />
