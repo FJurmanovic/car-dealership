@@ -31,18 +31,33 @@ class Add extends Component {
 
         this.props.VehicleStore.addState.makeVal = event.target.value 
         this.props.VehicleStore.addState.modelVal = firstModelVal
+
+        const {makeVal, modelVal, yearVal} = this.props.VehicleStore.addState
+        const {vehicleMake, vehicleModel} = this.props.VehicleStore
+
+        this.props.VehicleStore.addState.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
     }
 
     modelChange(event) {
         event.preventDefault();
 
         this.props.VehicleStore.addState.modelVal = event.target.value 
+
+        const {makeVal, modelVal, yearVal} = this.props.VehicleStore.addState
+        const {vehicleMake, vehicleModel} = this.props.VehicleStore
+
+        this.props.VehicleStore.addState.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
     }
 
     yearChange(event) {
         event.preventDefault();
 
         this.props.VehicleStore.addState.yearVal = event.target.value 
+    
+        const {makeVal, modelVal, yearVal} = this.props.VehicleStore.addState
+        const {vehicleMake, vehicleModel} = this.props.VehicleStore
+
+        this.props.VehicleStore.addState.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
     }
 
     priceChange(event) {
@@ -96,7 +111,7 @@ class Add extends Component {
     saveClick(event) {
         event.preventDefault();
 
-        const {bodyVal, doorVal, engineVal, fuelVal, modelVal, priceVal, speedVal, transmissionVal, trunkVal, yearVal} = this.props.VehicleStore.addState
+        const {nameVal, makeVal, bodyVal, doorVal, engineVal, fuelVal, modelVal, priceVal, speedVal, transmissionVal, trunkVal, yearVal} = this.props.VehicleStore.addState
 
         let allEmpty = false
 
@@ -109,7 +124,9 @@ class Add extends Component {
         if(!allEmpty){
             let vehicleObject = 
             {
-                modelId: Number(modelVal),
+                name: nameVal,
+                makeId: makeVal,
+                modelId: modelVal,
                 bodyId: Number(bodyVal),
                 doorCount: Number(doorVal),
                 engineId: Number(engineVal),
@@ -191,8 +208,8 @@ class Add extends Component {
                         </select>
                     </div>
                     <div className="f4">
-                        <span className="text-bold">Fuel tank capacity: </span>
-                        <input type="number" value={this.props.VehicleStore.addState.fuelVal} onChange={this.fuelChange} /> l
+                        <span className="text-bold">{this.props.VehicleStore.addState.engineVal == 2 ? "Battery capacity: " : "Fuel tank capacity: " }</span>
+                        <input type="number" value={this.props.VehicleStore.addState.fuelVal} onChange={this.fuelChange} /> {this.props.VehicleStore.addState.engineVal == 2 ? "kWh" : "l"} 
                     </div>
                     <div className="f4">
                         <span className="text-bold">Top speed: </span>

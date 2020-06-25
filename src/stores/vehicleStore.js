@@ -60,6 +60,7 @@ class VehicleStore {
     }
 
     @observable addState = {
+        nameVal: undefined,
         makeVal: undefined,
         modelVal: undefined,
         yearVal: 2000,
@@ -285,6 +286,7 @@ class VehicleStore {
             let data = await this.vehicleService.getId(urlParams, id, "vehicleList")
             runInAction(() => {
                 this.infoState.vehicleObject = data
+                this.vehicleList.push(data)
             })
         } catch (error) {
             runInAction(() => {

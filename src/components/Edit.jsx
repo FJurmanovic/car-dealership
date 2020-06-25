@@ -251,8 +251,8 @@ class Edit extends Component {
                         </select>
                     </div>
                     <div className="f4">
-                        <span className="text-bold">Fuel tank capacity: </span>
-                        <input type="number" value={this.props.VehicleStore.editState.fuelVal} onChange={this.fuelChange} /> l
+                        <span className="text-bold">{this.props.VehicleStore.editState.engineVal == 2 ? "Battery capacity: " : "Fuel tank capacity: " }</span>
+                        <input type="number" value={this.props.VehicleStore.editState.fuelVal} onChange={this.fuelChange} /> {this.props.VehicleStore.editState.engineVal == 2 ? "kWh" : "l"}
                     </div>
                     <div className="f4">
                         <span className="text-bold">Top speed: </span>
