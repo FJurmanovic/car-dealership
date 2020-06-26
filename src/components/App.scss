@@ -187,8 +187,8 @@ body {
             }
 
             > input, select, div input, div select {
-                border-radius: .7em;
-                border: 2px solid #d1d1d1;
+                border-radius: .2em;
+                border: 1px solid transparent;
 
                 &:hover {
                     border-color: #aaaaaa;

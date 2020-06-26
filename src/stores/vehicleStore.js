@@ -1,10 +1,14 @@
 import {observable, computed, runInAction} from "mobx";
 
 import VehicleService from './vehicleService';
+import VehicleModelService from './vehicleModelService';
+import VehicleMakeService from './vehicleMakeService';
 
 class VehicleStore {
     constructor() {
         this.vehicleService = new VehicleService();
+        this.vehicleModelService = new VehicleModelService();
+        this.vehicleMakeService = new VehicleMakeService();
     }
     @observable vehicleMake = []
     @observable vehicleModel = []
@@ -119,7 +123,7 @@ class VehicleStore {
 
 
     filtersSet(inputList) {
-        this.searchQuery = "";
+        this.searchQuery = "WHERE ";
         if (inputList.length > 0) {
             for (const [i, filter] of Array.entries(inputList)){
                 (inputList.length > (i + 1)) ? this.searchQuery += filter + " AND " : this.searchQuery += filter
@@ -127,6 +131,8 @@ class VehicleStore {
         } else {
             this.searchQuery = undefined
         }
+        
+        this.pageNumber = 1
         
         this.getVehicleList()
     }
@@ -149,11 +155,11 @@ class VehicleStore {
                 params.searchQuery = this.searchQuery
             }
             let urlParams = new URLSearchParams(Object.entries(params))
-            let data = await this.vehicleService.get(urlParams, "vehicleMake")
+            let data = await this.vehicleMakeService.get(urlParams)
             if (data.totalRecords > params.rpp) {
                 params.rpp = data.totalRecords
                 urlParams = new URLSearchParams(Object.entries(params))
-                data = await this.vehicleService.get(urlParams, "vehicleMake")
+                data = await this.vehicleMakeService.get(urlParams)
             }
             runInAction(() => {
                 this.vehicleMake = data.item
@@ -168,7 +174,7 @@ class VehicleStore {
 
     postVehicleMake = async (object) => {
         try {
-            let data = await this.vehicleService.post(object, "vehicleMake")
+            let data = await this.vehicleMakeService.post(object)
             runInAction(() => {
                 this.vehicleMake.push(data)
             })
@@ -181,7 +187,7 @@ class VehicleStore {
 
     putVehicleMake = async (object) => {
         try {
-            let data = await this.vehicleService.put(object, "vehicleMake")
+            let data = await this.vehicleMakeService.put(object)
             if (data.status == 204){
                 runInAction(() => {
                     this.status = "update"
@@ -207,11 +213,11 @@ class VehicleStore {
                 params.searchQuery = this.searchQuery
             }
             let urlParams = new URLSearchParams(Object.entries(params))
-            let data = await this.vehicleService.get(urlParams, "vehicleModel")
+            let data = await this.vehicleModelService.get(urlParams)
             if (data.totalRecords > params.rpp) {
                 params.rpp = data.totalRecords
                 urlParams = new URLSearchParams(Object.entries(params))
-                data = await this.vehicleService.get(urlParams, "vehicleModel")
+                data = await this.vehicleModelService.get(urlParams)
             }
             runInAction(() => {
                 this.vehicleModel = data.item
@@ -226,7 +232,7 @@ class VehicleStore {
 
     postVehicleModel = async (object) => {
         try {
-            let data = await this.vehicleService.post(object, "vehicleModel")
+            let data = await this.vehicleModelService.post(object)
             runInAction(() => {
                 this.vehicleModel.push(data)
             })
@@ -239,7 +245,7 @@ class VehicleStore {
 
     putVehicleModel = async (object) => {
         try {
-            let data = await this.vehicleService.put(object, "vehicleModel")
+            let data = await this.vehicleModelService.put(object)
             if (data.status == 204){
                 runInAction(() => {
                     this.status = "update"
@@ -266,7 +272,7 @@ class VehicleStore {
                 params.searchQuery = this.searchQuery
             }
             let urlParams = new URLSearchParams(Object.entries(params))
-            let data = await this.vehicleService.get(urlParams, "vehicleList")
+            let data = await this.vehicleService.get(urlParams)
             runInAction(() => {
                 this.vehicleList = data.item
                 this.totalRecords = data.totalRecords
@@ -283,7 +289,7 @@ class VehicleStore {
             let params = {
             }
             let urlParams = new URLSearchParams(Object.entries(params))
-            let data = await this.vehicleService.getId(urlParams, id, "vehicleList")
+            let data = await this.vehicleService.getId(urlParams, id)
             runInAction(() => {
                 this.infoState.vehicleObject = data
                 this.vehicleList.push(data)
@@ -297,7 +303,7 @@ class VehicleStore {
 
     postVehicleList = async (object) => {
         try {
-            let data = await this.vehicleService.post(object, "vehicleList")
+            let data = await this.vehicleService.post(object)
             runInAction(() => {
                 this.vehicleList.push(data)
             })
@@ -310,7 +316,7 @@ class VehicleStore {
 
     putVehicleList = async (object) => {
         try {
-            let data = await this.vehicleService.put(object, "vehicleList")
+            let data = await this.vehicleService.put(object)
             if (data.status == 204){
                 runInAction(() => {
                     this.status = "update"

@@ -33,26 +33,24 @@ class FilterBar extends Component {
         let filterList = []
         const {makeVal, modelVal, bodyVal, engineVal, transmissionVal, doorVal, minPriceVal, maxPriceVal, minYearVal, maxYearVal, minFuelVal, maxFuelVal, minSpeedVal, maxSpeedVal, minTrunkVal, maxTrunkVal} = this.props.VehicleStore.filterState
         
-        makeVal && !modelVal && filterList.push("makeId = " + makeVal)
-        modelVal && filterList.push("modelId = " + modelVal)
-        bodyVal && filterList.push("bodyId = " + bodyVal)
-        engineVal && filterList.push("engineId = " + engineVal)
-        transmissionVal && filterList.push("transmissionId = " + transmissionVal)
-        doorVal && filterList.push("doorCount = " + doorVal)
-        minPriceVal && filterList.push("price > " + minPriceVal)
-        maxPriceVal && filterList.push("price < " + maxPriceVal)
-        minYearVal && filterList.push("year > " + minYearVal)
-        maxYearVal && filterList.push("year < " + maxYearVal)
-        minFuelVal && filterList.push("fuelTank > " + minFuelVal)
-        maxFuelVal && filterList.push("fuelTank < " + maxFuelVal)
-        minSpeedVal && filterList.push("topSpeed > " + minSpeedVal)
-        maxSpeedVal && filterList.push("topSpeed < " + maxSpeedVal)
-        minTrunkVal && filterList.push("trunkCapacity > " + minTrunkVal)
-        maxTrunkVal && filterList.push("trunkCapacity < " + maxTrunkVal)
+        makeVal && !modelVal && filterList.push(`"makeId" = '${makeVal}'`)
+        modelVal && filterList.push(`"modelId" = '${modelVal}'`)
+        bodyVal && filterList.push(`"bodyId" = ${bodyVal}`)
+        engineVal && filterList.push(`"engineId" = ${engineVal}`)
+        transmissionVal && filterList.push(`"transmissionId" = ${transmissionVal}`)
+        doorVal && filterList.push(`"doorCount" = ${doorVal}`)
+        minPriceVal && filterList.push(`"price" > ${minPriceVal}`)
+        maxPriceVal && filterList.push(`"price" < ${maxPriceVal}`)
+        minYearVal && filterList.push(`"year" > ${minYearVal}`)
+        maxYearVal && filterList.push(`"year" < ${maxYearVal}`)
+        minFuelVal && filterList.push(`"fuelTank" > ${minFuelVal}`)
+        maxFuelVal && filterList.push(`"fuelTank" < ${maxFuelVal}`)
+        minSpeedVal && filterList.push(`"topSpeed" > ${minSpeedVal}`)
+        maxSpeedVal && filterList.push(`"topSpeed" < ${maxSpeedVal}`)
+        minTrunkVal && filterList.push(`"trunkCapacity" > ${minTrunkVal}`)
+        maxTrunkVal && filterList.push(`"trunkCapacity" < ${maxTrunkVal}`)
 
         this.props.VehicleStore.filtersSet(filterList)
-
-        this.props.VehicleStore.pageSet(1)
     }
 
     modelChange(event) {

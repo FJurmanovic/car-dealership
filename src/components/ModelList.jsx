@@ -60,7 +60,7 @@ class ModelList extends Component {
                                       </div>
                                     : <div className="make-info btn btn-squared">
                                         <Link to={`/manufacturers/${makeId}/${model.id}/edit`} className="btn btn-icon"><div className="gg-pen"></div></Link>
-                                        <Link to="/explore"><div className="text-white" onClick={() => this.props.VehicleStore.filtersSet(["modelId = " + model.id])}>{name}</div></Link>
+                                        <Link to="/explore"><div className="text-white" onClick={() => this.props.VehicleStore.filtersSet([`"modelId" = '${model.id}'`])}>{name}</div></Link>
                                       </div>
                                     }
                                 </Fragment>
