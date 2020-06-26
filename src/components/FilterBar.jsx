@@ -28,7 +28,6 @@ class FilterBar extends Component {
         this.toggleFilters = this.toggleFilters.bind(this)
     }
 
-
     filterVehicles () {
         let filterList = []
         const {makeVal, modelVal, bodyVal, engineVal, transmissionVal, doorVal, minPriceVal, maxPriceVal, minYearVal, maxYearVal, minFuelVal, maxFuelVal, minSpeedVal, maxSpeedVal, minTrunkVal, maxTrunkVal} = this.props.VehicleStore.filterState

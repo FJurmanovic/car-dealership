@@ -1,39 +1,34 @@
-const webApiUrl = "https://api.baasic.com/v1/car-dealership-assignment/resources"
+const scheme = "vehicleMake"
+
+import HttpClient from './httpClient'
 
 class VehicleMakeService {
     get = async (urlParams) => {
-        const options = {
-            method: "GET"
-        }
-        const req = new Request(webApiUrl + "/vehicleMake" + "?" + urlParams, options);
-        const res = await fetch(req);
-        return res.json();
+        const get = new HttpClient()
+        get.setMethod("GET")
+        get.setScheme(scheme)
+        get.urlParams(urlParams)
+
+        return await get.fetch()
     } 
     post = async (object) => {
-        const headers = new Headers();
-        headers.append("Content-Type", "application/json");
- 
-        const options = {
-            method: "POST",
-            headers,
-            body: JSON.stringify(object)
-        }
-        const req = new Request(webApiUrl + "/vehicleMake" , options);
-        const res = await fetch(req);
-        return res.json();
+        const post = new HttpClient()
+        post.setMethod("POST")
+        post.setScheme(scheme)
+        post.changeHeaders().add("Content-Type", "application/json")
+        post.setBody(JSON.stringify(object))
+
+        return await post.fetch()
     }
     put = async (object) => {
-        const headers = new Headers();
-        headers.append("Content-Type", "application/json");
- 
-        const options = {
-            method: "PUT",
-            headers,
-            body: JSON.stringify(object)
-        }
-        const req = new Request(webApiUrl + "/vehicleMake"  + `/${object.id}`, options);
-        const res = await fetch(req);
-        return res;
+        const put = new HttpClient()
+        put.setMethod("PUT")
+        put.setScheme(scheme)
+        put.changeHeaders().add("Content-Type", "application/json")
+        put.setBody(JSON.stringify(object))
+        put.paths().add(object.id)
+
+        return await put.fetch()
     }
 }
 

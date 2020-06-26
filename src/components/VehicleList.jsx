@@ -6,6 +6,10 @@ import { observer, inject } from 'mobx-react';
 @inject("VehicleStore")
 @observer
 class VehicleList extends Component {
+    componentWillMount() {
+        this.props.VehicleStore.getVehicleList()
+    }
+
     render() {
         const {vehicleList, vehicleTransmission, vehicleEngine, vehicleBody} = this.props.VehicleStore
         return (

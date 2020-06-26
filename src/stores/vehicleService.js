@@ -1,47 +1,42 @@
-const webApiUrl = "https://api.baasic.com/v1/car-dealership-assignment/resources"
+const scheme = "vehicleList"
+
+import HttpClient from './httpClient'
 
 class VehicleService {
     get = async (urlParams) => {
-        const options = {
-            method: "GET"
-        }
-        const req = new Request(webApiUrl + "/vehicleList" + "?" + urlParams, options);
-        const res = await fetch(req);
-        return res.json();
+        const get = new HttpClient()
+        get.setMethod("GET")
+        get.setScheme(scheme)
+        get.urlParams(urlParams)
+        
+        return await get.fetch()
     } 
-    getId = async (urlParams, id) => {
-        const options = {
-            method: "GET"
-        }
-        const req = new Request(webApiUrl + "/vehicleList"  + "/" + id + "?" + urlParams, options);
-        const res = await fetch(req);
-        return res.json();
+    getId = async (id) => {
+        const getId = new HttpClient()
+        getId.setMethod("GET")
+        getId.setScheme(scheme)
+        getId.paths().add(id)
+
+        return await getId.fetch()
     }
     post = async (object) => {
-        const headers = new Headers();
-        headers.append("Content-Type", "application/json");
- 
-        const options = {
-            method: "POST",
-            headers,
-            body: JSON.stringify(object)
-        }
-        const req = new Request(webApiUrl + "/vehicleList" , options);
-        const res = await fetch(req);
-        return res.json();
+        const post = new HttpClient()
+        post.changeHeaders().add("Content-Type", "application/json")
+        post.setBody(JSON.stringify(object))
+        post.setScheme(scheme)
+        post.setMethod("POST")
+
+        return await post.fetch()
     }
     put = async (object) => {
-        const headers = new Headers();
-        headers.append("Content-Type", "application/json");
- 
-        const options = {
-            method: "PUT",
-            headers,
-            body: JSON.stringify(object)
-        }
-        const req = new Request(webApiUrl + "/vehicleList"  + `/${object.id}`, options);
-        const res = await fetch(req);
-        return res;
+        const put = new HttpClient()
+        put.changeHeaders().add("Content-Type", "application/json")
+        put.setBody(JSON.stringify(object))
+        put.setScheme(scheme)
+        put.paths().add(object.id)
+        put.setMethod("PUT")
+        
+        return await put.fetch()
     }
 }
 

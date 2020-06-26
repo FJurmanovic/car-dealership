@@ -19,7 +19,6 @@ import AddModelPage from '../pages/addModelPage'
 @observer
 class App extends Component {
     componentWillMount() {
-        this.props.VehicleStore.getVehicleList()
         this.props.VehicleStore.getVehicleMake()
         this.props.VehicleStore.getVehicleModel()
     }

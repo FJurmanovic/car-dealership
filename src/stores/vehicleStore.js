@@ -43,26 +43,6 @@ class VehicleStore {
         maxTrunkVal: 1000
     }
 
-    @observable editState = {
-        nameVal: undefined,
-        makeVal: undefined,
-        modelVal: undefined,
-        yearVal: undefined,
-        priceVal: undefined,
-        bodyVal: undefined,
-        doorVal: undefined,
-        engineVal: undefined,
-        fuelVal: undefined,
-        speedVal: undefined,
-        transmissionVal: undefined,
-        trunkVal: undefined,
-        componentUpdated: false,
-        newMake: false,
-        newModel: false,
-        newMakeVal: undefined,
-        newModelVal: undefined
-    }
-
     @observable addState = {
         nameVal: undefined,
         makeVal: undefined,
@@ -76,11 +56,6 @@ class VehicleStore {
         speedVal: undefined,
         transmissionVal: 0,
         trunkVal: undefined
-    }
-
-    @observable infoState = {
-        vehicleObject: {},
-        isFetched: false
     }
 
     @observable makeListState = {
@@ -108,7 +83,6 @@ class VehicleStore {
     @computed get pageCount() {
         return Math.ceil(this.totalRecords / 10)
     }
-
     
     makeCount() {
         this.makeListState.makeCount = this.vehicleMake.length
@@ -154,12 +128,10 @@ class VehicleStore {
             if (this.searchQuery) {
                 params.searchQuery = this.searchQuery
             }
-            let urlParams = new URLSearchParams(Object.entries(params))
-            let data = await this.vehicleMakeService.get(urlParams)
+            let data = await this.vehicleMakeService.get(params)
             if (data.totalRecords > params.rpp) {
                 params.rpp = data.totalRecords
-                urlParams = new URLSearchParams(Object.entries(params))
-                data = await this.vehicleMakeService.get(urlParams)
+                data = await this.vehicleMakeService.get(params)
             }
             runInAction(() => {
                 this.vehicleMake = data.item
@@ -212,12 +184,10 @@ class VehicleStore {
             if (this.searchQuery) {
                 params.searchQuery = this.searchQuery
             }
-            let urlParams = new URLSearchParams(Object.entries(params))
-            let data = await this.vehicleModelService.get(urlParams)
+            let data = await this.vehicleModelService.get(params)
             if (data.totalRecords > params.rpp) {
                 params.rpp = data.totalRecords
-                urlParams = new URLSearchParams(Object.entries(params))
-                data = await this.vehicleModelService.get(urlParams)
+                data = await this.vehicleModelService.get(params)
             }
             runInAction(() => {
                 this.vehicleModel = data.item
@@ -271,28 +241,10 @@ class VehicleStore {
             if (this.searchQuery) {
                 params.searchQuery = this.searchQuery
             }
-            let urlParams = new URLSearchParams(Object.entries(params))
-            let data = await this.vehicleService.get(urlParams)
+            let data = await this.vehicleService.get(params)
             runInAction(() => {
                 this.vehicleList = data.item
                 this.totalRecords = data.totalRecords
-            })
-        } catch (error) {
-            runInAction(() => {
-                this.status = "error";
-            });
-        }
-    }
-
-    getVehicleById = async (id) => {
-        try {
-            let params = {
-            }
-            let urlParams = new URLSearchParams(Object.entries(params))
-            let data = await this.vehicleService.getId(urlParams, id)
-            runInAction(() => {
-                this.infoState.vehicleObject = data
-                this.vehicleList.push(data)
             })
         } catch (error) {
             runInAction(() => {

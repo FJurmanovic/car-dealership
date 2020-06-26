@@ -5,7 +5,7 @@ import {firstUpper, range} from '../common/js/functions'
 
 import { observer, inject } from 'mobx-react';
 
-@inject("VehicleStore")
+@inject("EditStore")
 @observer
 class Edit extends Component {
     constructor(props) {
@@ -25,176 +25,125 @@ class Edit extends Component {
         this.saveClick = this.saveClick.bind(this)
     }
 
-    componentDidMount() {
-        const {vehicleList} = this.props.VehicleStore
-        const {vehicleId} = this.props.match.params
-
-        const vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]
-        if (!!vehicle) {
-            this.props.VehicleStore.editState = {
-                nameVal: vehicle.name || '',
-                modelVal: vehicle.modelId || 0,
-                makeVal: vehicle.makeId || 0,
-                yearVal: vehicle.year || 0,
-                priceVal: vehicle.price || 0,
-                bodyVal: vehicle.bodyId || 0,
-                doorVal: vehicle.doorCount || 2,
-                engineVal: vehicle.engineId || 0,
-                fuelVal: vehicle.fuelTank || 0,
-                speedVal: vehicle.topSpeed || 100,
-                transmissionVal: vehicle.transmissionId || 0,
-                trunkVal: vehicle.trunkCapacity || 0,
-            }
-        }
+    componentWillMount() {
+        this.props.EditStore.getVehicleById(this.props.match.params.vehicleId)
     }
-
-    componentDidUpdate() {
-        const {vehicleList} = this.props.VehicleStore
-        const {vehicleId} = this.props.match.params
-
-        const vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]
-        if (!!vehicle && !this.props.VehicleStore.editState.componentUpdated) {
-            this.props.VehicleStore.editState = {
-                nameVal:  vehicle.name || '',
-                modelVal: vehicle.modelId || 0,
-                makeVal: vehicle.makeId || 0,
-                yearVal: vehicle.year || 0,
-                priceVal: vehicle.price || 0,
-                bodyVal: vehicle.bodyId || 0,
-                doorVal: vehicle.doorCount || 2,
-                engineVal: vehicle.engineId || 0,
-                fuelVal: vehicle.fuelTank || 0,
-                speedVal: vehicle.topSpeed || 100,
-                transmissionVal: vehicle.transmissionId || 0,
-                trunkVal: vehicle.trunkCapacity || 0,
-                componentUpdated: true
-            }
-        }
-    }
-
+    
     makeChange(event) {
         event.preventDefault();
 
-        const firstModelVal = this.props.VehicleStore.vehicleModel.filter(model => model.makeId == event.target.value)[0].id
+        const firstModelVal = this.props.EditStore.vehicleModel.filter(model => model.makeId == event.target.value)[0].id
 
-        this.props.VehicleStore.editState.makeVal = event.target.value
-        this.props.VehicleStore.editState.modelVal = firstModelVal
+        this.props.EditStore.makeVal = event.target.value
+        this.props.EditStore.modelVal = firstModelVal
 
-        const {makeVal, modelVal, yearVal} = this.props.VehicleStore.editState
-        const {vehicleMake, vehicleModel} = this.props.VehicleStore
+        const {makeVal, modelVal, yearVal} = this.props.EditStore
+        const {vehicleMake, vehicleModel} = this.props.EditStore
 
-        this.props.VehicleStore.editState.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
+        this.props.EditStore.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
     }
 
     modelChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.editState.modelVal = event.target.value
+        this.props.EditStore.modelVal = event.target.value
 
-        const {makeVal, modelVal, yearVal} = this.props.VehicleStore.editState
-        const {vehicleMake, vehicleModel} = this.props.VehicleStore
+        const {makeVal, modelVal, yearVal} = this.props.EditStore
+        const {vehicleMake, vehicleModel} = this.props.EditStore
 
-        this.props.VehicleStore.editState.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
+        this.props.EditStore.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
     }
 
     yearChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.editState.yearVal = event.target.value
+        this.props.EditStore.yearVal = event.target.value
 
-        const {makeVal, modelVal, yearVal} = this.props.VehicleStore.editState
-        const {vehicleMake, vehicleModel} = this.props.VehicleStore
+        const {makeVal, modelVal, yearVal} = this.props.EditStore
+        const {vehicleMake, vehicleModel} = this.props.EditStore
 
-        this.props.VehicleStore.editState.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
+        this.props.EditStore.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
     }
 
     priceChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.editState.priceVal = event.target.value
+        this.props.EditStore.priceVal = event.target.value
     }
 
     bodyChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.editState.bodyVal = event.target.value
+        this.props.EditStore.bodyVal = event.target.value
     }
 
     doorChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.editState.doorVal = event.target.value
+        this.props.EditStore.doorVal = event.target.value
     }
 
     engineChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.editState.engineVal = event.target.value
+        this.props.EditStore.engineVal = event.target.value
     }
 
     fuelChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.editState.fuelVal = event.target.value
+        this.props.EditStore.fuelVal = event.target.value
     }
 
     speedChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.editState.speedVal = event.target.value
+        this.props.EditStore.speedVal = event.target.value
     }
 
     transmissionChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.editState.transmissionVal = event.target.value
+        this.props.EditStore.transmissionVal = event.target.value
     }
 
     trunkChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.editState.trunkVal = event.target.value
+        this.props.EditStore.trunkVal = event.target.value
     }
 
     saveClick(event) {
         event.preventDefault();
 
-        const {makeVal, bodyVal, doorVal, engineVal, fuelVal, modelVal, priceVal, speedVal, transmissionVal, trunkVal, yearVal, nameVal} = this.props.VehicleStore.editState
+        const {makeVal, bodyVal, doorVal, engineVal, fuelVal, modelVal, priceVal, speedVal, transmissionVal, trunkVal, yearVal, nameVal} = this.props.EditStore
 
         const {vehicleId} = this.props.match.params
 
         let vehicleObject = 
-            {
-                id: vehicleId,
-                name: nameVal,
-                makeId: makeVal,
-                modelId: modelVal,
-                bodyId: Number(bodyVal),
-                doorCount: Number(doorVal),
-                engineId: Number(engineVal),
-                fuelTank: Number(fuelVal),
-                price: Number(priceVal),
-                topSpeed: Number(speedVal),
-                transmissionId: Number(transmissionVal),
-                trunkCapacity: Number(trunkVal),
-                year: Number(yearVal)
-            }
+        {
+            id: vehicleId,
+            name: nameVal,
+            makeId: makeVal,
+            modelId: modelVal,
+            bodyId: Number(bodyVal),
+            doorCount: Number(doorVal),
+            engineId: Number(engineVal),
+            fuelTank: Number(fuelVal),
+            price: Number(priceVal),
+            topSpeed: Number(speedVal),
+            transmissionId: Number(transmissionVal),
+            trunkCapacity: Number(trunkVal),
+            year: Number(yearVal)
+        }
 
-            this.props.VehicleStore.putVehicleList(vehicleObject)
-            this.props.history.push(`/vehicle/${vehicleId}`)
-    }
+        this.props.EditStore.putVehicleList(vehicleObject)
+        this.props.history.push(`/vehicle/${vehicleId}`)
+}
 
-    render() {
-        const {vehicleBody, vehicleEngine, vehicleList, vehicleMake, vehicleModel, vehicleTransmission} = this.props.VehicleStore
+    renderEdit() {
+        const {vehicleBody, vehicleEngine, vehicleMake, vehicleModel, vehicleTransmission} = this.props.EditStore
         const {vehicleId} = this.props.match.params
-        let vehicle = vehicleList.filter(vehicle => vehicle.id == vehicleId)[0]
-        if(!vehicle) {
-            this.props.VehicleStore.getVehicleById(vehicleId)
-        }
-
-        if(!this.props.VehicleStore.infoState.vehicleObject && !vehicle) {
-            this.props.history.push("/explore")
-        }
         
         return (
             <div className="info-page container">
@@ -204,30 +153,30 @@ class Edit extends Component {
                 <div className="d-flex upper-info h4 my-1">
                     <span className="--full">
                         <span className="make-group btn-group mr-2">
-                            <select className="btn-group-item" value={this.props.VehicleStore.editState.makeVal} onChange={this.makeChange}>
+                            <select className="btn-group-item" value={this.props.EditStore.makeVal} onChange={this.makeChange}>
                                 {vehicleMake.map(make => {
                                     return <option key={make.id} value={make.id}>{firstUpper(make.name)}</option>
                                 })}
                             </select>
                             <Link to="/manufacturers" className="btn-group-item btn btn-blue edit-btn">Edit</Link>
                         </span>
-                        <select className="btn-group-item" value={this.props.VehicleStore.editState.modelVal} onChange={this.modelChange}>
-                            {vehicleModel.filter(model => model.makeId == this.props.VehicleStore.editState.makeVal).map(model => {
+                        <select className="btn-group-item" value={this.props.EditStore.modelVal} onChange={this.modelChange}>
+                            {vehicleModel.filter(model => model.makeId == this.props.EditStore.makeVal).map(model => {
                                 return <option key={model.id} value={model.id}>{firstUpper(model.name)}</option>
                             })}
                         </select>
-                        <select className="mr-1" value={this.props.VehicleStore.editState.yearVal} onChange={this.yearChange}>
+                        <select className="mr-1" value={this.props.EditStore.yearVal} onChange={this.yearChange}>
                             {[...range(1900, new Date().getFullYear())].map(year => {
                                 return <option key={year} value={year}>{year}</option>
                             })}
                         </select>
                     </span>
-                    <span className="h3"><input type="number" value={this.props.VehicleStore.editState.priceVal} onChange={this.priceChange} /> €</span>
+                    <span className="h3"><input type="number" value={this.props.EditStore.priceVal} onChange={this.priceChange} /> €</span>
                 </div>
                 <div className="lower-info my-4">
                     <div className="f4">
                         <span className="text-bold">Body type: </span> 
-                        <select value={this.props.VehicleStore.editState.bodyVal} onChange={this.bodyChange}> 
+                        <select value={this.props.EditStore.bodyVal} onChange={this.bodyChange}> 
                             {vehicleBody.map(body => {
                                 return <option key={body.id} value={body.id}>{firstUpper(body.name)}</option>
                             })}
@@ -235,32 +184,32 @@ class Edit extends Component {
                     </div>
                     <div className="f4">
                         <span className="text-bold">Door count: </span>
-                        <select value={this.props.VehicleStore.editState.doorVal} onChange={this.doorChange}>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                        <select value={this.props.EditStore.doorVal} onChange={this.doorChange}>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5</option>
                         </select>
                     </div>
                     <div className="f4">
                         <span className="text-bold">Engine type: </span>
-                        <select value={this.props.VehicleStore.editState.engineVal} onChange={this.engineChange}>
+                        <select value={this.props.EditStore.engineVal} onChange={this.engineChange}>
                             {vehicleEngine.map(engine => {
                                 return <option key={engine.id} value={engine.id}>{firstUpper(engine.name)}</option>
                             })}
                         </select>
                     </div>
                     <div className="f4">
-                        <span className="text-bold">{this.props.VehicleStore.editState.engineVal == 2 ? "Battery capacity: " : "Fuel tank capacity: " }</span>
-                        <input type="number" value={this.props.VehicleStore.editState.fuelVal} onChange={this.fuelChange} /> {this.props.VehicleStore.editState.engineVal == 2 ? "kWh" : "l"}
+                        <span className="text-bold">{this.props.EditStore.engineVal == 2 ? "Battery capacity: " : "Fuel tank capacity: " }</span>
+                        <input type="number" value={this.props.EditStore.fuelVal} onChange={this.fuelChange} /> {this.props.EditStore.engineVal == 2 ? "kWh" : "l"}
                     </div>
                     <div className="f4">
                         <span className="text-bold">Top speed: </span>
-                        <input type="number" value={this.props.VehicleStore.editState.speedVal} onChange={this.speedChange} /> km/h
+                        <input type="number" value={this.props.EditStore.speedVal} onChange={this.speedChange} /> km/h
                     </div>
                     <div className="f4">
                         <span className="text-bold">Transmission type: </span>
-                        <select value={this.props.VehicleStore.editState.transmissionVal} onChange={this.transmissionChange}>
+                        <select value={this.props.EditStore.transmissionVal} onChange={this.transmissionChange}>
                             {vehicleTransmission.map(transmission => {
                                 return <option key={transmission.id} value={transmission.id}>{firstUpper(transmission.name)}</option>
                             })}
@@ -268,11 +217,22 @@ class Edit extends Component {
                     </div>
                     <div className="f4">
                         <span className="text-bold">Trunk capacity: </span>
-                        <input type="number" value={this.props.VehicleStore.editState.trunkVal} onChange={this.trunkChange} /> l
+                        <input type="number" value={this.props.EditStore.trunkVal} onChange={this.trunkChange} /> l
                     </div>
                 </div>
             </div>
         );
+    }
+
+    render() {
+        return (
+            <div className="info-page container">
+                {this.props.EditStore.vehicleInfo 
+                ? this.renderEdit()
+                : <div>Vehicle ID could not been found. Please go <Link to="/explore">back</Link></div>
+                }
+            </div>
+        )
     }
 }
 
