@@ -43,21 +43,6 @@ class VehicleStore {
         maxTrunkVal: 1000
     }
 
-    @observable addState = {
-        nameVal: undefined,
-        makeVal: undefined,
-        modelVal: undefined,
-        yearVal: 2000,
-        priceVal: 0,
-        bodyVal: 0,
-        doorVal: 2,
-        engineVal: 0,
-        fuelVal: undefined,
-        speedVal: undefined,
-        transmissionVal: 0,
-        trunkVal: undefined
-    }
-
     @observable makeListState = {
         makeCount: 0,
         pageNum: 1,

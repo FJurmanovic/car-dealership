@@ -137,8 +137,9 @@ class Edit extends Component {
             year: Number(yearVal)
         }
 
-        this.props.EditStore.putVehicleList(vehicleObject)
-        this.props.history.push(`/vehicle/${vehicleId}`)
+        this.props.EditStore.putVehicleList(vehicleObject).then(
+            this.props.history.push(`/vehicle/${vehicleId}`)
+        )
 }
 
     renderEdit() {

@@ -27,7 +27,6 @@ class VehicleModelService {
         put.changeHeaders().add("Content-Type", "application/json")
         put.setBody(JSON.stringify(object))
         put.paths().add(object.id)
-        console.log(put)
 
         return await put.fetch()
     }

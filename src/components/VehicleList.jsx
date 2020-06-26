@@ -13,7 +13,7 @@ class VehicleList extends Component {
     render() {
         const {vehicleList, vehicleTransmission, vehicleEngine, vehicleBody} = this.props.VehicleStore
         return (
-            <>
+            <>  
                 {vehicleList.map(vehicle => {
                         const name = vehicle.name;
                         return (

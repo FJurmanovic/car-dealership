@@ -5,7 +5,7 @@ import {firstUpper, range} from '../common/js/functions'
 
 import { observer, inject } from 'mobx-react';
 
-@inject("VehicleStore")
+@inject("AddStore")
 @observer
 class Add extends Component {
     constructor(props) {
@@ -27,96 +27,96 @@ class Add extends Component {
     makeChange(event) {
         event.preventDefault();
 
-        const firstModelVal = this.props.VehicleStore.vehicleModel.filter(model => model.makeId == event.target.value)[0].id
+        const firstModelVal = this.props.AddStore.vehicleModel.filter(model => model.makeId == event.target.value)[0].id
 
-        this.props.VehicleStore.addState.makeVal = event.target.value 
-        this.props.VehicleStore.addState.modelVal = firstModelVal
+        this.props.AddStore.makeVal = event.target.value 
+        this.props.AddStore.modelVal = firstModelVal
 
-        const {makeVal, modelVal, yearVal} = this.props.VehicleStore.addState
-        const {vehicleMake, vehicleModel} = this.props.VehicleStore
+        const {makeVal, modelVal, yearVal} = this.props.AddStore
+        const {vehicleMake, vehicleModel} = this.props.AddStore
 
-        this.props.VehicleStore.addState.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
+        this.props.AddStore.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
     }
 
     modelChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.addState.modelVal = event.target.value 
+        this.props.AddStore.modelVal = event.target.value 
 
-        const {makeVal, modelVal, yearVal} = this.props.VehicleStore.addState
-        const {vehicleMake, vehicleModel} = this.props.VehicleStore
+        const {makeVal, modelVal, yearVal} = this.props.AddStore
+        const {vehicleMake, vehicleModel} = this.props.AddStore
 
-        this.props.VehicleStore.addState.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
+        this.props.AddStore.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
     }
 
     yearChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.addState.yearVal = event.target.value 
+        this.props.AddStore.yearVal = event.target.value 
     
-        const {makeVal, modelVal, yearVal} = this.props.VehicleStore.addState
-        const {vehicleMake, vehicleModel} = this.props.VehicleStore
+        const {makeVal, modelVal, yearVal} = this.props.AddStore
+        const {vehicleMake, vehicleModel} = this.props.AddStore
 
-        this.props.VehicleStore.addState.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
+        this.props.AddStore.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
     }
 
     priceChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.addState.priceVal = event.target.value 
+        this.props.AddStore.priceVal = event.target.value 
     }
 
     bodyChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.addState.bodyVal = event.target.value 
+        this.props.AddStore.bodyVal = event.target.value 
     }
 
     doorChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.addState.doorVal = event.target.value 
+        this.props.AddStore.doorVal = event.target.value 
     }
 
     engineChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.addState.engineVal = event.target.value 
+        this.props.AddStore.engineVal = event.target.value 
     }
 
     fuelChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.addState.fuelVal = event.target.value 
+        this.props.AddStore.fuelVal = event.target.value 
     }
 
     speedChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.addState.speedVal = event.target.value 
+        this.props.AddStore.speedVal = event.target.value 
     }
 
     transmissionChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.addState.transmissionVal = event.target.value 
+        this.props.AddStore.transmissionVal = event.target.value 
     }
 
     trunkChange(event) {
         event.preventDefault();
 
-        this.props.VehicleStore.addState.trunkVal = event.target.value 
+        this.props.AddStore.trunkVal = event.target.value 
     }
 
     saveClick(event) {
         event.preventDefault();
 
-        const {nameVal, makeVal, bodyVal, doorVal, engineVal, fuelVal, modelVal, priceVal, speedVal, transmissionVal, trunkVal, yearVal} = this.props.VehicleStore.addState
+        const {nameVal, makeVal, bodyVal, doorVal, engineVal, fuelVal, modelVal, priceVal, speedVal, transmissionVal, trunkVal, yearVal} = this.props.AddStore
 
         let allEmpty = false
 
-        for (const [_, value] of Object.entries(this.props.VehicleStore.addState)) {
-            if(value === undefined) {
+        for (const [name, value] of Object.entries(this.props.AddStore)) {
+            if(value === undefined && name.includes("Val")) {
                 allEmpty = true
             }
         }
@@ -138,7 +138,7 @@ class Add extends Component {
                 year: Number(yearVal)
             }
 
-            this.props.VehicleStore.postVehicleList(vehicleObject)
+            this.props.AddStore.postVehicleList(vehicleObject)
             this.props.history.push("/explore")
         } else {
             alert("All boxes need to be filled")
@@ -148,7 +148,7 @@ class Add extends Component {
     }
 
     render() {
-        const {vehicleBody, vehicleEngine, vehicleMake, vehicleModel, vehicleTransmission} = this.props.VehicleStore
+        const {vehicleBody, vehicleEngine, vehicleMake, vehicleModel, vehicleTransmission} = this.props.AddStore
         
         return (
             <div className="container info-page">
@@ -159,7 +159,7 @@ class Add extends Component {
                 <div className="d-flex upper-info h4 my-1">
                     <span className="--full">
                         <span className="make-group btn-group mr-2">
-                            <select className="btn-group-item" value={this.props.VehicleStore.addState.makeVal} onChange={this.makeChange}>
+                            <select className="btn-group-item" value={this.props.AddStore.makeVal} onChange={this.makeChange}>
                                 <option>Select</option>
                                 {vehicleMake.map(make => {
                                     return <option key={make.id} value={make.id}>{firstUpper(make.name)}</option>
@@ -167,24 +167,24 @@ class Add extends Component {
                             </select>
                             <Link to="/manufacturers" className="btn-group-item btn btn-blue edit-btn">Edit</Link>
                         </span>
-                        <select className="mr-1" value={this.props.VehicleStore.addState.modelVal} onChange={this.modelChange}>
+                        <select className="mr-1" value={this.props.AddStore.modelVal} onChange={this.modelChange}>
                             <option>Select</option>
-                            {vehicleModel.filter(model => model.makeId == this.props.VehicleStore.addState.makeVal).map(model => {
+                            {vehicleModel.filter(model => model.makeId == this.props.AddStore.makeVal).map(model => {
                                 return <option key={model.id} value={model.id}>{firstUpper(model.name)}</option>
                             })}
                         </select>
-                        <select className="mr-1" value={this.props.VehicleStore.addState.yearVal} onChange={this.yearChange}>
+                        <select className="mr-1" value={this.props.AddStore.yearVal} onChange={this.yearChange}>
                             {[...range(1900, new Date().getFullYear())].map(year => {
                                 return <option key={year} value={year}>{year}</option>
                             })}
                         </select>
                     </span>
-                    <span className="h3"><input type="number" value={this.props.VehicleStore.addState.priceVal} onChange={this.priceChange} /> €</span>
+                    <span className="h3"><input type="number" value={this.props.AddStore.priceVal} onChange={this.priceChange} /> €</span>
                 </div>
                 <div className="lower-info my-4">
                     <div className="f4">
                         <span className="text-bold">Body type: </span> 
-                        <select value={this.props.VehicleStore.addState.bodyVal} onChange={this.bodyChange}> 
+                        <select value={this.props.AddStore.bodyVal} onChange={this.bodyChange}> 
                             {vehicleBody.map(body => {
                                 return <option key={body.id} value={body.id}>{firstUpper(body.name)}</option>
                             })}
@@ -192,7 +192,7 @@ class Add extends Component {
                     </div>
                     <div className="f4">
                         <span className="text-bold">Door count: </span>
-                        <select value={this.props.VehicleStore.addState.doorVal} onChange={this.doorChange}>
+                        <select value={this.props.AddStore.doorVal} onChange={this.doorChange}>
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
@@ -201,23 +201,23 @@ class Add extends Component {
                     </div>
                     <div className="f4">
                         <span className="text-bold">Engine type: </span>
-                        <select value={this.props.VehicleStore.addState.engineVal} onChange={this.engineChange}>
+                        <select value={this.props.AddStore.engineVal} onChange={this.engineChange}>
                             {vehicleEngine.map(engine => {
                                 return <option key={engine.id} value={engine.id}>{firstUpper(engine.name)}</option>
                             })}
                         </select>
                     </div>
                     <div className="f4">
-                        <span className="text-bold">{this.props.VehicleStore.addState.engineVal == 2 ? "Battery capacity: " : "Fuel tank capacity: " }</span>
-                        <input type="number" value={this.props.VehicleStore.addState.fuelVal} onChange={this.fuelChange} /> {this.props.VehicleStore.addState.engineVal == 2 ? "kWh" : "l"} 
+                        <span className="text-bold">{this.props.AddStore.engineVal == 2 ? "Battery capacity: " : "Fuel tank capacity: " }</span>
+                        <input type="number" value={this.props.AddStore.fuelVal} onChange={this.fuelChange} /> {this.props.AddStore.engineVal == 2 ? "kWh" : "l"} 
                     </div>
                     <div className="f4">
                         <span className="text-bold">Top speed: </span>
-                        <input type="number" value={this.props.VehicleStore.addState.speedVal} onChange={this.speedChange} /> km/h
+                        <input type="number" value={this.props.AddStore.speedVal} onChange={this.speedChange} /> km/h
                     </div>
                     <div className="f4">
                         <span className="text-bold">Transmission type: </span>
-                        <select value={this.props.VehicleStore.addState.transmissionVal} onChange={this.transmissionChange}>
+                        <select value={this.props.AddStore.transmissionVal} onChange={this.transmissionChange}>
                             {vehicleTransmission.map(transmission => {
                                 return <option key={transmission.id} value={transmission.id}>{firstUpper(transmission.name)}</option>
                             })}
@@ -225,7 +225,7 @@ class Add extends Component {
                     </div>
                     <div className="f4">
                         <span className="text-bold">Trunk capacity: </span>
-                        <input type="number" value={this.props.VehicleStore.addState.trunkVal} onChange={this.trunkChange} /> l
+                        <input type="number" value={this.props.AddStore.trunkVal} onChange={this.trunkChange} /> l
                     </div>
                 </div>
             </div>

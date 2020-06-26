@@ -16,7 +16,7 @@ body {
     .pagination {
         display: flex;
         justify-content: center;
-        margin-bottom: 25px;
+        margin-bottom: 15px;
         .page-num {
             border: 1px solid #407dff;
             &.current {
@@ -254,8 +254,9 @@ body {
     }
 
     .sort {
-        float: right;
-        margin: 16px;
+        right: 0;
+        position: absolute;
+        margin: 20px;
     }
 
     .explore {
@@ -263,8 +264,8 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         column-gap: 25px;
         row-gap: 25px;
-        margin-top: 25px;
-        margin-bottom: 25px;
+        margin-top: 15px;
+        margin-bottom: 50px;
         .vehicle-card {
             width: 300px;
             height: 300px;
