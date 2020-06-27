@@ -6,11 +6,20 @@ import VehicleStore from './stores/vehicleStore';
 import ViewStore from './stores/viewStore';
 import EditStore from './stores/editStore';
 import AddStore from './stores/addStore';
+import AddMakeStore from './stores/addMakeStore';
+import AddModelStore from './stores/addModelStore';
 
 import {Provider} from 'mobx-react'
 
 const Application = () => 
-    <Provider VehicleStore={VehicleStore} ViewStore={ViewStore} EditStore={EditStore} AddStore={AddStore}>
+    <Provider 
+        VehicleStore={VehicleStore} 
+        ViewStore={ViewStore} 
+        EditStore={EditStore} 
+        AddStore={AddStore}
+        AddMakeStore={AddMakeStore}
+        AddModelStore={AddModelStore}
+    >
         <App />
     </Provider>
 

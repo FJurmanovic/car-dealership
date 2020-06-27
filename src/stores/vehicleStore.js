@@ -56,10 +56,6 @@ class VehicleStore {
         makeId: undefined
     }
 
-    @observable newMakeState = {
-        nameVal: undefined
-    }
-
     @observable newModelState = {
         nameVal: undefined,
         makeId: 0
@@ -243,6 +239,7 @@ class VehicleStore {
             let data = await this.vehicleService.post(object)
             runInAction(() => {
                 this.vehicleList.push(data)
+                this.totalRecords++
             })
         } catch (error) {
             runInAction(() => {
