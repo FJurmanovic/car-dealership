@@ -1,7 +1,7 @@
 import {observable, computed, runInAction} from "mobx";
 import VehicleStore from './vehicleStore'
 
-import VehicleService from './vehicleService'
+import VehicleService from './services/vehicleService'
 
 class ViewStore {
     constructor() {

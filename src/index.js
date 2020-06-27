@@ -8,6 +8,7 @@ import EditStore from './stores/editStore';
 import AddStore from './stores/addStore';
 import AddMakeStore from './stores/addMakeStore';
 import AddModelStore from './stores/addModelStore';
+import FilterStore from './stores/filterStore';
 
 import {Provider} from 'mobx-react'
 
@@ -19,6 +20,7 @@ const Application = () =>
         AddStore={AddStore}
         AddMakeStore={AddMakeStore}
         AddModelStore={AddModelStore}
+        FilterStore={FilterStore}
     >
         <App />
     </Provider>

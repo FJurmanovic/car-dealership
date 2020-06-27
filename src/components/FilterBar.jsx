@@ -2,241 +2,27 @@ import React, { Component } from 'react';
 import {observer, inject} from 'mobx-react';
 import {range, firstUpper} from '../common/js/functions';
 
-@inject("VehicleStore")
+@inject("FilterStore")
 @observer
 class FilterBar extends Component {
-    constructor(props) {
-        super(props);
-
-        this.filterVehicles = this.filterVehicles.bind(this);
-        this.makeChange = this.makeChange.bind(this);
-        this.modelChange = this.modelChange.bind(this);
-        this.minPriceChange = this.minPriceChange.bind(this);
-        this.maxPriceChange = this.maxPriceChange.bind(this);
-        this.minYearChange = this.minYearChange.bind(this);
-        this.maxYearChange = this.maxYearChange.bind(this);
-        this.bodyChange = this.bodyChange.bind(this);
-        this.engineChange = this.engineChange.bind(this);
-        this.transmissionChange = this.transmissionChange.bind(this);
-        this.doorChange = this.doorChange.bind(this);
-        this.minFuelChange = this.minFuelChange.bind(this);
-        this.maxFuelChange = this.maxFuelChange.bind(this);
-        this.minSpeedChange = this.minSpeedChange.bind(this);
-        this.maxSpeedChange = this.maxSpeedChange.bind(this);
-        this.minTrunkChange = this.minTrunkChange.bind(this);
-        this.maxTrunkChange = this.maxTrunkChange.bind(this);
-        this.toggleFilters = this.toggleFilters.bind(this)
-    }
-
-    filterVehicles () {
-        let filterList = []
-        const {makeVal, modelVal, bodyVal, engineVal, transmissionVal, doorVal, minPriceVal, maxPriceVal, minYearVal, maxYearVal, minFuelVal, maxFuelVal, minSpeedVal, maxSpeedVal, minTrunkVal, maxTrunkVal} = this.props.VehicleStore.filterState
-        
-        makeVal && !modelVal && filterList.push(`"makeId" = '${makeVal}'`)
-        modelVal && filterList.push(`"modelId" = '${modelVal}'`)
-        bodyVal && filterList.push(`"bodyId" = ${bodyVal}`)
-        engineVal && filterList.push(`"engineId" = ${engineVal}`)
-        transmissionVal && filterList.push(`"transmissionId" = ${transmissionVal}`)
-        doorVal && filterList.push(`"doorCount" = ${doorVal}`)
-        minPriceVal && filterList.push(`"price" > ${minPriceVal}`)
-        maxPriceVal && filterList.push(`"price" < ${maxPriceVal}`)
-        minYearVal && filterList.push(`"year" > ${minYearVal}`)
-        maxYearVal && filterList.push(`"year" < ${maxYearVal}`)
-        minFuelVal && filterList.push(`"fuelTank" > ${minFuelVal}`)
-        maxFuelVal && filterList.push(`"fuelTank" < ${maxFuelVal}`)
-        minSpeedVal && filterList.push(`"topSpeed" > ${minSpeedVal}`)
-        maxSpeedVal && filterList.push(`"topSpeed" < ${maxSpeedVal}`)
-        minTrunkVal && filterList.push(`"trunkCapacity" > ${minTrunkVal}`)
-        maxTrunkVal && filterList.push(`"trunkCapacity" < ${maxTrunkVal}`)
-
-        this.props.VehicleStore.filtersSet(filterList)
-    }
-
-    modelChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.modelVal = event.target.value
-        } else {
-            this.props.VehicleStore.filterState.modelVal =  null
-        }
-    }
-
-    makeChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.makeVal =  event.target.value
-        } else {
-            this.props.VehicleStore.filterState.makeVal = null
-        }
-    }
-
-    minPriceChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.minPriceVal = event.target.value
-        } else {
-            this.props.VehicleStore.filterState.minPriceVal = null
-        }
-    }
-
-    maxPriceChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.maxPriceVal = event.target.value
-        } else {
-            this.props.VehicleStore.filterState.maxPriceVal = null
-        }
-    }
-
-    minYearChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.minYearVal = event.target.value
-        } else {
-            this.props.VehicleStore.filterState.minYearVal = null
-        }
-    }
-
-    maxYearChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.maxYearVal = event.target.value
-        } else {
-            this.props.VehicleStore.filterState.maxYearVal = null
-        }
-    }
-
-    bodyChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.bodyVal = event.target.value
-        } else {
-            this.props.VehicleStore.filterState.bodyVal = null
-        }
-    }
-
-    engineChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.engineVal = event.target.value
-        } else {
-            this.props.VehicleStore.filterState.engineVal = null
-        }
-    }
-
-    transmissionChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.transmissionVal = event.target.value
-        } else {
-            this.props.VehicleStore.filterState.transmissionVal = null
-        }
-    }
-
-    doorChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.doorVal = event.target.value
-        } else {
-            this.props.VehicleStore.filterState.doorVal = null
-        }
-    }
-
-    minFuelChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.minFuelVal= event.target.value
-        } else {
-            this.props.VehicleStore.filterState.minFuelVal = null
-        }
-    }
-
-    maxFuelChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.maxFuelVal = event.target.value
-        } else {
-            this.props.VehicleStore.filterState.maxFuelVal = null
-        }
-    }
-
-    minSpeedChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.minSpeedVal = event.target.value
-        } else {
-            this.props.VehicleStore.filterState.minSpeedVal = null
-        }
-    }
-
-    maxSpeedChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.maxSpeedVal = event.target.value
-        } else {
-            this.props.VehicleStore.filterState.maxSpeedVal = null
-        }
-    }
-
-    minTrunkChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.minTrunkVal = event.target.value
-        } else {
-            this.props.VehicleStore.filterState.minTrunkVal = null
-        }
-    }
-
-    maxTrunkChange(event) {
-        event.preventDefault();
-
-        if (event.target.value != "any"){
-            this.props.VehicleStore.filterState.maxTrunkVal = event.target.value
-        } else {
-            this.props.VehicleStore.filterState.maxTrunkVal = null
-        }
-    }
-
-    toggleFilters(event) {
-        event.preventDefault();
-
-        this.props.VehicleStore.showFilters = !this.props.VehicleStore.showFilters
-    }
-
+    
     render() {
-        const showFilters = this.props.VehicleStore.showFilters
-
-        const className = !showFilters ? "hidden" : ""
-        const {vehicleBody, vehicleEngine, vehicleMake, vehicleModel, vehicleTransmission} = this.props.VehicleStore
-        const {minPriceVal, maxPriceVal, minYearVal, maxYearVal, minFuelVal, maxFuelVal} = this.props.VehicleStore.filterState
+        const className = !this.props.FilterStore.showFilters ? "hidden" : ""
+        const {vehicleBody, vehicleEngine, vehicleMake, vehicleModel, vehicleTransmission} = this.props.FilterStore
+        const {minPriceVal, maxPriceVal, minYearVal, maxYearVal, minFuelVal, maxFuelVal} = this.props.FilterStore
         
         return (
             <>
-                {!showFilters && <>
-                    <button className="btn btn-blue btn-rounder m-5" onClick={this.toggleFilters}>Filters</button>
-                    <button className="btn btn-blue-transparent btn-rounder m-5" onClick={() => this.props.VehicleStore.filtersSet([])}>Reset</button>
+                {!this.props.FilterStore.showFilters && <>
+                    <button className="btn btn-blue btn-rounder m-5" onClick={() => this.props.FilterStore.toggleFilters()}>Filters</button>
+                    <button className="btn btn-blue-transparent btn-rounder m-5" onClick={() => this.props.FilterStore.filtersSet([])}>Reset</button>
                 </>}
                 <div className={`filters d-flex ${className}`}>
-                    <button className="hide-btn btn btn-squared" onClick={this.toggleFilters}></button>
+                    <button className="hide-btn btn btn-squared" onClick={() => this.props.FilterStore.toggleFilters()}></button>
                     <div className="filter-row">
                         <div className="range">
                             <label>Price (€)</label><br />
-                            <select name="minPrice" onChange={this.minPriceChange} value={this.props.VehicleStore.filterState.minPriceVal}>
+                            <select name="minPrice" onChange={(e) => this.props.FilterStore.minPriceChange(e.target.value)} value={this.props.FilterStore.minPriceVal}>
                                 <option>any</option>
                                 {[...range(1, 30)].map(price => {
                                     price = price * 25000
@@ -245,7 +31,7 @@ class FilterBar extends Component {
                                 })}
                             </select>
                             <span>-</span>
-                            <select name="maxPrice" onChange={this.maxPriceChange} value={this.props.VehicleStore.filterState.maxPriceVal}>
+                            <select name="maxPrice" onChange={(e) => this.props.FilterStore.maxPriceChange(e.target.value)} value={this.props.FilterStore.maxPriceVal}>
                                 <option>any</option>
                                 {[...range(1, 30)].map(price => {
                                     price = price * 25000
@@ -256,7 +42,7 @@ class FilterBar extends Component {
                         </div>
                         <div className="range">
                             <label>Year</label><br />
-                            <select name="minYear" onChange={this.minYearChange} value={this.props.VehicleStore.filterState.minYearVal}>
+                            <select name="minYear" onChange={(e) => this.props.FilterStore.minYearChange(e.target.value)} value={this.props.FilterStore.minYearVal}>
                                 <option>any</option>
                                 {[...range(1900, new Date().getFullYear())].map(year => {
                                     if(maxYearVal == null || year < maxYearVal)
@@ -264,7 +50,7 @@ class FilterBar extends Component {
                                 })}
                             </select>
                             <span>-</span>
-                            <select name="maxYear" onChange={this.maxYearChange} value={this.props.VehicleStore.filterState.maxYearVal}>
+                            <select name="maxYear" onChange={(e) => this.props.FilterStore.maxYearChange(e.target.value)} value={this.props.FilterStore.maxYearVal}>
                                 <option>any</option>
                                 {[...range(1900, new Date().getFullYear())].map(year => {
                                     if(minYearVal == null || year > minYearVal)
@@ -276,7 +62,7 @@ class FilterBar extends Component {
                     <div className="filter-row">
                         <div>
                             <label>Manufacturer</label><br />
-                            <select name="makeFilter" onChange={this.makeChange} value={this.props.VehicleStore.filterState.makeVal}>
+                            <select name="makeFilter" onChange={(e) => this.props.FilterStore.makeChange(e.target.value)} value={this.props.FilterStore.makeVal}>
                                 <option>any</option>
                                 {vehicleMake.map(make => {
                                     return <option key={make.id} value={make.id}>{firstUpper(make.name)}</option>
@@ -284,9 +70,9 @@ class FilterBar extends Component {
                             </select>
                             <br />
                             <label>Model</label><br />
-                            <select name="modelFilter" onChange={this.modelChange} value={this.props.VehicleStore.filterState.modelVal}>
+                            <select name="modelFilter" onChange={(e) => this.props.FilterStore.modelChange(e.target.value)} value={this.props.FilterStore.modelVal}>
                                 <option>any</option>
-                                {vehicleModel.filter(model => model.makeId == this.props.VehicleStore.filterState.makeVal).map(model => {
+                                {vehicleModel.filter(model => model.makeId == this.props.FilterStore.makeVal).map(model => {
                                     return <option key={model.id} value={model.id}>{firstUpper(model.name)}</option>
                                 })}
                             </select>
@@ -294,7 +80,7 @@ class FilterBar extends Component {
                     </div>
                     <div className="filter-row">
                         <label>Body type</label><br />
-                        <select name="bodyFilter" onChange={this.bodyChange} value={this.props.VehicleStore.filterState.bodyVal}>
+                        <select name="bodyFilter" onChange={(e) => this.props.FilterStore.bodyChange(e.target.value)} value={this.props.FilterStore.bodyVal}>
                             <option>any</option>
                             {vehicleBody.map(body => {
                                 return <option key={body.id} value={body.id}>{firstUpper(body.name)}</option>
@@ -302,7 +88,7 @@ class FilterBar extends Component {
                         </select>
                         <br />
                         <label>Engine type</label><br />
-                        <select name="engineFilter" onChange={this.engineChange} value={this.props.VehicleStore.filterState.engineVal}>
+                        <select name="engineFilter" onChange={(e) => this.props.FilterStore.engineChange(e.target.value)} value={this.props.FilterStore.engineVal}>
                             <option>any</option>
                             {vehicleEngine.map(engine => {
                                 return <option key={engine.id} value={engine.id}>{firstUpper(engine.name)}</option>
@@ -311,7 +97,7 @@ class FilterBar extends Component {
                     </div>
                     <div className="filter-row">
                         <label>Transmission type</label><br />
-                        <select name="transmissionFilter" onChange={this.transmissionChange} value={this.props.VehicleStore.filterState.transmissionVal}>
+                        <select name="transmissionFilter" onChange={(e) => this.props.FilterStore.transmissionChange(e.target.value)} value={this.props.FilterStore.transmissionVal}>
                             <option>any</option>
                             {vehicleTransmission.map(transmission => {
                                 return <option key={transmission.id} value={transmission.id}>{firstUpper(transmission.name)}</option>
@@ -319,7 +105,7 @@ class FilterBar extends Component {
                         </select>
                         <br />
                         <label>Door count</label><br />
-                        <select name="doorCount" onChange={this.doorChange} value={this.props.VehicleStore.filterState.doorVal}>
+                        <select name="doorCount" onChange={(e) => this.props.FilterStore.doorChange(e.target.value)} value={this.props.FilterStore.doorVal}>
                             <option>any</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -330,24 +116,24 @@ class FilterBar extends Component {
                     <div className="filter-row">
                         <div>
                             <label>Fuel tank capacity (l)</label><br />
-                            <input type="number" name="minFuelTank" min="0" max={maxFuelVal} value={this.props.VehicleStore.filterState.minFuelVal} onChange={this.minFuelChange} />
+                            <input type="number" name="minFuelTank" min="0" max={maxFuelVal} value={this.props.FilterStore.minFuelVal} onChange={(e) => this.props.FilterStore.minFuelChange(e.target.value)} />
                             <span>-</span>
-                            <input type="number" name="maxFuelTank" min={minFuelVal} max="150" value={this.props.VehicleStore.filterState.maxFuelVal} onChange={this.maxFuelChange} />
+                            <input type="number" name="maxFuelTank" min={minFuelVal} max="150" value={this.props.FilterStore.maxFuelVal} onChange={(e) => this.props.FilterStore.maxFuelChange(e.target.value)} />
                         </div>
                         <div>
                             <label>Top speed (km/h)</label><br />
-                            <input type="number" name="minTopSpeed" min="100" max="400" value={this.props.VehicleStore.filterState.minSpeedVal} onChange={this.minSpeedChange} />
+                            <input type="number" name="minTopSpeed" min="100" max="400" value={this.props.FilterStore.minSpeedVal} onChange={(e) => this.props.FilterStore.minSpeedChange(e.target.value)} />
                             <span>-</span>
-                            <input type="number" name="maxTopSpeed" min="100" max="400" value={this.props.VehicleStore.filterState.maxSpeedVal} onChange={this.maxSpeedChange} />
+                            <input type="number" name="maxTopSpeed" min="100" max="400" value={this.props.FilterStore.maxSpeedVal} onChange={(e) => this.props.FilterStore.maxSpeedChange(e.target.value)} />
                         </div>
                     </div>
                     <div className="filter-row">
                         <label>Trunk capacity (l)</label><br />
-                        <input type="number" name="minTrunkCapacity" min="100" max="1000" value={this.props.VehicleStore.filterState.minTrunkVal} onChange={this.minTrunkChange} />
+                        <input type="number" name="minTrunkCapacity" min="100" max="1000" value={this.props.FilterStore.minTrunkVal} onChange={(e) => this.props.FilterStore.minTrunkChange(e.target.value)} />
                         <span>-</span>
-                        <input type="number" name="maxTrunkCapacity" min="100" max="1000" value={this.props.VehicleStore.filterState.maxTrunkVal} onChange={this.maxTrunkChange} />
+                        <input type="number" name="maxTrunkCapacity" min="100" max="1000" value={this.props.FilterStore.maxTrunkVal} onChange={(e) => this.props.FilterStore.maxTrunkChange(e.target.value)} />
                     </div>
-                    <button className="filter-btn btn btn-blue btn-squared" onClick={this.filterVehicles}>Filter</button>
+                    <button className="filter-btn btn btn-blue btn-squared" onClick={() => this.props.FilterStore.filterVehicles()}>Filter</button>
                 </div>
             </>
         );

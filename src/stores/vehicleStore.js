@@ -1,8 +1,8 @@
 import {observable, computed, runInAction} from "mobx";
 
-import VehicleService from './vehicleService';
-import VehicleModelService from './vehicleModelService';
-import VehicleMakeService from './vehicleMakeService';
+import VehicleService from './services/vehicleService';
+import VehicleModelService from './services/vehicleModelService';
+import VehicleMakeService from './services/vehicleMakeService';
 
 class VehicleStore {
     constructor() {
@@ -24,24 +24,6 @@ class VehicleStore {
     @observable showFilters = false
     @observable totalRecords = 0
 
-    @observable filterState = {
-        makeVal: null,
-        modelVal: null,
-        minPriceVal: null,
-        maxPriceVal: null,
-        minYearVal: null,
-        maxYearVal: null,
-        bodyVal: null,
-        engineVal: null,
-        transmissionVal: null,
-        doorVal: null,
-        minFuelVal: 0,
-        maxFuelVal: 150,
-        minSpeedVal: 100,
-        maxSpeedVal: 400,
-        minTrunkVal: 100,
-        maxTrunkVal: 1000
-    }
 
     @observable makeListState = {
         makeCount: 0,
@@ -56,13 +38,13 @@ class VehicleStore {
         makeId: undefined
     }
 
-    @observable newModelState = {
-        nameVal: undefined,
-        makeId: 0
-    }
-
     @computed get pageCount() {
         return Math.ceil(this.totalRecords / 10)
+    }
+
+    handleSort(value) {
+        this.sortBy = value
+        this.getVehicleList()
     }
     
     makeCount() {
