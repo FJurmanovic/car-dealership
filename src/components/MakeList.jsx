@@ -7,26 +7,12 @@ import { observer, inject } from 'mobx-react';
 
 import EditMake from '../components/EditMake';
 
-@inject("VehicleStore")
+@inject("MakeListStore")
 @observer
 class MakeList extends Component {
-    constructor(props) {
-        super (props);
-
-        this.setPage = this.setPage.bind(this);
-    }
-    
-    setPage(page) {
-        this.props.VehicleStore.makeListState.pageNum = page
-    }
-
-    makeByPage(page) {
-        const {pageNum} = this.props.VehicleStore.makeListState
-        return (this.props.VehicleStore.vehicleMake.filter((_, index) => (index < pageNum * 15) && (index > (pageNum * 15) - 16)))
-    }
 
     render() {
-        const {pageNum, pageCount} = this.props.VehicleStore.makeListState
+        const {pageNum, pageCount} = this.props.MakeListStore
 
 
         return (
@@ -36,10 +22,10 @@ class MakeList extends Component {
                 <div className="container col-5 my-5">
                     <div className="pagination btn-group d-flex">
                     {range(1, pageCount).map(page => {
-                        return <button key={page} className={`page-num btn btn-group-item btn-blue ${(pageNum === page) ? "current": ""}`} onClick={() => this.setPage(page)}>{page}</button>
+                        return <button key={page} className={`page-num btn btn-group-item btn-blue ${(pageNum === page) ? "current": ""}`} onClick={() => this.props.MakeListStore.setPage(page)}>{page}</button>
                     }) }
                     </div>
-                    {this.makeByPage().map(make => {
+                    {this.props.MakeListStore.makeByPage().map(make => {
                             const name = make.name;
                             return (
                                 <Fragment key={make.id}>

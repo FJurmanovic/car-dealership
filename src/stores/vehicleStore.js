@@ -4,6 +4,9 @@ import VehicleService from './services/vehicleService';
 import VehicleModelService from './services/vehicleModelService';
 import VehicleMakeService from './services/vehicleMakeService';
 
+import MakeListStore from './makeListStore';
+import ModelListStore from './modelListStore';
+
 class VehicleStore {
     constructor() {
         this.vehicleService = new VehicleService();
@@ -24,20 +27,6 @@ class VehicleStore {
     @observable showFilters = false
     @observable totalRecords = 0
 
-
-    @observable makeListState = {
-        makeCount: 0,
-        pageNum: 1,
-        pageCount: 1
-    }
-    
-    @observable modelListState = {
-        modelCount: 0,
-        pageNum: 1,
-        pageCount: 1,
-        makeId: undefined
-    }
-
     @computed get pageCount() {
         return Math.ceil(this.totalRecords / 10)
     }
@@ -48,14 +37,13 @@ class VehicleStore {
     }
     
     makeCount() {
-        this.makeListState.makeCount = this.vehicleMake.length
-        this.makeListState.pageCount = Math.ceil(this.makeListState.makeCount / 15)
+        MakeListStore.makeCount = this.vehicleMake.length
+        MakeListStore.pageCount = Math.ceil(MakeListStore.makeCount / 15)
     }
 
     modelCount() {
-        console.log("nice")
-        this.modelListState.modelCount = this.vehicleModel.filter(x => x.makeId == this.modelListState.makeId).length
-        this.modelListState.pageCount = Math.ceil(this.modelListState.modelCount / 15)
+        ModelListStore.modelCount = this.vehicleModel.filter(x => x.makeId == ModelListStore.makeId).length
+        ModelListStore.pageCount = Math.ceil(ModelListStore.modelCount / 15)
     }
 
 

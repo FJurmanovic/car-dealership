@@ -78,6 +78,93 @@ class EditStore {
             });
         }
     }
+
+    makeChange(value) {
+        const firstModelVal = this.vehicleModel.filter(model => model.makeId == value)[0].id
+
+        this.makeVal = value
+        this.modelVal = firstModelVal
+
+        const {makeVal, modelVal, yearVal} = this
+        const {vehicleMake, vehicleModel} = this
+
+        this.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
+    }
+
+    modelChange(value) {
+        this.modelVal = value
+
+        const {makeVal, modelVal, yearVal} = this
+        const {vehicleMake, vehicleModel} = this
+
+        this.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
+    }
+
+    yearChange(value) {
+        this.yearVal = value
+
+        const {makeVal, modelVal, yearVal} = this
+        const {vehicleMake, vehicleModel} = this
+
+        this.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
+    }
+
+    priceChange(value) {
+        this.priceVal = value
+    }
+
+    bodyChange(value) {
+        this.bodyVal = value
+    }
+
+    doorChange(value) {
+        this.doorVal = value
+    }
+
+    engineChange(value) {
+        this.engineVal = value
+    }
+
+    fuelChange(value) {
+        this.fuelVal = value
+    }
+
+    speedChange(value) {
+        this.speedVal = value
+    }
+
+    transmissionChange(value) {
+        this.transmissionVal = value
+    }
+
+    trunkChange(value) {
+        this.trunkVal = value
+    }
+
+    saveClick(vehicleId, history) {
+        const {makeVal, bodyVal, doorVal, engineVal, fuelVal, modelVal, priceVal, speedVal, transmissionVal, trunkVal, yearVal, nameVal} = this
+
+        let vehicleObject = 
+        {
+            id: vehicleId,
+            name: nameVal,
+            makeId: makeVal,
+            modelId: modelVal,
+            bodyId: Number(bodyVal),
+            doorCount: Number(doorVal),
+            engineId: Number(engineVal),
+            fuelTank: Number(fuelVal),
+            price: Number(priceVal),
+            topSpeed: Number(speedVal),
+            transmissionId: Number(transmissionVal),
+            trunkCapacity: Number(trunkVal),
+            year: Number(yearVal)
+        }
+
+        this.putVehicleList(vehicleObject).then(
+            history.push(`/vehicle/${vehicleId}`)
+        )
+}
 }
 
 export default new EditStore();

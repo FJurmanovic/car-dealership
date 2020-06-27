@@ -176,7 +176,11 @@ class FilterStore {
         minTrunkVal && filterList.push(`"trunkCapacity" > ${minTrunkVal}`)
         maxTrunkVal && filterList.push(`"trunkCapacity" < ${maxTrunkVal}`)
 
-        VehicleStore.filtersSet(filterList)
+        this.filtersSet(filterList)
+    }
+
+    filtersSet(inputList) {
+        return VehicleStore.filtersSet(inputList)
     }
 
     

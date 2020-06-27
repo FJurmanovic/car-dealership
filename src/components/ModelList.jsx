@@ -7,37 +7,17 @@ import { observer, inject } from 'mobx-react';
 
 import EditModel from '../components/EditModel';
 
-@inject("VehicleStore")
+@inject("ModelListStore")
 @observer
 class ModelList extends Component {
-    constructor(props) {
-        super (props);
-
-        this.setPage = this.setPage.bind(this);
-    }
-
     componentDidMount() {
-        this.props.VehicleStore.modelListState.makeId = this.props.match.params.makeId
-    }
-
-
-    setPage(page) {
-        this.props.VehicleStore.makeListState.pageNum = page
-    }
-
-    modelById() {
-        const {makeId} = this.props.match.params
-        return (this.props.VehicleStore.vehicleModel.filter(x => x.makeId == makeId))
+        this.props.ModelListStore.makeId = this.props.match.params.makeId
     }
 
     render() {
         const {makeId} = this.props.match.params
-        let makeName = ""
-
-        if(this.props.VehicleStore.vehicleMake.filter(x => x.id == makeId)[0]) {
-            makeName = this.props.VehicleStore.vehicleMake.filter(x => x.id == makeId)[0].name || ""
-        }
-        const {pageNum, pageCount} = this.props.VehicleStore.modelListState
+        
+        const {pageNum, pageCount, makeName} = this.props.ModelListStore
 
         return (
             <>
@@ -47,10 +27,10 @@ class ModelList extends Component {
                     <h1 className="my-5 text-underline text-center">{makeName}</h1>
                     <div className="pagination btn-group d-flex">
                     {range(1, pageCount).map(page => {
-                        return <button key={page} className={`page-num btn btn-group-item btn-blue ${(pageNum === page) ? "current": ""}`} onClick={() => this.setPage(page)}>{page}</button>
+                        return <button key={page} className={`page-num btn btn-group-item btn-blue ${(pageNum === page) ? "current": ""}`} onClick={() => this.props.ModelListStore.setPage(page)}>{page}</button>
                     }) }
                     </div>
-                    {this.modelById().filter((_, index) => (index < pageNum * 15) && (index > (pageNum * 15) - 16)).map(model => {
+                    {this.props.ModelListStore.modelById().filter((_, index) => (index < pageNum * 15) && (index > (pageNum * 15) - 16)).map(model => {
                             const name = model.name;
                             return (
                                 <Fragment key={model.id}>
@@ -60,7 +40,7 @@ class ModelList extends Component {
                                       </div>
                                     : <div className="make-info btn btn-squared">
                                         <Link to={`/manufacturers/${makeId}/${model.id}/edit`} className="btn btn-icon"><div className="gg-pen"></div></Link>
-                                        <Link to="/explore"><div className="text-white" onClick={() => this.props.VehicleStore.filtersSet([`"modelId" = '${model.id}'`])}>{name}</div></Link>
+                                        <Link to="/explore"><div className="text-white" onClick={() => this.props.ModelListStore.filtersSet([`"modelId" = '${model.id}'`])}>{name}</div></Link>
                                       </div>
                                     }
                                 </Fragment>
