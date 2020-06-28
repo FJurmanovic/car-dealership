@@ -1,6 +1,51 @@
 body {
     background-color: #ffffff;
 
+    .contact-form {
+        border: 1px solid #353535;
+        margin: 30px 0;
+        .contact-title {
+            margin: 5px;
+        }
+        .inputs {
+            .id {
+                margin: 20px;
+            }
+            .address-info {
+                justify-content: space-around;
+                div {
+                    margin: 10px 0;
+                    input {
+                        width: 180px;
+                        height: 30px;
+                    }
+                }
+            }
+            .name, .contact-info, .country-info {
+                justify-content: space-around;
+                div {
+                    margin: 10px 0;
+                    input, select {
+                        width: 300px;
+                        height: 30px;
+                    }
+                }
+                
+                @media screen and (max-width: 840px){
+                    display: block !important;
+                    div {
+                        margin: 10px 0 !important;
+                        width: 100%;
+                        display: block !important;
+                        input, select {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     .remove-alert {
         position: fixed;
         top: 0;
@@ -357,20 +402,20 @@ body {
 
                         span {
                             &::after {
-                            visibility: hidden;
-                            content: attr(data);
-                            display: block;
-                            position: absolute;
-                            margin-left: 5px;
-                            margin-top: 5px;
-                            padding-left: 2px;
-                            padding-right: 2px;
-                            background-color: #353535;
-                            color: #ffffff;
-                            border-radius: 2px;
-                            opacity: .9;
+                                visibility: hidden;
+                                content: attr(data);
+                                display: block;
+                                position: absolute;
+                                margin-left: 5px;
+                                margin-top: 5px;
+                                padding-left: 2px;
+                                padding-right: 2px;
+                                background-color: #353535;
+                                color: #ffffff;
+                                border-radius: 2px;
+                                opacity: .9;
+                            }
                         }
-                    }
                     }
                     .--full {
                         flex: auto;

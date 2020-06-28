@@ -99,7 +99,8 @@ class VehicleStore {
         try {
             let data = await this.vehicleMakeService.post(object)
             runInAction(() => {
-                this.vehicleMake.push(data)
+                data
+                this.getVehicleMake()
             })
         } catch (error) {
             runInAction(() => {
@@ -156,6 +157,7 @@ class VehicleStore {
             let data = await this.vehicleModelService.post(object)
             runInAction(() => {
                 data
+                this.getVehicleModel()
             })
         } catch (error) {
             runInAction(() => {
@@ -208,8 +210,8 @@ class VehicleStore {
         try {
             let data = await this.vehicleService.post(object)
             runInAction(() => {
-                this.vehicleList.push(data)
-                this.totalRecords++
+                data
+                this.getVehicleList()
             })
         } catch (error) {
             runInAction(() => {

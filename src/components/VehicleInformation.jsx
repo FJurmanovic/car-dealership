@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {withRouter, Link} from 'react-router-dom'
 
 import { observer, inject } from 'mobx-react';
+import Contact from './Contact';
 
 @inject("ViewStore")
 @observer
@@ -33,6 +34,7 @@ class VehicleInformation extends Component {
                 <div className="f4"><span className="text-bold">Transmission type:</span> {transmissionType}</div>
                 <div className="f4"><span className="text-bold">Trunk capacity:</span> {trunkCapacity} l</div>
             </div>
+            <Contact store={this.props.ViewStore} />
         </>
     }
 

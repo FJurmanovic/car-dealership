@@ -10,7 +10,12 @@ class ViewStore {
 
     @observable status = 'initial'
     @observable vehicleObject = undefined
+    @observable showContact = false
 
+    clickContact() {
+        this.showContact = true
+    }
+    
     @computed get showImage() {
         if(this.vehicleObject.imgUrl && this.vehicleObject.imgUrl.match(/\.(jpeg|jpg|gif|png|webm)$/)){
             return this.vehicleObject.imgUrl

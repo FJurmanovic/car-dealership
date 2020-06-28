@@ -200,8 +200,10 @@ class EditStore {
             imgUrl: imgVal
         }
 
-        this.putVehicleList(vehicleObject).then(
-            history.push(`/vehicle/${vehicleId}`)
+        this.putVehicleList(vehicleObject).then(() => 
+            {
+                history.push(`/vehicle/${vehicleId}`);
+            }
         )
     }
     
