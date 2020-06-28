@@ -16,7 +16,7 @@ class EditModel extends Component {
         return (
             <>
             <input type="text" value={this.props.EditModelStore.nameVal} onChange={(e) => this.props.EditModelStore.inputChange(e.target.value)} />
-            <button onClick={() => this.props.EditModelStore.saveClick(this.props.history)} className="btn btn-icon">
+            <button onClick={() => this.props.EditModelStore.saveClick(this.props.history)} className="abs-right btn btn-icon">
                 <div className={`${this.props.EditModelStore.iconClass}`}></div>
                 </button>
             </>

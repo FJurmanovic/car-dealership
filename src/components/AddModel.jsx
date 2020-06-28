@@ -15,7 +15,7 @@ class AddModel extends Component {
         return (
             <>
                 <button onClick={() => this.props.history.goBack()} className="back-btn btn btn-blue">Cancel</button>
-                <div className="container col-4 my-10 text-center">
+                <div className="container my-10 text-center">
                     <h1 className="my-5 text-underline">{makeName}</h1>
                     <div className="h4 my-2">Enter new model name</div>
                     <input type="text" className="width-full" value={nameVal} onChange={(e) => this.props.AddModelStore.setName(e.target.value)} />

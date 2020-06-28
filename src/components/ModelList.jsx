@@ -23,7 +23,7 @@ class ModelList extends Component {
             <>
                 <Link to={`/manufacturers`} className="back-btn btn btn-blue">Go back</Link>
                 <Link to={`/manufacturers/${makeId}/new`} className="back-btn btn btn-blue float-right">New</Link>
-                <div className="container col-5 my-5">
+                <div className="container my-5">
                     <h1 className="my-5 text-underline text-center">{makeName}</h1>
                     <div className="pagination btn-group d-flex">
                     {range(1, pageCount).map(page => {
@@ -39,7 +39,7 @@ class ModelList extends Component {
                                         <EditModel model={model} />
                                       </div>
                                     : <div className="make-info btn btn-squared">
-                                        <Link to={`/manufacturers/${makeId}/${model.id}/edit`} className="btn btn-icon"><div className="gg-pen"></div></Link>
+                                        <Link to={`/manufacturers/${makeId}/${model.id}/edit`} className="abs-right btn btn-icon"><div className="gg-pen"></div></Link>
                                         <Link to="/explore"><div className="text-white" onClick={() => this.props.ModelListStore.filtersSet([`"modelId" = '${model.id}'`])}>{name}</div></Link>
                                       </div>
                                     }

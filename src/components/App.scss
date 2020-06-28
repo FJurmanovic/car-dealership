@@ -332,7 +332,7 @@ body {
                     left: 50%;
                     margin-left: calc(-50% - 4em);
                     height: 268px;
-                    opacity: .7;
+                    opacity: .8;
                 }
             }
             .vehicle-card-info {
@@ -432,12 +432,31 @@ body {
             }
         }
 
-        @media screen and (max-width: 840px) {
+    }
+
+    
+    @media screen and (max-width: 840px) {
+        .explore {
             margin-left: 0;
+            
             .vehicle-card {
                 margin: auto;
             }
         }
+
+        .sort {
+            position: relative;
+            text-align: center;
+        }
+
+        .info-page {
+            .btn {
+                float: left !important;
+                margin: auto;
+                border-radius: 0;
+            }
+        }
+
     }
 
     .add-page {

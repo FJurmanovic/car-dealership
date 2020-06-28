@@ -19,7 +19,7 @@ class MakeList extends Component {
             <>
                 <Link to="/explore" className="back-btn btn btn-blue">Go back</Link>
                 <Link to={`/manufacturers/new`} className="back-btn btn btn-blue float-right">New</Link>
-                <div className="container col-5 my-5">
+                <div className="container my-5">
                     <div className="pagination btn-group d-flex">
                     {range(1, pageCount).map(page => {
                         return <button key={page} className={`page-num btn btn-group-item btn-blue ${(pageNum === page) ? "current": ""}`} onClick={() => this.props.MakeListStore.setPage(page)}>{page}</button>
