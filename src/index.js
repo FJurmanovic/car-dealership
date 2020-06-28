@@ -11,6 +11,8 @@ import AddModelStore from './stores/addModelStore';
 import FilterStore from './stores/filterStore';
 import MakeListStore from './stores/makeListStore';
 import ModelListStore from './stores/modelListStore';
+import EditMakeStore from './stores/editMakeStore';
+import EditModelStore from './stores/editModelStore';
 
 import {Provider} from 'mobx-react'
 
@@ -25,6 +27,8 @@ const Application = () =>
         FilterStore={FilterStore}
         MakeListStore={MakeListStore}
         ModelListStore={ModelListStore}
+        EditMakeStore={EditMakeStore}
+        EditModelStore={EditModelStore}
     >
         <App />
     </Provider>

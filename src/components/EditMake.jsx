@@ -3,52 +3,24 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
 import {inject, observer} from 'mobx-react'
 
-@inject("VehicleStore")
+@inject("EditMakeStore")
 @observer
 class EditMake extends Component {
-    constructor(props) {
-        super(props);
-
-        this.nameRef = React.createRef();
-        this.iconRef = React.createRef();
-        this.saveClick = this.saveClick.bind(this);
-        this.inputChange = this.inputChange.bind(this);
-    }
-
-    saveClick(event) {
-        event.preventDefault();
-        const {makeId} = this.props.match.params
-        const {make} = this.props
-
-        const makeObject = {
-            id: makeId,
-            name: this.nameRef.current.value
-        }
-
-        if (make.name != makeObject.name) {
-            this.props.VehicleStore.putVehicleMake(makeObject);
-        }
-
-        this.props.history.push(`/manufacturers`);
-    }
-
-    inputChange(event) {
-        event.preventDefault();
-        const {make} = this.props
-
-        if (this.nameRef.current.value == make.name){
-            this.iconRef.current.className = "gg-close"
-        } else {
-            this.iconRef.current.className = "gg-arrow-down-r"
-        }
+    componentWillMount() {
+        const {make} = this.props;
+        this.props.EditMakeStore.nameVal = make.name
+        this.props.EditMakeStore.make = make
     }
 
     render() {
-        const {make} = this.props;
+        const {makeId} = this.props.match.params
+
         return (
             <>
-            <input type="text" defaultValue={make.name} ref={this.nameRef} onChange={this.inputChange} />
-            <button onClick={this.saveClick} className="btn btn-icon"><div className="gg-close" ref={this.iconRef}></div></button>
+                <input type="text" value={this.props.EditMakeStore.nameVal} onChange={(e) => this.props.EditMakeStore.inputChange(e.target.value)} />
+                <button onClick={() => this.props.EditMakeStore.saveClick(this.props.history)} className="btn btn-icon">
+                    <div className={`${this.props.EditMakeStore.iconClass}`}></div>
+                </button>
             </>
         );
     }
