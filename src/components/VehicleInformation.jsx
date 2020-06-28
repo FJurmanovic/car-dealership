@@ -17,7 +17,9 @@ class VehicleInformation extends Component {
         return <>
             <Link to="/explore" className="back-btn btn btn-blue">Go back</Link>
             <Link to={`/vehicle/${vehicleId}/edit`} className="back-btn btn btn-blue float-right">Edit</Link>
-            <div className="car-image"></div>
+            <div className="car-image">
+                {this.props.ViewStore.showImage && <img alt={`${name}`} src={this.props.ViewStore.showImage} />}
+            </div>
             <div className="d-flex upper-info h2">
                 <span className="--full">{name}</span>
                 <span className="h1">{price.toLocaleString()}€</span>

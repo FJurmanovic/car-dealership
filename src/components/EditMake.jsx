@@ -13,12 +13,11 @@ class EditMake extends Component {
     }
 
     render() {
-        const {makeId} = this.props.match.params
 
         return (
             <>
                 <input type="text" value={this.props.EditMakeStore.nameVal} onChange={(e) => this.props.EditMakeStore.inputChange(e.target.value)} />
-                <button onClick={() => this.props.EditMakeStore.saveClick(this.props.history)} className="btn btn-icon">
+                <button onClick={() => this.props.EditMakeStore.saveClick(this.props.history)} className="abs-right btn btn-icon">
                     <div className={`${this.props.EditMakeStore.iconClass}`}></div>
                 </button>
             </>

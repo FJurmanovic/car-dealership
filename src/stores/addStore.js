@@ -23,6 +23,14 @@ class AddStore {
     @observable transmissionVal = 0
     @observable trunkVal = undefined
     @observable doorVal = 2
+    @observable imgVal = ""
+
+    @computed get showImage() {
+        if(this.imgVal.match(/\.(jpeg|jpg|gif|png|webm)$/)){
+            return this.imgVal
+        }
+        return undefined
+    }
 
     @computed get vehicleEngine() {
         return VehicleStore.vehicleEngine
@@ -49,7 +57,6 @@ class AddStore {
     }
 
     makeChange(value) {
-        console.log(value)
         const firstModelVal = this.vehicleModel.filter(model => model.makeId == value)[0].id
 
         this.makeVal = value 
@@ -111,8 +118,12 @@ class AddStore {
         this.trunkVal = value 
     }
 
+    imageChange(value) {
+        this.imgVal = value
+    }
+
     saveClick(history) {
-        const {nameVal, makeVal, bodyVal, doorVal, engineVal, fuelVal, modelVal, priceVal, speedVal, transmissionVal, trunkVal, yearVal} = this
+        const {nameVal, makeVal, bodyVal, doorVal, engineVal, fuelVal, modelVal, priceVal, speedVal, transmissionVal, trunkVal, yearVal, imgVal} = this
 
         let allEmpty = false
 
@@ -136,7 +147,8 @@ class AddStore {
                 topSpeed: Number(speedVal),
                 transmissionId: Number(transmissionVal),
                 trunkCapacity: Number(trunkVal),
-                year: Number(yearVal)
+                year: Number(yearVal),
+                imgUrl: imgVal
             }
 
             this.postVehicleList(vehicleObject).then(

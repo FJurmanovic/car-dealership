@@ -5,6 +5,8 @@ import {firstUpper, range} from '../common/js/functions'
 
 import { observer, inject } from 'mobx-react';
 
+import RemoveAlert from './RemoveAlert'
+
 @inject("EditStore")
 @observer
 class Edit extends Component {
@@ -21,7 +23,15 @@ class Edit extends Component {
             <div className="info-page container">
                 <Link to={`/vehicle/${vehicleId}`} className="back-btn btn btn-blue">Cancel</Link>
                 <button className="back-btn btn btn-blue float-right" onClick={() => this.props.EditStore.saveClick(vehicleId, this.props.history)}>Save</button>
-                <div className="car-image"></div>
+                <button className="back-btn btn btn-link float-right" onClick={() => this.props.EditStore.removeClick()}>Remove</button>
+                {this.props.EditStore.showAlert &&
+                    <RemoveAlert store={this.props.EditStore} vehicleId={vehicleId} history={this.props.history} />
+                }
+                <div className="car-image">
+                    {this.props.EditStore.showImage && 
+                        <img alt={`${this.props.EditStore.nameVal}`} src={`${this.props.EditStore.showImage}`} />
+                    }
+                </div>
                 <div className="d-flex upper-info h4 my-1">
                     <span className="--full">
                         <span className="make-group btn-group mr-2">
@@ -90,6 +100,10 @@ class Edit extends Component {
                     <div className="f4">
                         <span className="text-bold">Trunk capacity: </span>
                         <input type="number" value={this.props.EditStore.trunkVal} onChange={(e) => this.props.EditStore.trunkChange(e.target.value)} /> l
+                    </div>
+                    <div className="f4">
+                        <span className="text-bold">Image url: </span>
+                        <input type="text" value={this.props.EditStore.imgVal} onChange={(e) => this.props.EditStore.imageChange(e.target.value)} />
                     </div>
                 </div>
             </div>

@@ -155,7 +155,7 @@ class VehicleStore {
         try {
             let data = await this.vehicleModelService.post(object)
             runInAction(() => {
-                this.vehicleModel.push(data)
+                data
             })
         } catch (error) {
             runInAction(() => {

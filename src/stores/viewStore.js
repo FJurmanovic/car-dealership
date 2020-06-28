@@ -11,6 +11,13 @@ class ViewStore {
     @observable status = 'initial'
     @observable vehicleObject = undefined
 
+    @computed get showImage() {
+        if(this.vehicleObject.imgUrl && this.vehicleObject.imgUrl.match(/\.(jpeg|jpg|gif|png|webm)$/)){
+            return this.vehicleObject.imgUrl
+        }
+        return undefined
+    }
+
     @computed get vehicleBody() {
         return VehicleStore.vehicleBody
     }

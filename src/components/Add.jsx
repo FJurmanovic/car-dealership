@@ -17,7 +17,11 @@ class Add extends Component {
                 <button onClick={() => this.props.history.goBack()} className="back-btn btn btn-blue">Cancel</button>
                 <button className="back-btn btn btn-blue float-right" onClick={() => this.props.AddStore.saveClick(this.props.history)}>Save</button>
 
-                <div className="car-image"></div>
+                <div className="car-image">
+                    {this.props.AddStore.showImage && 
+                        <img alt={`${this.props.AddStore.nameVal}`} src={`${this.props.AddStore.showImage}`} />
+                    }
+                </div>
                 <div className="d-flex upper-info h4 my-1">
                     <span className="--full">
                         <span className="make-group btn-group mr-2">
@@ -88,6 +92,10 @@ class Add extends Component {
                     <div className="f4">
                         <span className="text-bold">Trunk capacity: </span>
                         <input type="number" value={this.props.AddStore.trunkVal} onChange={(e) => this.props.AddStore.trunkChange(e.target.value)} /> l
+                    </div>
+                    <div className="f4">
+                        <span className="text-bold">Image url: </span>
+                        <input type="text" value={this.props.AddStore.imgVal} onChange={(e) => this.props.AddStore.imageChange(e.target.value)} />
                     </div>
                 </div>
             </div>

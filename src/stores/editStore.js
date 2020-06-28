@@ -23,6 +23,15 @@ class EditStore {
     @observable transmissionVal = undefined
     @observable trunkVal = undefined
     @observable doorVal = undefined
+    @observable imgVal = ""
+    @observable showAlert = false
+
+    @computed get showImage() {
+        if(this.imgVal.match(/\.(jpeg|jpg|gif|png|webm)$/)){
+            return this.imgVal
+        }
+        return undefined
+    }
 
     @computed get vehicleEngine() {
         return VehicleStore.vehicleEngine
@@ -48,6 +57,17 @@ class EditStore {
         return this.vehicleObject;
     }
 
+    alertCancelClick() {
+        this.showAlert = false
+    }
+
+    alertDeleteClick(vehicleId, history) {
+        this.showAlert = false
+        this.deleteVehicleById(vehicleId).then(
+            history.push("/explore")
+        )
+    }
+
     loadValues = (object) => {
         this.nameVal = object.name
         this.makeVal = object.makeId
@@ -61,6 +81,7 @@ class EditStore {
         this.transmissionVal = object.transmissionId
         this.trunkVal = object.trunkCapacity
         this.doorVal = object.doorCount
+        this.imgVal = object.imgUrl || ""
     }
     
     getVehicleById = async (id) => {
@@ -71,6 +92,19 @@ class EditStore {
                     this.vehicleObject = data
                     this.loadValues(data)
                 }
+            })
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error";
+            });
+        }
+    }
+
+    deleteVehicleById = async (id) => {
+        try {
+            let data = await this.vehicleService.delete(id)
+            runInAction(() => {
+                data
             })
         } catch (error) {
             runInAction(() => {
@@ -141,8 +175,12 @@ class EditStore {
         this.trunkVal = value
     }
 
+    imageChange(value) {
+        this.imgVal = value
+    }
+
     saveClick(vehicleId, history) {
-        const {makeVal, bodyVal, doorVal, engineVal, fuelVal, modelVal, priceVal, speedVal, transmissionVal, trunkVal, yearVal, nameVal} = this
+        const {makeVal, bodyVal, doorVal, engineVal, fuelVal, modelVal, priceVal, speedVal, transmissionVal, trunkVal, yearVal, nameVal, imgVal} = this
 
         let vehicleObject = 
         {
@@ -158,13 +196,18 @@ class EditStore {
             topSpeed: Number(speedVal),
             transmissionId: Number(transmissionVal),
             trunkCapacity: Number(trunkVal),
-            year: Number(yearVal)
+            year: Number(yearVal),
+            imgUrl: imgVal
         }
 
         this.putVehicleList(vehicleObject).then(
             history.push(`/vehicle/${vehicleId}`)
         )
-}
+    }
+    
+    removeClick() {
+        this.showAlert = true
+    }
 }
 
 export default new EditStore();

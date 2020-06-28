@@ -38,6 +38,14 @@ class VehicleService {
         
         return await put.fetch()
     }
+    delete = async (id) => {
+        const del = new HttpClient()
+        del.setMethod("DELETE")
+        del.setScheme(scheme)
+        del.paths().add(id)
+
+        return await del.fetch()
+    }
 }
 
 export default VehicleService;

@@ -34,7 +34,7 @@ class MakeList extends Component {
                                         <EditMake make={make} />
                                       </div>
                                     : <div className="make-info btn btn-squared">
-                                        <Link to={`/manufacturers/${make.id}/edit`} className="btn btn-icon"><div className="gg-pen"></div></Link>
+                                        <Link to={`/manufacturers/${make.id}/edit`} className="abs-right btn btn-icon"><div className="gg-pen"></div></Link>
                                         <Link to={`/manufacturers/${make.id}`}><div className="text-white">{name}</div></Link>
                                       </div>
                                     }

@@ -19,7 +19,11 @@ class VehicleList extends Component {
                         return (
                             <Fragment key={vehicle.id}>
                                 <div className="vehicle-card">
-                                    <div className="vehicle-card-image"></div>
+                                    <div className="vehicle-card-image">
+                                        {vehicle.imgUrl &&
+                                            <img alt={vehicle.name} src={vehicle.imgUrl} />
+                                        }
+                                    </div>
                                     <div className="vehicle-card-info">
                                         <div className="upper-info">
                                             <span className="title --full">
