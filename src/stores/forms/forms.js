@@ -2,9 +2,7 @@ import { Form } from "mobx-react-form";
 import dvr from "mobx-react-form/lib/validators/DVR";
 import validatorjs from "validatorjs";
 
-import AddMakeStore from '../addMakeStore';
-
-class AddMakeForm extends Form {
+class Forms extends Form {
   plugins() {
     return {
       dvr: dvr(validatorjs)
@@ -24,4 +22,4 @@ class AddMakeForm extends Form {
   }
 }
 
-export default AddMakeForm;
+export default Forms;

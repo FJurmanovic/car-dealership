@@ -7,18 +7,13 @@ class AddMakeStore {
     }
     
     saveMake(nameVal, history) {
-
-        if(!!nameVal){
-            let makeObject = 
-            {
-               name: nameVal
-            }
-
-            this.postVehicleMake(makeObject);
-            history.push("/manufacturers");
-        } else {
-            alert("All boxes need to be filled");
+        let makeObject = 
+        {
+            name: nameVal
         }
+
+        this.postVehicleMake(makeObject);
+        history.push("/manufacturers");
     }
 
     

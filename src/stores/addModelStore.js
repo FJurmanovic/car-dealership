@@ -7,8 +7,6 @@ class AddModelStore {
     constructor() {
         this.postVehicleModel = VehicleStore.postVehicleModel;
     }
-    
-    @observable nameVal = null;
 
     makeName(makeId) {
         let makeName = '';
@@ -20,25 +18,16 @@ class AddModelStore {
         return makeName;
     }
 
-    setName(value) {
-        this.nameVal = value;
-    }
-
-    saveModel(makeId, history) {
-        const {nameVal} = this;
-
-        if(!!nameVal){
-            let makeObject = 
-            {
-               name: nameVal,
-               makeId: makeId
-            }
-
-            this.postVehicleModel(makeObject);
-            history.push(`/manufacturers/${makeId}`);
-        } else {
-            alert("All boxes need to be filled");
+    saveModel(makeId, nameVal, history) {
+        let makeObject = 
+        {
+            name: nameVal,
+            makeId: makeId
         }
+
+        console.log(makeObject)
+        //this.postVehicleModel(makeObject);
+        history.push(`/manufacturers/${makeId}`);
     }
 
     

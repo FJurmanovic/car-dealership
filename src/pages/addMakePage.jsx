@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 
 import AddMake from '../components/AddMake'
 
-import AddMakeForm from '../stores/forms/addMakeForm';
-
-const addMakeForm = new AddMakeForm();
+import Forms from '../stores/forms/forms';
+const forms = new Forms();
 
 class AddMakePage extends Component {
     render() {
         return (
             <div>
-                <AddMake form={addMakeForm} />
+                <AddMake form={forms} />
             </div>
         );
     }
