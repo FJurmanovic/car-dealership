@@ -6,17 +6,31 @@ import { inject, observer } from 'mobx-react';
 @inject("AddMakeStore")
 @observer
 class AddMake extends Component {
-
+    constructor(props){
+        super (props)
+        this.hooks = {
+            onSuccess(form) {
+                props.AddMakeStore.saveMake(form.values().name, props.history)
+              }
+        }
+    }
+    
     render() {
-        const {nameVal} = this.props.AddMakeStore;
+        const {form} = this.props;
 
         return (
             <>
                 <button onClick={() => this.props.history.goBack()} className="back-btn btn btn-blue">Cancel</button>
                 <div className="container my-10 text-center">
-                    <div className="h4 my-2">Enter new manufacturer name</div>
-                    <input type="text" className="width-full" value={nameVal} onChange={(e) => this.props.AddMakeStore.setName(e.target.value)} />
-                    <button className="btn btn-blue width-full my-4" onClick={() => this.props.AddMakeStore.saveMake(this.props.history)}>Save</button>
+                    <label htmlFor={form.$("name").id} className="h4 my-2">Enter new manufacturer name</label>
+                    <input className="width-full" {...form.$("name").bind()} />
+                    <small className="h5 text-red">{form.$("name").error && "Error: Field must have value"}</small>
+                    <button 
+                        className="btn btn-blue width-full my-4" 
+                        onClick={e => form.onSubmit(e, {
+                            onSuccess: this.hooks.onSuccess
+                        })}
+                    >Save</button>
                 </div>
             </>
         );

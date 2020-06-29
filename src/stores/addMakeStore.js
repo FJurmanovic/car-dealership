@@ -1,4 +1,3 @@
-import {observable} from "mobx";
 import VehicleStore from './vehicleStore';
 
 
@@ -7,14 +6,8 @@ class AddMakeStore {
         this.postVehicleMake = VehicleStore.postVehicleMake;
     }
     
-    @observable nameVal = null;
+    saveMake(nameVal, history) {
 
-    setName(value) {
-        this.nameVal = value;
-    }
-
-    saveMake(history) {
-        const {nameVal} = this;
         if(!!nameVal){
             let makeObject = 
             {
@@ -22,7 +15,6 @@ class AddMakeStore {
             }
 
             this.postVehicleMake(makeObject);
-
             history.push("/manufacturers");
         } else {
             alert("All boxes need to be filled");
