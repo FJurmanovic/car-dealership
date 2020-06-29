@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
-import {withRouter} from 'react-router-dom'
-import {inject, observer} from 'mobx-react'
+import {withRouter} from 'react-router-dom';
+import {inject, observer} from 'mobx-react';
 
 @inject("EditModelStore")
 @observer
 class EditModel extends Component {
     componentWillMount() {
         const {model} = this.props;
-        this.props.EditModelStore.nameVal = model.name
-        this.props.EditModelStore.model = model
+        this.props.EditModelStore.nameVal = model.name;
+        this.props.EditModelStore.model = model;
     }
     render() {
 

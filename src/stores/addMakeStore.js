@@ -1,31 +1,31 @@
 import {observable} from "mobx";
-import VehicleStore from './vehicleStore'
+import VehicleStore from './vehicleStore';
 
 
 class AddMakeStore {
     constructor() {
-        this.postVehicleMake = VehicleStore.postVehicleMake
+        this.postVehicleMake = VehicleStore.postVehicleMake;
     }
     
-    @observable nameVal = undefined
+    @observable nameVal = null;
 
     setName(value) {
-        this.nameVal = value
+        this.nameVal = value;
     }
 
     saveMake(history) {
-        const {nameVal} = this
+        const {nameVal} = this;
         if(!!nameVal){
             let makeObject = 
             {
                name: nameVal
             }
 
-            this.postVehicleMake(makeObject).then(
-                history.push("/manufacturers")
-            )
+            this.postVehicleMake(makeObject);
+
+            history.push("/manufacturers");
         } else {
-            alert("All boxes need to be filled")
+            alert("All boxes need to be filled");
         }
     }
 

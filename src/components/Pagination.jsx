@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
-import {range} from '../common/js/functions'
+import {range} from '../common/js/functions';
 
 
 @inject("VehicleStore")
 @observer
 class Pagination extends Component {
     render() {
-        const {pageNumber, pageCount} = this.props.VehicleStore
+        const {pageNumber, pageCount} = this.props.VehicleStore;
 
         return (
             <div className="pagination btn-group d-flex">

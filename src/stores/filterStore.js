@@ -1,5 +1,5 @@
 import {observable, computed, runInAction} from "mobx";
-import VehicleStore from './vehicleStore'
+import VehicleStore from './vehicleStore';
 
 class FilterStore {
     @observable makeVal = null;
@@ -20,27 +20,27 @@ class FilterStore {
     @observable maxTrunkVal = 1000; 
 
     @computed get showFilters() {
-        return VehicleStore.showFilters
+        return VehicleStore.showFilters;
     }
 
     @computed get vehicleEngine() {
-        return VehicleStore.vehicleEngine
+        return VehicleStore.vehicleEngine;
     }
 
     @computed get vehicleTransmission() {
-        return VehicleStore.vehicleTransmission
+        return VehicleStore.vehicleTransmission;
     }
 
     @computed get vehicleBody() {
-        return VehicleStore.vehicleBody
+        return VehicleStore.vehicleBody;
     }
 
     @computed get vehicleMake() {
-        return VehicleStore.vehicleMake
+        return VehicleStore.vehicleMake;
     }
 
     @computed get vehicleModel() {
-        return VehicleStore.vehicleModel
+        return VehicleStore.vehicleModel;
     }
     
     @computed get vehicleInfo(){
@@ -49,138 +49,138 @@ class FilterStore {
 
     makeChange(value) {
         if (value != "any") {
-            this.makeVal = value
+            this.makeVal = value;
         } else {
-            this.makeVal = null
+            this.makeVal = null;
         }
     } 
 
     modelChange(value) {
         if (value != "any") {
-            this.modelVal = value
+            this.modelVal = value;
         } else {
-            this.modelVal = null
+            this.modelVal = null;
         }
     } 
 
     minPriceChange(value) {
         if (value != "any") {
-            this.minPriceVal = value
+            this.minPriceVal = value;
         } else {
-            this.minPriceVal = null
+            this.minPriceVal = null;
         }
     } 
 
     maxPriceChange(value) {
         if (value != "any") {
-            this.maxPriceVal = value
+            this.maxPriceVal = value;
         } else {
-            this.maxPriceVal = null
+            this.maxPriceVal = null;
         }
     } 
 
     minYearChange(value) {
         if (value != "any") {
-            this.minYearVal = value
+            this.minYearVal = value;
         } else {
-            this.minYearVal = null
+            this.minYearVal = null;
         }
     } 
 
     maxYearChange(value) {
         if (value != "any") {
-            this.maxYearVal = value
+            this.maxYearVal = value;
         } else {
-            this.maxYearVal = null
+            this.maxYearVal = null;
         }
     } 
 
     bodyChange(value) {
         if (value != "any") {
-            this.bodyVal = value
+            this.bodyVal = value;
         } else {
-            this.bodyVal = null
+            this.bodyVal = null;
         }
     } 
 
     engineChange(value) {
         if (value != "any") {
-            this.engineVal = value
+            this.engineVal = value;
         } else {
-            this.engineVal = null
+            this.engineVal = null;
         }
     } 
 
     transmissionChange(value) {
         if (value != "any") {
-            this.transmissionVal = value
+            this.transmissionVal = value;
         } else {
-            this.transmissionVal = null
+            this.transmissionVal = null;
         }
     } 
 
     doorChange(value) {
         if (value != "any") {
-            this.doorVal = value
+            this.doorVal = value;
         } else {
-            this.doorVal = null
+            this.doorVal = null;
         }
     } 
 
     minFuelChange(value) {
-        this.minFuelVal = value
+        this.minFuelVal = value;
     }
 
     maxFuelChange(value) {
-        this.maxFuelVal = value
+        this.maxFuelVal = value;
     }
 
     minSpeedChange(value) {
-        this.minSpeedVal = value
+        this.minSpeedVal = value;
     }
 
     maxSpeedChange(value) {
-        this.maxSpeedVal = value
+        this.maxSpeedVal = value;
     }
 
     minTrunkChange(value) {
-        this.minTrunkVal = value
+        this.minTrunkVal = value;
     }
 
     maxTrunkChange(value) {
-        this.maxTrunkVal = value
+        this.maxTrunkVal = value;
     }
 
     toggleFilters() {
-        VehicleStore.showFilters = !this.showFilters
+        VehicleStore.showFilters = !this.showFilters;
     }
 
     filterVehicles() {
-        let filterList = []
-        const {makeVal, modelVal, bodyVal, engineVal, transmissionVal, doorVal, minPriceVal, maxPriceVal, minYearVal, maxYearVal, minFuelVal, maxFuelVal, minSpeedVal, maxSpeedVal, minTrunkVal, maxTrunkVal} = this
+        let filterList = [];
+        const {makeVal, modelVal, bodyVal, engineVal, transmissionVal, doorVal, minPriceVal, maxPriceVal, minYearVal, maxYearVal, minFuelVal, maxFuelVal, minSpeedVal, maxSpeedVal, minTrunkVal, maxTrunkVal} = this;
         
-        makeVal && !modelVal && filterList.push(`"makeId" = '${makeVal}'`)
-        modelVal && filterList.push(`"modelId" = '${modelVal}'`)
-        bodyVal && filterList.push(`"bodyId" = ${bodyVal}`)
-        engineVal && filterList.push(`"engineId" = ${engineVal}`)
-        transmissionVal && filterList.push(`"transmissionId" = ${transmissionVal}`)
-        doorVal && filterList.push(`"doorCount" = ${doorVal}`)
-        minPriceVal && filterList.push(`"price" > ${minPriceVal}`)
-        maxPriceVal && filterList.push(`"price" < ${maxPriceVal}`)
-        minYearVal && filterList.push(`"year" > ${minYearVal}`)
-        maxYearVal && filterList.push(`"year" < ${maxYearVal}`)
-        minFuelVal && filterList.push(`"fuelTank" > ${minFuelVal}`)
-        maxFuelVal && filterList.push(`"fuelTank" < ${maxFuelVal}`)
-        minSpeedVal && filterList.push(`"topSpeed" > ${minSpeedVal}`)
-        maxSpeedVal && filterList.push(`"topSpeed" < ${maxSpeedVal}`)
-        minTrunkVal && filterList.push(`"trunkCapacity" > ${minTrunkVal}`)
-        maxTrunkVal && filterList.push(`"trunkCapacity" < ${maxTrunkVal}`)
+        makeVal && !modelVal && filterList.push(`"makeId" = '${makeVal}'`);
+        modelVal && filterList.push(`"modelId" = '${modelVal}'`);
+        bodyVal && filterList.push(`"bodyId" = ${bodyVal}`);
+        engineVal && filterList.push(`"engineId" = ${engineVal}`);
+        transmissionVal && filterList.push(`"transmissionId" = ${transmissionVal}`);
+        doorVal && filterList.push(`"doorCount" = ${doorVal}`);
+        minPriceVal && filterList.push(`"price" > ${minPriceVal}`);
+        maxPriceVal && filterList.push(`"price" < ${maxPriceVal}`);
+        minYearVal && filterList.push(`"year" > ${minYearVal}`);
+        maxYearVal && filterList.push(`"year" < ${maxYearVal}`);
+        minFuelVal && filterList.push(`"fuelTank" > ${minFuelVal}`);
+        maxFuelVal && filterList.push(`"fuelTank" < ${maxFuelVal}`);
+        minSpeedVal && filterList.push(`"topSpeed" > ${minSpeedVal}`);
+        maxSpeedVal && filterList.push(`"topSpeed" < ${maxSpeedVal}`);
+        minTrunkVal && filterList.push(`"trunkCapacity" > ${minTrunkVal}`);
+        maxTrunkVal && filterList.push(`"trunkCapacity" < ${maxTrunkVal}`);
 
-        this.filtersSet(filterList)
+        this.filtersSet(filterList);
     }
 
     filtersSet(inputList) {
-        return VehicleStore.filtersSet(inputList)
+        return VehicleStore.filtersSet(inputList);
     }
 
     

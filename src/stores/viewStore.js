@@ -1,56 +1,56 @@
 import {observable, computed, runInAction} from "mobx";
-import VehicleStore from './vehicleStore'
+import VehicleStore from './vehicleStore';
 
-import VehicleService from './services/vehicleService'
+import VehicleService from './services/vehicleService';
 
 class ViewStore {
     constructor() {
-        this.vehicleService = new VehicleService()
+        this.vehicleService = new VehicleService();
     }
 
-    @observable status = 'initial'
-    @observable vehicleObject = undefined
-    @observable showContact = false
+    @observable status = 'initial';
+    @observable vehicleObject = null;
+    @observable showContact = false;
 
     clickContact() {
-        this.showContact = true
+        this.showContact = true;
     }
     
     @computed get showImage() {
         if(this.vehicleObject.imgUrl && this.vehicleObject.imgUrl.match(/\.(jpeg|jpg|gif|png|webm)$/)){
-            return this.vehicleObject.imgUrl
+            return this.vehicleObject.imgUrl;
         }
-        return undefined
+        return null;
     }
 
     @computed get vehicleBody() {
-        return VehicleStore.vehicleBody
+        return VehicleStore.vehicleBody;
     }
 
     @computed get vehicleEngine() {
-        return VehicleStore.vehicleEngine
+        return VehicleStore.vehicleEngine;
     }
 
     @computed get vehicleTransmission() {
-        return VehicleStore.vehicleTransmission
+        return VehicleStore.vehicleTransmission;
     }
 
     @computed get vehicleInfo(){
-        let vehicle = this.vehicleObject || undefined
+        let vehicle = this.vehicleObject || null;
 
-        let bodyId =  0
-        let engineId = 0
-        let transmissionId = 0
+        let bodyId =  0;
+        let engineId = 0;
+        let transmissionId = 0;
 
-        if(vehicle !== undefined) {
-            bodyId = vehicle.bodyId || 0
-            engineId = vehicle.engineId || 0
-            transmissionId = vehicle.transmissionId || 0
+        if(vehicle !== null) {
+            bodyId = vehicle.bodyId || 0;
+            engineId = vehicle.engineId || 0;
+            transmissionId = vehicle.transmissionId || 0;
         } 
         
-        let infoObject = undefined
+        let infoObject = null;
 
-        if (vehicle !== undefined) {
+        if (vehicle !== null) {
             infoObject = {
                 name: vehicle.name || '',
                 price: vehicle.price || 0,
@@ -66,15 +66,15 @@ class ViewStore {
         }
         
 
-        return infoObject
+        return infoObject;
     }
 
     getVehicleById = async (id) => {
         try {
-            let data = await this.vehicleService.getId(id)
+            let data = await this.vehicleService.getId(id);
             runInAction(() => {
                 if(data.id){
-                    this.vehicleObject = data
+                    this.vehicleObject = data;
                 }
             })
         } catch (error) {

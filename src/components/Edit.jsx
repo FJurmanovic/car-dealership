@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom';
 
-import {firstUpper, range} from '../common/js/functions'
+import {firstUpper, range} from '../common/js/functions';
 
 import { observer, inject } from 'mobx-react';
 
-import RemoveAlert from './RemoveAlert'
+import RemoveAlert from './RemoveAlert';
 
 @inject("EditStore")
 @observer
 class Edit extends Component {
 
     componentWillMount() {
-        this.props.EditStore.getVehicleById(this.props.match.params.vehicleId)
+        this.props.EditStore.getVehicleById(this.props.match.params.vehicleId);
     }
 
     renderEdit() {
-        const {vehicleBody, vehicleEngine, vehicleMake, vehicleModel, vehicleTransmission} = this.props.EditStore
-        const {vehicleId} = this.props.match.params
+        const {vehicleBody, vehicleEngine, vehicleMake, vehicleModel, vehicleTransmission} = this.props.EditStore;
+        const {vehicleId} = this.props.match.params;
         
         return (
             <div className="info-page container">

@@ -56,6 +56,9 @@ class Contact extends Component {
                                 <input type="number" placeholder="Zip code" name="zip-code" required />
                             </div>
                         </div>
+                        <div className="questions mx-10 my-3">
+                            <div contentEditable className="questions-area"></div>
+                        </div>
                         <input type="submit" className="btn btn-blue btn-squared width-full" value="Send" />
                     </form>
                   </div>

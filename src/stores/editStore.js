@@ -1,56 +1,56 @@
 import {observable, computed, runInAction} from "mobx";
-import VehicleStore from './vehicleStore'
+import VehicleStore from './vehicleStore';
  
-import VehicleService from './services/vehicleService'
+import VehicleService from './services/vehicleService';
 
 class EditStore {
     constructor() {
-        this.putVehicleList = VehicleStore.putVehicleList
-        this.vehicleService = new VehicleService()
+        this.putVehicleList = VehicleStore.putVehicleList;
+        this.vehicleService = new VehicleService();
     }
 
-    @observable vehicleObject = undefined
-    @observable isFetched = false
-    @observable nameVal = undefined
-    @observable makeVal = undefined
-    @observable modelVal = undefined
-    @observable yearVal = undefined
-    @observable priceVal = undefined
-    @observable bodyVal = undefined
-    @observable engineVal = undefined
-    @observable fuelVal = undefined
-    @observable speedVal = undefined
-    @observable transmissionVal = undefined
-    @observable trunkVal = undefined
-    @observable doorVal = undefined
-    @observable imgVal = ""
-    @observable showAlert = false
+    @observable vehicleObject = null;
+    @observable isFetched = false;
+    @observable nameVal = null;
+    @observable makeVal = null;
+    @observable modelVal = null;
+    @observable yearVal = null;
+    @observable priceVal = null;
+    @observable bodyVal = null;
+    @observable engineVal = null;
+    @observable fuelVal = null;
+    @observable speedVal = null;
+    @observable transmissionVal = null;
+    @observable trunkVal = null;
+    @observable doorVal = null;
+    @observable imgVal = "";
+    @observable showAlert = false;
 
     @computed get showImage() {
         if(this.imgVal.match(/\.(jpeg|jpg|gif|png|webm)$/)){
-            return this.imgVal
+            return this.imgVal;
         }
-        return undefined
+        return null;
     }
 
     @computed get vehicleEngine() {
-        return VehicleStore.vehicleEngine
+        return VehicleStore.vehicleEngine;
     }
 
     @computed get vehicleTransmission() {
-        return VehicleStore.vehicleTransmission
+        return VehicleStore.vehicleTransmission;
     }
 
     @computed get vehicleBody() {
-        return VehicleStore.vehicleBody
+        return VehicleStore.vehicleBody;
     }
 
     @computed get vehicleMake() {
-        return VehicleStore.vehicleMake
+        return VehicleStore.vehicleMake;
     }
 
     @computed get vehicleModel() {
-        return VehicleStore.vehicleModel
+        return VehicleStore.vehicleModel;
     }
     
     @computed get vehicleInfo(){
@@ -58,39 +58,38 @@ class EditStore {
     }
 
     alertCancelClick() {
-        this.showAlert = false
+        this.showAlert = false;
     }
 
     alertDeleteClick(vehicleId, history) {
-        this.showAlert = false
-        this.deleteVehicleById(vehicleId).then(
-            history.push("/explore")
-        )
+        this.showAlert = false;
+        this.deleteVehicleById(vehicleId);
+        history.push("/explore");
     }
 
     loadValues = (object) => {
-        this.nameVal = object.name
-        this.makeVal = object.makeId
-        this.modelVal = object.modelId
-        this.yearVal = object.year
-        this.priceVal = object.price
-        this.bodyVal = object.bodyId
-        this.engineVal = object.engineId
-        this.fuelVal = object.fuelTank
-        this.speedVal = object.topSpeed
-        this.transmissionVal = object.transmissionId
-        this.trunkVal = object.trunkCapacity
-        this.doorVal = object.doorCount
-        this.imgVal = object.imgUrl || ""
+        this.nameVal = object.name;
+        this.makeVal = object.makeId;
+        this.modelVal = object.modelId;
+        this.yearVal = object.year;
+        this.priceVal = object.price;
+        this.bodyVal = object.bodyId;
+        this.engineVal = object.engineId;
+        this.fuelVal = object.fuelTank;
+        this.speedVal = object.topSpeed;
+        this.transmissionVal = object.transmissionId;
+        this.trunkVal = object.trunkCapacity;
+        this.doorVal = object.doorCount;
+        this.imgVal = object.imgUrl || "";
     }
     
     getVehicleById = async (id) => {
         try {
-            let data = await this.vehicleService.getId(id)
+            let data = await this.vehicleService.getId(id);
             runInAction(() => {
                 if(data.id){
-                    this.vehicleObject = data
-                    this.loadValues(data)
+                    this.vehicleObject = data;
+                    this.loadValues(data);
                 }
             })
         } catch (error) {
@@ -102,9 +101,9 @@ class EditStore {
 
     deleteVehicleById = async (id) => {
         try {
-            let data = await this.vehicleService.delete(id)
+            let data = await this.vehicleService.delete(id);
             runInAction(() => {
-                data
+                data;
             })
         } catch (error) {
             runInAction(() => {
@@ -114,101 +113,109 @@ class EditStore {
     }
 
     makeChange(value) {
-        const firstModelVal = this.vehicleModel.filter(model => model.makeId == value)[0].id
+        const firstModelVal = this.vehicleModel.filter(model => model.makeId == value)[0].id;
 
-        this.makeVal = value
-        this.modelVal = firstModelVal
+        this.makeVal = value;
+        this.modelVal = firstModelVal;
 
-        const {makeVal, modelVal, yearVal} = this
-        const {vehicleMake, vehicleModel} = this
+        const {makeVal, modelVal, yearVal} = this;
+        const {vehicleMake, vehicleModel} = this;
 
-        this.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
+        this.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`;
     }
 
     modelChange(value) {
-        this.modelVal = value
+        this.modelVal = value;
 
-        const {makeVal, modelVal, yearVal} = this
-        const {vehicleMake, vehicleModel} = this
+        const {makeVal, modelVal, yearVal} = this;
+        const {vehicleMake, vehicleModel} = this;
 
-        this.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
+        this.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`;
     }
 
     yearChange(value) {
-        this.yearVal = value
+        this.yearVal = value;
 
-        const {makeVal, modelVal, yearVal} = this
-        const {vehicleMake, vehicleModel} = this
+        const {makeVal, modelVal, yearVal} = this;
+        const {vehicleMake, vehicleModel} = this;
 
-        this.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`
+        this.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`;
     }
 
     priceChange(value) {
-        this.priceVal = value
+        this.priceVal = value;
     }
 
     bodyChange(value) {
-        this.bodyVal = value
+        this.bodyVal = value;
     }
 
     doorChange(value) {
-        this.doorVal = value
+        this.doorVal = value;
     }
 
     engineChange(value) {
-        this.engineVal = value
+        this.engineVal = value;
     }
 
     fuelChange(value) {
-        this.fuelVal = value
+        this.fuelVal = value;
     }
 
     speedChange(value) {
-        this.speedVal = value
+        this.speedVal = value;
     }
 
     transmissionChange(value) {
-        this.transmissionVal = value
+        this.transmissionVal = value;
     }
 
     trunkChange(value) {
-        this.trunkVal = value
+        this.trunkVal = value;
     }
 
     imageChange(value) {
-        this.imgVal = value
+        this.imgVal = value;
     }
 
     saveClick(vehicleId, history) {
-        const {makeVal, bodyVal, doorVal, engineVal, fuelVal, modelVal, priceVal, speedVal, transmissionVal, trunkVal, yearVal, nameVal, imgVal} = this
+        const {makeVal, bodyVal, doorVal, engineVal, fuelVal, modelVal, priceVal, speedVal, transmissionVal, trunkVal, yearVal, nameVal, imgVal} = this;
+        let allEmpty = false;
 
-        let vehicleObject = 
-        {
-            id: vehicleId,
-            name: nameVal,
-            makeId: makeVal,
-            modelId: modelVal,
-            bodyId: Number(bodyVal),
-            doorCount: Number(doorVal),
-            engineId: Number(engineVal),
-            fuelTank: Number(fuelVal),
-            price: Number(priceVal),
-            topSpeed: Number(speedVal),
-            transmissionId: Number(transmissionVal),
-            trunkCapacity: Number(trunkVal),
-            year: Number(yearVal),
-            imgUrl: imgVal
+        for (const [name, value] of Object.entries(this)) {
+            if(value === null && (name.includes("Val") && name != "imgVal")) {
+                allEmpty = true;
+            }
         }
 
-        this.putVehicleList(vehicleObject).then(() => 
+        if(!allEmpty){
+            let vehicleObject = 
             {
-                history.push(`/vehicle/${vehicleId}`);
+                id: vehicleId,
+                name: nameVal,
+                makeId: makeVal,
+                modelId: modelVal,
+                bodyId: Number(bodyVal),
+                doorCount: Number(doorVal),
+                engineId: Number(engineVal),
+                fuelTank: Number(fuelVal),
+                price: Number(priceVal),
+                topSpeed: Number(speedVal),
+                transmissionId: Number(transmissionVal),
+                trunkCapacity: Number(trunkVal),
+                year: Number(yearVal),
+                imgUrl: imgVal
             }
-        )
+
+            this.putVehicleList(vehicleObject);
+            history.push(`/vehicle/${vehicleId}`);
+        } else {
+            alert("All boxes need to be filled");
+        }
     }
     
     removeClick() {
-        this.showAlert = true
+        this.showAlert = true;
     }
 }
 

@@ -1,31 +1,31 @@
 import {observable} from "mobx";
-import VehicleStore from './vehicleStore'
-import ModelListStore from './modelListStore'
+import VehicleStore from './vehicleStore';
+import ModelListStore from './modelListStore';
 
 
 class AddModelStore {
     constructor() {
-        this.postVehicleModel = VehicleStore.postVehicleModel
+        this.postVehicleModel = VehicleStore.postVehicleModel;
     }
     
-    @observable nameVal = undefined
+    @observable nameVal = null;
 
     makeName(makeId) {
-        let makeName = ''
+        let makeName = '';
         
         if(VehicleStore.vehicleMake.filter(x => x.id == makeId)[0]){
-            makeName = VehicleStore.vehicleMake.filter(x => x.id == makeId)[0].name
+            makeName = VehicleStore.vehicleMake.filter(x => x.id == makeId)[0].name;
         }
 
-        return makeName
+        return makeName;
     }
 
     setName(value) {
-        this.nameVal = value
+        this.nameVal = value;
     }
 
     saveModel(makeId, history) {
-        const {nameVal} = this
+        const {nameVal} = this;
 
         if(!!nameVal){
             let makeObject = 
@@ -34,11 +34,10 @@ class AddModelStore {
                makeId: makeId
             }
 
-            this.postVehicleModel(makeObject).then(
-                history.push(`/manufacturers/${makeId}`)
-            )
+            this.postVehicleModel(makeObject);
+            history.push(`/manufacturers/${makeId}`);
         } else {
-            alert("All boxes need to be filled")
+            alert("All boxes need to be filled");
         }
     }
 

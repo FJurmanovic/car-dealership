@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom';
 
 import { observer, inject } from 'mobx-react';
 import Contact from './Contact';
@@ -8,12 +8,12 @@ import Contact from './Contact';
 @observer
 class VehicleInformation extends Component {
     componentWillMount() {
-        this.props.ViewStore.getVehicleById(this.props.match.params.vehicleId)
+        this.props.ViewStore.getVehicleById(this.props.match.params.vehicleId);
     }
 
     renderInfo() {
-        const {vehicleId} = this.props.match.params
-        let {name, price, bodyType, doorCount, engineType, engineId, fuelCapacity, topSpeed, transmissionType, trunkCapacity} = this.props.ViewStore.vehicleInfo
+        const {vehicleId} = this.props.match.params;
+        let {name, price, bodyType, doorCount, engineType, engineId, fuelCapacity, topSpeed, transmissionType, trunkCapacity} = this.props.ViewStore.vehicleInfo;
 
         return <>
             <Link to="/explore" className="back-btn btn btn-blue">Go back</Link>

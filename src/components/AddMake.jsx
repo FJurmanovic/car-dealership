@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 
 @inject("AddMakeStore")
@@ -8,7 +8,7 @@ import { inject, observer } from 'mobx-react';
 class AddMake extends Component {
 
     render() {
-        const {nameVal} = this.props.AddMakeStore
+        const {nameVal} = this.props.AddMakeStore;
 
         return (
             <>

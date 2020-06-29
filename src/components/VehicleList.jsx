@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 import { observer, inject } from 'mobx-react';
 
@@ -7,11 +7,11 @@ import { observer, inject } from 'mobx-react';
 @observer
 class VehicleList extends Component {
     componentWillMount() {
-        this.props.VehicleStore.getVehicleList()
+        this.props.VehicleStore.getVehicleList();
     }
 
     render() {
-        const {vehicleList, vehicleTransmission, vehicleEngine, vehicleBody} = this.props.VehicleStore
+        const {vehicleList, vehicleTransmission, vehicleEngine, vehicleBody} = this.props.VehicleStore;
         return (
             <>  
                 {vehicleList.map(vehicle => {

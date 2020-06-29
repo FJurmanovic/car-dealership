@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import {observer, inject} from 'mobx-react';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
-import './App.scss'
+import './App.scss';
 
-import Header from '../layouts/header'
+import Header from '../layouts/header';
 
-import LandingPage from '../pages/landingPage'
-import ExplorePage from '../pages/explorePage'
-import InfoPage from '../pages/infoPage'
-import EditPage from '../pages/editPage'
-import AddPage from '../pages/addPage'
-import MakePage from '../pages/makePage'
-import ModelPage from '../pages/modelPage'
-import AddMakePage from '../pages/addMakePage'
-import AddModelPage from '../pages/addModelPage'
+import LandingPage from '../pages/landingPage';
+import ExplorePage from '../pages/explorePage';
+import InfoPage from '../pages/infoPage';
+import EditPage from '../pages/editPage';
+import AddPage from '../pages/addPage';
+import MakePage from '../pages/makePage';
+import ModelPage from '../pages/modelPage';
+import AddMakePage from '../pages/addMakePage';
+import AddModelPage from '../pages/addModelPage';
 
 @inject("VehicleStore")
 @observer
 class App extends Component {
     componentWillMount() {
-        this.props.VehicleStore.getVehicleMake()
-        this.props.VehicleStore.getVehicleModel()
+        this.props.VehicleStore.getVehicleMake();
+        this.props.VehicleStore.getVehicleModel();
     }
 
     render() {

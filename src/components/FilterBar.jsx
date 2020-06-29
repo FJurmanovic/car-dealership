@@ -7,9 +7,9 @@ import {range, firstUpper} from '../common/js/functions';
 class FilterBar extends Component {
     
     render() {
-        const className = !this.props.FilterStore.showFilters ? "hidden" : ""
-        const {vehicleBody, vehicleEngine, vehicleMake, vehicleModel, vehicleTransmission} = this.props.FilterStore
-        const {minPriceVal, maxPriceVal, minYearVal, maxYearVal, minFuelVal, maxFuelVal} = this.props.FilterStore
+        const className = !this.props.FilterStore.showFilters ? "hidden" : "";
+        const {vehicleBody, vehicleEngine, vehicleMake, vehicleModel, vehicleTransmission} = this.props.FilterStore;
+        const {minPriceVal, maxPriceVal, minYearVal, maxYearVal, minFuelVal, maxFuelVal} = this.props.FilterStore;
         
         return (
             <>

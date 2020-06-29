@@ -1,34 +1,15 @@
-const scheme = "vehicleModel"
-
-import HttpClient from './httpClient'
+const url = "https://api.baasic.com/v1/car-dealership-assignment/resources/vehicleModel";
+import HttpClient from './httpClient';
 
 class VehicleModelService {
     get = async (urlParams) => {
-        const get = new HttpClient()
-        get.setMethod("GET")
-        get.setScheme(scheme)
-        get.urlParams(urlParams)
-
-        return await get.fetch()
+        return await HttpClient.get(url, urlParams);
     } 
     post = async (object) => {
-        const post = new HttpClient()
-        post.setMethod("POST")
-        post.setScheme(scheme)
-        post.changeHeaders().add("Content-Type", "application/json")
-        post.setBody(JSON.stringify(object))
-
-        return await post.fetch()
+        return await HttpClient.post(url, object);
     }
     put = async (object) => {
-        const put = new HttpClient()
-        put.setMethod("PUT")
-        put.setScheme(scheme)
-        put.changeHeaders().add("Content-Type", "application/json")
-        put.setBody(JSON.stringify(object))
-        put.paths().add(object.id)
-
-        return await put.fetch()
+        return await HttpClient.put(url + `/${object.id}`, object);
     }
 }
 

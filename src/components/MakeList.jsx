@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import {Link, withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom';
 
-import {range} from '../common/js/functions'
+import {range} from '../common/js/functions';
 
 import { observer, inject } from 'mobx-react';
 
@@ -12,7 +12,7 @@ import EditMake from '../components/EditMake';
 class MakeList extends Component {
 
     render() {
-        const {pageNum, pageCount} = this.props.MakeListStore
+        const {pageNum, pageCount} = this.props.MakeListStore;
 
 
         return (

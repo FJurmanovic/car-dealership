@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import {Link, withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom';
 
-import {range} from '../common/js/functions'
+import {range} from '../common/js/functions';
 
 import { observer, inject } from 'mobx-react';
 
@@ -11,13 +11,13 @@ import EditModel from '../components/EditModel';
 @observer
 class ModelList extends Component {
     componentDidMount() {
-        this.props.ModelListStore.makeId = this.props.match.params.makeId
+        this.props.ModelListStore.makeId = this.props.match.params.makeId;
     }
 
     render() {
-        const {makeId} = this.props.match.params
+        const {makeId} = this.props.match.params;
         
-        const {pageNum, pageCount, makeName} = this.props.ModelListStore
+        const {pageNum, pageCount, makeName} = this.props.ModelListStore;
 
         return (
             <>

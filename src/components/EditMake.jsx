@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
-import {withRouter} from 'react-router-dom'
-import {inject, observer} from 'mobx-react'
+import {withRouter} from 'react-router-dom';
+import {inject, observer} from 'mobx-react';
 
 @inject("EditMakeStore")
 @observer
 class EditMake extends Component {
     componentWillMount() {
         const {make} = this.props;
-        this.props.EditMakeStore.nameVal = make.name
-        this.props.EditMakeStore.make = make
+        this.props.EditMakeStore.nameVal = make.name;
+        this.props.EditMakeStore.make = make;
     }
 
     render() {

@@ -1,50 +1,21 @@
-const scheme = "vehicleList"
-
-import HttpClient from './httpClient'
+const url = "https://api.baasic.com/v1/car-dealership-assignment/resources/vehicleList";
+import HttpClient from './httpClient';
 
 class VehicleService {
     get = async (urlParams) => {
-        const get = new HttpClient()
-        get.setMethod("GET")
-        get.setScheme(scheme)
-        get.urlParams(urlParams)
-        
-        return await get.fetch()
+        return await HttpClient.get(url, urlParams);
     } 
     getId = async (id) => {
-        const getId = new HttpClient()
-        getId.setMethod("GET")
-        getId.setScheme(scheme)
-        getId.paths().add(id)
-
-        return await getId.fetch()
+        return await HttpClient.get(url + `/${id}`);
     }
     post = async (object) => {
-        const post = new HttpClient()
-        post.changeHeaders().add("Content-Type", "application/json")
-        post.setBody(JSON.stringify(object))
-        post.setScheme(scheme)
-        post.setMethod("POST")
-
-        return await post.fetch()
+        return await HttpClient.post(url, object);
     }
     put = async (object) => {
-        const put = new HttpClient()
-        put.changeHeaders().add("Content-Type", "application/json")
-        put.setBody(JSON.stringify(object))
-        put.setScheme(scheme)
-        put.paths().add(object.id)
-        put.setMethod("PUT")
-        
-        return await put.fetch()
+        return await HttpClient.put(url + `/${object.id}`, object);
     }
     delete = async (id) => {
-        const del = new HttpClient()
-        del.setMethod("DELETE")
-        del.setScheme(scheme)
-        del.paths().add(id)
-
-        return await del.fetch()
+        return await HttpClient.delete(url + `/${id}`)
     }
 }
 

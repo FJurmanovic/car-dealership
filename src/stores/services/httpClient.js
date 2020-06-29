@@ -1,106 +1,84 @@
-export default class HttpClient {
-    constructor() {
-        this.options = {
-            method: "GET",
-            headers: new Headers(),
-            body: undefined
+class HttpClient {
+    
+    post(url, data) {
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        let options = {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(data)
         }
-        this.params = undefined
-        this.webApiUrl = "https://api.baasic.com/v1/car-dealership-assignment/resources"
-        this.urlPath = []
-        this.scheme = undefined
-    }
+        const req = new Request(url, options);
 
-    paths() {
-        return {
-            set: (urlPath) => {
-                this.urlPath = urlPath
-            },
-            add: (value) => {
-                if(Array.isArray(this.urlPath)){
-                    this.urlPath.push(value)
-                }
-            },
-            unset: () => {
-                this.urlPath = []
-            }
+        return createRequest(req)
+    }
+    
+    put(url, data) {
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        let options = {
+            method: "PUT",
+            headers: headers,
+            body: JSON.stringify(data)
         }
-    }
+        const req = new Request(url, options);
 
-    setBody(body) {
-        this.options.body = body
+        return createRequest(req)
     }
-
-    setScheme(scheme) {
-        this.scheme = scheme
-    }
-
-    setUrl(url) {
-        this.webApiUrl = url
-    }
-
-    setMethod(method) {
-        this.options.method = method;
-    }
-
-    changeHeaders() {
-        return {
-            set: (headers) => {
-                this.options.headers = headers
-            },
-            add: (name, value) => {
-                this.options.headers.append(name, value)
-            }
+    
+    delete(url, params) {
+        let options = {
+            method: "DELETE"
         }
-    }
+        let paramsPath = "";
+        if(params) {
+            let urlParams = new URLSearchParams(Object.entries(params));
+            paramsPath = "?" + urlParams;
+        }
+        const req = new Request(url+ paramsPath, options);
 
-    urlParams(pars) {
-        this.params = pars
+        return createRequest(req)
     }
+    
+    get(url, params) {
+        let options = {
+            method: "GET"
+        }
+        let paramsPath = "";
+        if(params) {
+            let urlParams = new URLSearchParams(Object.entries(params));
+            paramsPath = "?" + urlParams;
+        }
+        const req = new Request(url + paramsPath, options);
 
-    fetch() {
-            let urlPath = ""
-            if(this.urlPath !== undefined){
-                for (const x of this.urlPath){
-                    urlPath += `/${x}`
-                }
-            }
-            
-            let paramsPath = ""
-            if(this.params) {
-                let urlParams = new URLSearchParams(Object.entries(this.params))
-                paramsPath = "?" + urlParams
-            }
-            const req = new Request(this.webApiUrl + `${this.scheme && "/" + this.scheme}` + urlPath + paramsPath, this.options)
-            return new Promise(function(res, reject) {
-                fetch(req).then(resp => {
-                    if(resp.headers.get('Content-Type') !== null){
-                        createResponse(resp).then(result => {
-                            res(result)
-                        })
-                    }else{
-                        res(resp)
-                    }
-            })
-        })
+        return createRequest(req)
     }
-
 }
 
-function createResponse(response) {
-    const type = response.headers.get('Content-Type')
+export default new HttpClient();
+
+async function createRequest(request) {
+    let response = await fetch(request);
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    } else {
+        if(response.headers.get('Content-Type') !== null){
+            let newResponse = await createResponse(response);
+            return newResponse;
+        }
+        return response;
+    }
+}
+
+async function createResponse(response) {
+    const type = response.headers.get('Content-Type');
     const body = () => {
         if (type.indexOf('application/json') !== -1){
             return response.json();
         }
         return response.text();
     }
-    return new Promise(function (res, rej) {
-        body().then(function (result) {
-            response.data = result;
-            res(result);
-        }, function (error) {
-            res(error)
-        })
-    })
+
+    return body();
 }

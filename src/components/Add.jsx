@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {withRouter, Link} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom';
 
-import {firstUpper, range} from '../common/js/functions'
+import {firstUpper, range} from '../common/js/functions';
 
 import { observer, inject } from 'mobx-react';
 
@@ -10,7 +10,7 @@ import { observer, inject } from 'mobx-react';
 class Add extends Component {
 
     render() {
-        const {vehicleBody, vehicleEngine, vehicleMake, vehicleModel, vehicleTransmission} = this.props.AddStore
+        const {vehicleBody, vehicleEngine, vehicleMake, vehicleModel, vehicleTransmission} = this.props.AddStore;
         
         return (
             <div className="container info-page">

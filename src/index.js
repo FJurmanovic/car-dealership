@@ -14,7 +14,7 @@ import ModelListStore from './stores/modelListStore';
 import EditMakeStore from './stores/editMakeStore';
 import EditModelStore from './stores/editModelStore';
 
-import {Provider} from 'mobx-react'
+import {Provider} from 'mobx-react';
 
 const Application = () => 
     <Provider 
