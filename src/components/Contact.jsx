@@ -19,18 +19,18 @@ class Contact extends Component {
                         </div>
                         <div className="name d-flex mx-10 my-3">
                             <div className="first-name ml-10">
-                                <input type="text" placeholder="First name" name="first-name" required />
+                                <input type="text" placeholder="First name*" name="first-name" required />
                             </div>
                             <div className="last-name mr-10">
-                                <input type="text" placeholder="Last name" name="last-name" required />
+                                <input type="text" placeholder="Last name*" name="last-name" required />
                             </div>
                         </div>
                         <div className="contact-info d-flex mx-10 my-3">
                             <div className="phone ml-10">
-                                <input type="text" placeholder="Personal phone" name="personal-phone" required />
+                                <input type="text" placeholder="Personal phone*" name="personal-phone" required />
                             </div>
                             <div className="email mr-10">
-                                <input type="email" placeholder="E-mail" name="email" required />
+                                <input type="email" placeholder="E-mail*" name="email" required />
                             </div>
                         </div>
                         <div className="country-info d-flex mx-10 my-3" name="country">
@@ -42,23 +42,25 @@ class Contact extends Component {
                                 </select>
                             </div>
                             <div className="state-info mr-10">
-                                <input type="text" placeholder="State" name="state" required />
+                                <input type="text" placeholder="State*" name="state" required />
                             </div>
                         </div>
                         <div className="address-info d-flex mx-10 my-3">
                             <div className="address ml-10">
-                                <input type="text" placeholder="Street address" name="address" required />
+                                <input type="text" placeholder="Street address*" name="address" required />
                             </div>
                             <div className="city mx-5">
-                                <input type="text" placeholder="City" name="city" required />
+                                <input type="text" placeholder="City*" name="city" required />
                             </div>
                             <div className="zip-code mr-10">
-                                <input type="number" placeholder="Zip code" name="zip-code" required />
+                                <input type="number" placeholder="Zip code*" name="zip-code" required />
                             </div>
                         </div>
                         <div className="questions mx-10 my-3">
+                            <label>Questions for your dealer(optional): </label>
                             <div contentEditable className="questions-area"></div>
                         </div>
+                        <div className="text-italic">Fields with * are required</div>
                         <input type="submit" className="btn btn-blue btn-squared width-full" value="Send" />
                     </form>
                   </div>

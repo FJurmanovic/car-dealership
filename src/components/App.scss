@@ -21,6 +21,19 @@ body {
                     }
                 }
             }
+            .questions {
+                .questions-area {
+                    padding: 3px;
+                    min-height: 134px;
+                    max-height: 134px;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: #8f8f8f;
+                    border-image: initial;
+                    border-radius: 2px;
+                    overflow: auto;
+                }
+            }
             .name, .contact-info, .country-info {
                 justify-content: space-around;
                 div {
