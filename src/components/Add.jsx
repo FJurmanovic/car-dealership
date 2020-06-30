@@ -38,7 +38,7 @@ class Add extends Component {
                     }
                 </div>
                 <div className="d-flex upper-info h4 my-1">
-                    <span className="--full">
+                    <span className="--full mt-2">
                         <span className="make-group btn-group mr-2">
                             <select className="btn-group-item" {...form.$("make").bind()}>
                                 <option value={null}>Select</option>
@@ -102,7 +102,7 @@ class Add extends Component {
                     <div className="f4">
                         <span className="text-bold">{form.values().engine == 2 ? "Battery capacity: " : "Fuel tank capacity: " }</span>
                         <input type="number" {...form.$("fuel").bind()} /> {form.values().engine == 2 ? "kWh" : "l"} 
-                        {form.$("body").error && <small className="ml-3 h5 text-red">Please enter {form.values().engine == 2 ? "battery capacity" : "fuel tank capacity" }</small>}
+                        {form.$("fuel").error && <small className="ml-3 h5 text-red">Please enter {form.values().engine == 2 ? "battery capacity" : "fuel tank capacity" }</small>}
                     </div>
                     <div className="f4">
                         <span className="text-bold">Top speed: </span>
