@@ -25,8 +25,7 @@ class AddModelStore {
             makeId: makeId
         }
 
-        console.log(makeObject)
-        //this.postVehicleModel(makeObject);
+        this.postVehicleModel(makeObject);
         history.push(`/manufacturers/${makeId}`);
     }
 

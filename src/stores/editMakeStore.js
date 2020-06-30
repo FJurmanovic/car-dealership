@@ -1,36 +1,31 @@
 import {observable, computed} from "mobx";
-import VehicleStore from './vehicleStore';
 
 
 class EditMakeStore {
     @observable make = {};
-    @observable nameVal = "";
+    @observable formName = null;
 
     @computed get iconClass() {
-        if (this.nameVal == this.make.name){
+        if (this.formName.value == this.make.name || this.formName.value == ""){
             return "gg-close";
         }
             return "gg-arrow-down-r";
     }
 
-    saveClick(history) {
-        const {make} = this;
+    saveClick(value, history) {
+        const {name} = value;
 
         const makeObject = {
-            id: make.id,
-            name: this.nameVal
+            id: this.make.id,
+            name: name
         }
 
-        if (make.name != makeObject.name) {
+        if (this.make.name != makeObject.name) {
             VehicleStore.putVehicleMake(makeObject);
             history.push(`/manufacturers`);
         } else {
             history.push(`/manufacturers`);
         }
-    }
-
-    inputChange(value) {
-        this.nameVal = value;
     }
 }
 

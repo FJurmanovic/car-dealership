@@ -4,35 +4,31 @@ import VehicleStore from './vehicleStore';
 
 class EditModelStore {
     @observable model = {};
-    @observable nameVal = "";
+    @observable formName = null;
 
     @computed get iconClass() {
-        if (this.nameVal == this.model.name){
+        if (this.formName.value == this.model.name || this.formName.value == ""){
             return "gg-close";
         }
             return "gg-arrow-down-r";
     }
 
-    saveClick(history) {
+    saveClick(value, history) {
         const {makeId, id} = this.model;
-        const {model} = this;
+        const {name} = value;
 
         const modelObject = {
             id: id,
-            name: this.nameVal,
+            name: name,
             makeId: makeId
         }
 
-        if (model.name != modelObject.name) {
+        if (this.model.name != modelObject.name) {
             VehicleStore.putVehicleModel(modelObject);
             history.push(`/manufacturers/${makeId}`);
         } else {
             history.push(`/manufacturers/${makeId}`);
         }
-    }
-
-    inputChange(value) {
-        this.nameVal = value;
     }
 }
 

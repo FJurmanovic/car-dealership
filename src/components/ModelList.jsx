@@ -7,6 +7,18 @@ import { observer, inject } from 'mobx-react';
 
 import EditModel from '../components/EditModel';
 
+import Forms from '../stores/forms/forms';
+
+const fields = [
+    {
+        name: "name",
+        type: "text",
+        rules: "required|string|between:1,25",
+    }
+]
+
+const forms = new Forms({fields});
+
 @inject("ModelListStore")
 @observer
 class ModelList extends Component {
@@ -36,7 +48,7 @@ class ModelList extends Component {
                                 <Fragment key={model.id}>
                                     {this.props.match.params.modelId == model.id && this.props.match.path == "/manufacturers/:makeId/:modelId/edit"
                                     ? <div className="make-info btn btn-squared">
-                                        <EditModel model={model} />
+                                        <EditModel model={model} form={forms} />
                                       </div>
                                     : <div className="make-info btn btn-squared">
                                         <Link to={`/manufacturers/${makeId}/${model.id}/edit`} className="abs-right btn btn-icon"><div className="gg-pen"></div></Link>

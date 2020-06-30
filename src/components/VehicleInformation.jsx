@@ -4,6 +4,69 @@ import {withRouter, Link} from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
 import Contact from './Contact';
 
+import Forms from '../stores/forms/forms';
+
+const fields = [
+    {
+        name: "first_name",
+        placeholder: "First name*",
+        type: "text",
+        rules: "required|string|between:1,25",
+    },
+    {
+        name: "last_name",
+        placeholder: "Last name*",
+        type: "text",
+        rules: "required|string|between:1,25",
+    },
+    {
+        name: "phone",
+        placeholder: "Personal phone*",
+        type: "text",
+        rules: "required|numeric"
+    },
+    {
+        name: "email",
+        placeholder: "E-mail*",
+        type: "email",
+        rules: "required|email"
+    },
+    {
+        name: "address",
+        placeholder: "Street address*",
+        type: "text",
+        rules: "required|string"
+    },
+    {
+        name: "country",
+        rules: "required"
+    },
+    {
+        name: "state",
+        placeholder: "State*",
+        type: "text",
+        rules: "required|string"
+    },
+    {
+        name: "city",
+        placeholder: "City*",
+        type: "text",
+        rules: "required|string"
+    },
+    {
+        name: "zip",
+        placeholder: "Zip code*",
+        type: "text",
+        rules: "required|numeric"
+    },
+    {
+        name: "questions",
+        rules: "string"
+    }
+]
+
+const forms = new Forms({fields});
+
 @inject("ViewStore")
 @observer
 class VehicleInformation extends Component {
@@ -34,7 +97,7 @@ class VehicleInformation extends Component {
                 <div className="f4"><span className="text-bold">Transmission type:</span> {transmissionType}</div>
                 <div className="f4"><span className="text-bold">Trunk capacity:</span> {trunkCapacity} l</div>
             </div>
-            <Contact store={this.props.ViewStore} />
+            <Contact store={this.props.ViewStore} form={forms} />
         </>
     }
 
