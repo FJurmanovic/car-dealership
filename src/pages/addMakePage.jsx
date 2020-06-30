@@ -3,7 +3,16 @@ import React, { Component } from 'react';
 import AddMake from '../components/AddMake'
 
 import Forms from '../stores/forms/forms';
-const forms = new Forms();
+
+const fields = [
+    {
+        name: "name",
+        type: "text",
+        rules: "required|string|between:1,25",
+    }
+]
+
+const forms = new Forms({fields});
 
 class AddMakePage extends Component {
     render() {

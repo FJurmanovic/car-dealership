@@ -10,7 +10,7 @@ class AddModel extends Component {
         super(props);
         this.hooks = {
             onSuccess(form) {
-                props.AddModelStore.saveModel(props.match.params.makeId, form.values().name, props.history)
+                props.AddModelStore.saveModel(props.match.params.makeId, form.values().name, props.history);
             }
         }
     }
@@ -19,7 +19,7 @@ class AddModel extends Component {
         const {makeId} = this.props.match.params;
         const makeName = this.props.AddModelStore.makeName(makeId);
 
-        const  {form} = this.props
+        const  {form} = this.props;
  
         return (
             <>

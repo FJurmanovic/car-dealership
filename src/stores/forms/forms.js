@@ -8,18 +8,6 @@ class Forms extends Form {
       dvr: dvr(validatorjs)
     };
   }
-
-  setup() {
-    return {
-      fields: [
-        {
-          name: "name",
-          type: "text",
-          rules: "required|string|between:1,25",
-        }
-      ]
-    };
-  }
 }
 
 export default Forms;

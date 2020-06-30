@@ -12,7 +12,8 @@ class AddMakeStore {
             name: nameVal
         }
 
-        this.postVehicleMake(makeObject);
+        //this.postVehicleMake(makeObject);
+        console.log(makeObject)
         history.push("/manufacturers");
     }
 

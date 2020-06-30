@@ -9,27 +9,13 @@ class AddStore {
         this.vehicleService = new VehicleService();
     }
 
-    @observable vehicleObject = null;
-    @observable isFetched = false;
-    @observable nameVal = null;
-    @observable makeVal = null;
-    @observable modelVal = null;
-    @observable yearVal = 2000;
-    @observable priceVal = 0;
-    @observable bodyVal = 0;
-    @observable engineVal = 0;
-    @observable fuelVal = null;
-    @observable speedVal = null;
-    @observable transmissionVal = 0;
-    @observable trunkVal = null;
-    @observable doorVal = 2;
     @observable imgVal = "";
 
     @computed get showImage() {
         if(this.imgVal.match(/\.(jpeg|jpg|gif|png|webm)$/)){
             return this.imgVal;
         }
-        return null;
+        return "";
     }
 
     @computed get vehicleEngine() {
@@ -56,106 +42,35 @@ class AddStore {
         return this.vehicleObject;
     }
 
-    makeChange(value) {
-        const firstModelVal = this.vehicleModel.filter(model => model.makeId == value)[0].id;
-
-        this.makeVal = value;
-        this.modelVal = firstModelVal;
-
-        const {makeVal, modelVal, yearVal} = this;
-        const {vehicleMake, vehicleModel} = this;
-
-        this.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`;
-    }
-
-    modelChange(value) {
-        this.modelVal = value; 
-
-        const {makeVal, modelVal, yearVal} = this;
-        const {vehicleMake, vehicleModel} = this;
-
-        this.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`;
-    }
-
-    yearChange(value) {
-        this.yearVal = value; 
-    
-        const {makeVal, modelVal, yearVal} = this;
-        const {vehicleMake, vehicleModel} = this;
-
-        this.nameVal = `${vehicleMake.filter(x => x.id == makeVal)[0].name} ${vehicleModel.filter(x => x.id == modelVal)[0].name} ${yearVal}.`;
-    }
-
-    priceChange(value) {
-        this.priceVal = value; 
-    }
-
-    bodyChange(value) {
-        this.bodyVal = value; 
-    }
-
-    doorChange(value) {
-        this.doorVal = value; 
-    }
-
-    engineChange(value) {
-        this.engineVal = value; 
-    }
-
-    fuelChange(value) {
-        this.fuelVal = value; 
-    }
-
-    speedChange(value) {
-        this.speedVal = value; 
-    }
-
-    transmissionChange(value) {
-        this.transmissionVal = value; 
-    }
-
-    trunkChange(value) {
-        this.trunkVal = value; 
-    }
-
     imageChange(value) {
         this.imgVal = value;
     }
 
-    saveClick(history) {
-        const {nameVal, makeVal, bodyVal, doorVal, engineVal, fuelVal, modelVal, priceVal, speedVal, transmissionVal, trunkVal, yearVal, imgVal} = this;
+    saveClick(values, history) {
+        const {make, body, door, engine, fuel, model, price, speed, transmission, trunk, year} = values;
 
-        let allEmpty = false;
+        let name = `${this.vehicleMake.filter(x => x.id == make)[0].name} ${this.vehicleModel.filter(x => x.id == model)[0].name} ${year}.`;
 
-        for (const [name, value] of Object.entries(this)) {
-            if(value === null && (name.includes("Val") && name != "imgVal")) {
-                allEmpty = true;
-            }
+
+        let vehicleObject = 
+        {
+            name: name,
+            makeId: make,
+            modelId: model,
+            bodyId: Number(body),
+            doorCount: Number(door),
+            engineId: Number(engine),
+            fuelTank: Number(fuel),
+            price: Number(price),
+            topSpeed: Number(speed),
+            transmissionId: Number(transmission),
+            trunkCapacity: Number(trunk),
+            year: Number(year),
+            imgUrl: this.showImage
         }
 
-        if(!allEmpty){
-            let vehicleObject = 
-            {
-                name: nameVal,
-                makeId: makeVal,
-                modelId: modelVal,
-                bodyId: Number(bodyVal),
-                doorCount: Number(doorVal),
-                engineId: Number(engineVal),
-                fuelTank: Number(fuelVal),
-                price: Number(priceVal),
-                topSpeed: Number(speedVal),
-                transmissionId: Number(transmissionVal),
-                trunkCapacity: Number(trunkVal),
-                year: Number(yearVal),
-                imgUrl: imgVal
-            }
-
-            this.postVehicleList(vehicleObject);
-            history.push("/explore");
-        } else {
-            alert("All boxes need to be filled");
-        }
+        this.postVehicleList(vehicleObject);
+        history.push("/explore");
 
         
     }
