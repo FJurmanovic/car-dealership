@@ -6,8 +6,14 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'docs'),
         filename: 'index_bundle.js',
+        chunkFilename: 'modules_bundel.js',
         publicPath: '/'
     },
+    optimization: {
+    	splitChunks: {
+       		chunks: 'all',
+     	},
+   	},
     module: {
         rules: [
             {
