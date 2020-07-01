@@ -8,21 +8,6 @@ module.exports = {
         filename: '[name].[contenthash].js',
         publicPath: '/'
     },
-    optimization: {
-	    runtimeChunk: 'single',
-	    splitChunks: {
-            chunks: 'all',
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: "vendor",
-                    chunks: "initial",
-                    minSize: 200000,
-                    maxSize: 400000,
-                },
-        	},
-	    },
-	},
     module: {
         rules: [ 
             {

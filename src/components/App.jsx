@@ -5,15 +5,15 @@ import './App.scss';
 
 import Header from '../layouts/header';
 
-import LandingPage from '../pages/landingPage';
-import ExplorePage from '../pages/explorePage';
-import InfoPage from '../pages/infoPage';
-import EditPage from '../pages/editPage';
-import AddPage from '../pages/addPage';
-import MakePage from '../pages/makePage';
-import ModelPage from '../pages/modelPage';
-import AddMakePage from '../pages/addMakePage';
-import AddModelPage from '../pages/addModelPage';
+const LandingPage = React.lazy(() => import('../pages/landingPage'));
+const ExplorePage = React.lazy(() => import('../pages/explorePage'));
+const InfoPage = React.lazy(() => import('../pages/infoPage'));
+const EditPage = React.lazy(() => import('../pages/editPage'));
+const AddPage = React.lazy(() => import('../pages/addPage'));
+const MakePage = React.lazy(() => import('../pages/makePage'));
+const ModelPage = React.lazy(() => import('../pages/modelPage'));
+const AddMakePage = React.lazy(() => import('../pages/addMakePage'));
+const AddModelPage = React.lazy(() => import('../pages/addModelPage'));
 
 @inject("VehicleStore")
 @observer
