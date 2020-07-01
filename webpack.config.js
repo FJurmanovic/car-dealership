@@ -8,6 +8,14 @@ module.exports = {
         filename: '[name].[contenthash].js',
         publicPath: '/'
     },
+    optimization: {
+	    runtimeChunk: 'single',
+	    splitChunks: {
+            chunks: 'all',
+            minSize: 150000,
+            maxSize: 200000,
+	    },
+	},
     module: {
         rules: [ 
             {
