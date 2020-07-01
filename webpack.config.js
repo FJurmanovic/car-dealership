@@ -5,17 +5,26 @@ module.exports = {
     entry: ['babel-polyfill', './src/index.js'],
     output: {
         path: path.join(__dirname, 'docs'),
-        filename: 'index_bundle.js',
-        chunkFilename: 'modules_bundel.js',
+        filename: '[name].[contenthash].js',
         publicPath: '/'
     },
     optimization: {
-    	splitChunks: {
-       		chunks: 'all',
-     	},
-   	},
+	    runtimeChunk: 'single',
+	    splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendor",
+                    chunks: "initial",
+                    minSize: 200000,
+                    maxSize: 400000,
+                },
+        	},
+	    },
+	},
     module: {
-        rules: [
+        rules: [ 
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
