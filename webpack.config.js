@@ -5,15 +5,15 @@ module.exports = {
     entry: ['babel-polyfill', './src/index.js'],
     output: {
         path: path.join(__dirname, 'docs'),
-        filename: '[name].[contenthash].js',
+        filename: 'main.[contenthash].js',
+        chunkFilename: 'vendor.[contenthash].js',
         publicPath: '/'
     },
     optimization: {
-	    runtimeChunk: 'single',
 	    splitChunks: {
             chunks: 'all',
-            minSize: 150000,
-            maxSize: 200000,
+            minSize: 350000,
+            maxSize: 500000
 	    },
 	},
     module: {
