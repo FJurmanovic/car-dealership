@@ -27,6 +27,9 @@ class VehicleStore {
     @observable showFilters = false;
     @observable totalRecords = 0;
 
+    @observable makePage = 0;
+    @observable modelPage = 0;
+
     @computed get pageCount() {
         return Math.ceil(this.totalRecords / 10);
     }
@@ -71,7 +74,8 @@ class VehicleStore {
     getVehicleMake = async () => {
         try {
             let params = {
-                rpp: 10
+                rpp: 25,
+                page: ++this.makePage
             }
             if (this.sortBy) {
                 params.sort = this.sortBy;
@@ -80,12 +84,13 @@ class VehicleStore {
                 params.searchQuery = this.searchQuery;
             }
             let data = await this.vehicleMakeService.get(params);
-            if (data.totalRecords > params.rpp) {
-                params.rpp = data.totalRecords;
-                data = await this.vehicleMakeService.get(params);
+            if (data.totalRecords > (this.makePage * 25)) {
+                this.getVehicleMake()
             }
             runInAction(() => {
-                this.vehicleMake = data.item;
+                for (const item of data.item){
+                    this.vehicleMake.push(item);
+                }
                 this.makeCount();
             })
         } catch (error) {
@@ -128,7 +133,8 @@ class VehicleStore {
     getVehicleModel = async () => {
         try {
             let params = {
-                rpp: 10
+                rpp: 25,
+                page: ++this.modelPage
             }
             if (this.sortBy) {
                 params.sort = this.sortBy;
@@ -137,13 +143,14 @@ class VehicleStore {
                 params.searchQuery = this.searchQuery;
             }
             let data = await this.vehicleModelService.get(params);
-            if (data.totalRecords > params.rpp) {
-                params.rpp = data.totalRecords;
-                data = await this.vehicleModelService.get(params);
+            if (data.totalRecords > (this.modelPage * 25)) {
+                this.getVehicleModel()
             }
             runInAction(() => {
-                this.vehicleModel = data.item;
-                this.modelListState.makeId && this.modelCount();
+                for (const item of data.item){
+                    this.vehicleModel.push(item);
+                }
+                this.modelCount();
             })
         } catch (error) {
             runInAction(() => {

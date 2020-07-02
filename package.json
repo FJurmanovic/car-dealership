@@ -4,7 +4,7 @@
   "description": "Car Dealership project is an assignment for Mono job",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --hot",
+    "start": "webpack-dev-server --mode development --hot --config webpack-dev.config.js",
     "build": "webpack --mode production"
   },
   "author": "",
