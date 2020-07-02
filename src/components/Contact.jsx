@@ -12,8 +12,9 @@ class Contact extends Component {
     constructor(props){
         super(props);
         this.hooks = {
-            onSuccess() {
+            onSuccess(form) {
                 alert("You successfully contacted our dealer. Please wait until we review your form.");
+                console.log(form.values())
                 props.history.push("/explore");
             }
         }
@@ -53,7 +54,7 @@ class Contact extends Component {
                         </div>
                         <div className="country-info d-flex mx-10 my-3" name="country">
                             <div className="country ml-10">
-                                <select {...form.$("country").bind()}>
+                                <select {...form.$("country").bind()} value>
                                     {countries.map((country, key) => {
                                         return <option value={country.code} key={key}>{country.name}</option>
                                     })}
@@ -81,7 +82,7 @@ class Contact extends Component {
                         </div>
                         <div className="questions mx-10 my-3">
                             <label>Questions for your dealer(optional): </label>
-                            <div contentEditable className="questions-area" {...form.$("questions").bind()}></div>
+                            <textarea className="questions-area" {...form.$("questions").bind()}></textarea>
                         </div>
                         <div className="text-italic">Fields with * are required</div>
                         <input type="submit" className="btn btn-blue btn-squared width-full" value="Send" />
