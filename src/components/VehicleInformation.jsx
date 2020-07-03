@@ -74,6 +74,11 @@ class VehicleInformation extends Component {
         this.props.ViewStore.getVehicleById(this.props.match.params.vehicleId);
     }
 
+    componentWillUnmount(){
+        this.props.ViewStore.showContact = false;
+        forms.reset();
+    }
+
     renderInfo() {
         const {vehicleId} = this.props.match.params;
         let {name, price, bodyType, doorCount, engineType, engineId, fuelCapacity, topSpeed, transmissionType, trunkCapacity} = this.props.ViewStore.vehicleInfo;

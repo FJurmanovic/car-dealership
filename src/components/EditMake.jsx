@@ -23,6 +23,10 @@ class EditMake extends Component {
         this.props.EditMakeStore.make = make;
         this.props.EditMakeStore.formName = this.props.form.$("name");
     }
+    
+    componentWillUnmount() {
+        this.props.form.reset();
+    }
 
     render() {
         const {form} = this.props

@@ -25,6 +25,9 @@ class ModelList extends Component {
     componentDidMount() {
         this.props.ModelListStore.makeId = this.props.match.params.makeId;
     }
+    componentWillUnmount() {
+        this.props.ModelListStore.pageNum = 0;
+    }
 
     render() {
         const {makeId} = this.props.match.params;

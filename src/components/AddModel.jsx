@@ -15,6 +15,10 @@ class AddModel extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.props.form.reset();
+    }
+    
     render() {
         const {makeId} = this.props.match.params;
         const makeName = this.props.AddModelStore.makeName(makeId);

@@ -23,6 +23,10 @@ const forms = new Forms({fields});
 @observer
 class MakeList extends Component {
 
+    componentWillUnmount() {
+        this.props.MakeListStore.pageNum = 1;
+    }
+
     render() {
         const {pageNum, pageCount} = this.props.MakeListStore;
 

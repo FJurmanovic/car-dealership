@@ -84,6 +84,9 @@ class VehicleStore {
                 params.searchQuery = this.searchQuery;
             }
             let data = await this.vehicleMakeService.get(params);
+            if(this.makePage == 1) {
+                this.vehicleMake = [];
+            }
             if (data.totalRecords > (this.makePage * 25)) {
                 this.getVehicleMake()
             }
@@ -105,6 +108,7 @@ class VehicleStore {
             let data = await this.vehicleMakeService.post(object);
             runInAction(() => {
                 data;
+                this.makePage = 0;
                 this.getVehicleMake();
             })
         } catch (error) {
@@ -143,6 +147,9 @@ class VehicleStore {
                 params.searchQuery = this.searchQuery;
             }
             let data = await this.vehicleModelService.get(params);
+            if(this.modelPage == 1) {
+                this.vehicleModel = [];
+            }
             if (data.totalRecords > (this.modelPage * 25)) {
                 this.getVehicleModel()
             }
@@ -164,6 +171,7 @@ class VehicleStore {
             let data = await this.vehicleModelService.post(object);
             runInAction(() => {
                 data;
+                this.modelPage = 0;
                 this.getVehicleModel();
             })
         } catch (error) {

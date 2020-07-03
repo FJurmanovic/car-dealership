@@ -1,6 +1,4 @@
-import {observable} from "mobx";
 import VehicleStore from './vehicleStore';
-import ModelListStore from './modelListStore';
 
 
 class AddModelStore {

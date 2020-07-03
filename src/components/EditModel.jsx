@@ -17,12 +17,18 @@ class EditModel extends Component {
             }
         }
     }
+
     componentWillMount() {
         const {model} = this.props;
         this.props.form.$("name").set(model.name);
         this.props.EditModelStore.model = model;
         this.props.EditModelStore.formName = this.props.form.$("name");
     }
+    
+    componentWillUnmount() {
+        this.props.form.reset();
+    }
+
     render() {
 
         const {form} = this.props;

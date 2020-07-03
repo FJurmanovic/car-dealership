@@ -17,6 +17,11 @@ class Add extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this.props.form.reset();
+        this.props.AddStore.imgVal = "";
+    }
+
     render() {
         const {vehicleBody, vehicleEngine, vehicleMake, vehicleModel, vehicleTransmission} = this.props.AddStore;
 

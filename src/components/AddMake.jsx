@@ -14,6 +14,10 @@ class AddMake extends Component {
               }
         }
     }
+
+    componentWillUnmount() {
+        this.props.form.reset();
+    }
     
     render() {
         const {form} = this.props;

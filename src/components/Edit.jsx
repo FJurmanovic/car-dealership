@@ -20,9 +20,12 @@ class Edit extends Component {
     }
 
     componentWillMount() {
-
         this.props.EditStore.getVehicleById(this.props.form, this.props.match.params.vehicleId);
-        
+    }
+
+    componentWillUnmount() {
+        this.props.form.reset();
+        this.props.EditStore.imgVal = "";
     }
 
     renderEdit() {

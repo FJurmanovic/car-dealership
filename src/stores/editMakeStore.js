@@ -1,4 +1,5 @@
 import {observable, computed} from "mobx";
+import VehicleStore from './vehicleStore';
 
 
 class EditMakeStore {

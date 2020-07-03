@@ -9,6 +9,13 @@ class VehicleList extends Component {
     componentWillMount() {
         this.props.VehicleStore.getVehicleList();
     }
+    
+    componentWillUnmount() {
+        this.props.VehicleStore.filtersSet([]);
+        this.props.VehicleStore.pageNumber = 1;
+        this.props.VehicleStore.showFilters = false;
+        this.props.VehicleStore.sortBy = "name|asc";
+    }
 
     render() {
         const {vehicleList, vehicleTransmission, vehicleEngine, vehicleBody} = this.props.VehicleStore;
