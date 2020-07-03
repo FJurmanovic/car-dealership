@@ -1,12 +1,6 @@
-import {observable, computed, runInAction} from "mobx";
+import {observable, runInAction} from "mobx";
 
-import VehicleService from './services/vehicleService';
-import VehicleModelService from './services/vehicleModelService';
-import VehicleMakeService from './services/vehicleMakeService';
-
-import MakeListStore from './makeListStore';
-import ModelListStore from './modelListStore';
-
+import {VehicleService, VehicleModelService, VehicleMakeService} from './services';
 class VehicleStore {
     constructor() {
         this.vehicleService = new VehicleService();
@@ -19,58 +13,13 @@ class VehicleStore {
     @observable vehicleEngine = require("../common/data/vehicleEngine.json");
     @observable vehicleTransmission = require("../common/data/vehicleTransmission.json");
     @observable vehicleList = [];
-    @observable sortBy = "name|asc";
-    @observable searchQuery = null;
-    @observable filterList = {};
-    @observable status = "initial";
     @observable pageNumber = 1;
-    @observable showFilters = false;
-    @observable totalRecords = 0;
-
+    @observable searchQuery = null;
+    @observable sortBy = "name|asc";
     @observable makePage = 0;
     @observable modelPage = 0;
-
-    @computed get pageCount() {
-        return Math.ceil(this.totalRecords / 10);
-    }
-
-    handleSort(value) {
-        this.sortBy = value;
-        this.getVehicleList();
-    }
+    @observable totalRecords = 0;
     
-    makeCount() {
-        MakeListStore.makeCount = this.vehicleMake.length;
-        MakeListStore.pageCount = Math.ceil(MakeListStore.makeCount / 15);
-    }
-
-    modelCount() {
-        ModelListStore.modelCount = this.vehicleModel.filter(x => x.makeId == ModelListStore.makeId).length;
-        ModelListStore.pageCount = Math.ceil(ModelListStore.modelCount / 15);
-    }
-
-
-    filtersSet(inputList) {
-        this.searchQuery = "WHERE ";
-        if (inputList.length > 0) {
-            for (const [i, filter] of Array.entries(inputList)){
-                (inputList.length > (i + 1)) ? this.searchQuery += filter + " AND " : this.searchQuery += filter;
-            }
-        } else {
-            this.searchQuery = null;
-        }
-        
-        this.pageNumber = 1;
-        
-        this.getVehicleList();
-    }
-
-    pageSet(page) {
-        this.pageNumber = page;
-
-        this.getVehicleList();
-    }
-
     getVehicleMake = async () => {
         try {
             let params = {
@@ -94,7 +43,6 @@ class VehicleStore {
                 for (const item of data.item){
                     this.vehicleMake.push(item);
                 }
-                this.makeCount();
             })
         } catch (error) {
             runInAction(() => {
@@ -157,7 +105,6 @@ class VehicleStore {
                 for (const item of data.item){
                     this.vehicleModel.push(item);
                 }
-                this.modelCount();
             })
         } catch (error) {
             runInAction(() => {

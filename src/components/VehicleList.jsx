@@ -3,22 +3,19 @@ import {Link} from 'react-router-dom';
 
 import { observer, inject } from 'mobx-react';
 
-@inject("VehicleStore")
+@inject("ListStore")
 @observer
 class VehicleList extends Component {
     componentWillMount() {
-        this.props.VehicleStore.getVehicleList();
+        this.props.ListStore.getVehicleList();
     }
     
     componentWillUnmount() {
-        this.props.VehicleStore.filtersSet([]);
-        this.props.VehicleStore.pageNumber = 1;
-        this.props.VehicleStore.showFilters = false;
-        this.props.VehicleStore.sortBy = "name|asc";
+        this.props.ListStore.setDefaults();
     }
 
     render() {
-        const {vehicleList, vehicleTransmission, vehicleEngine, vehicleBody} = this.props.VehicleStore;
+        const {vehicleList, vehicleTransmission, vehicleEngine, vehicleBody} = this.props.ListStore;
         return (
             <>  
                 {vehicleList.map(vehicle => {

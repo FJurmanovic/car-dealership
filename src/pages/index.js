@@ -1,0 +1,9 @@
+export {default as AddMakePage} from './addMakePage';
+export {default as AddModelPage} from './addModelPage';
+export {default as AddPage} from './addPage';
+export {default as EditPage} from './editPage';
+export {default as ExplorePage} from './explorePage';
+export {default as InfoPage} from './infoPage';
+export {default as LandingPage} from './landingPage';
+export {default as MakePage} from './makePage';
+export {default as ModelPage} from './modelPage';

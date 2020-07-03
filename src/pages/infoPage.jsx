@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import VehicleInformation from '../components/VehicleInformation'
+import {VehicleInformation} from '../components'
 
 class InfoPage extends Component {
     render() {

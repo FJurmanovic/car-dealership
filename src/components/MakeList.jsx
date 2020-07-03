@@ -5,9 +5,9 @@ import {range} from '../common/js/functions';
 
 import { observer, inject } from 'mobx-react';
 
-import EditMake from '../components/EditMake';
+import {EditMake} from './';
 
-import Forms from '../stores/forms/forms';
+import {Forms} from '../stores/forms';
 
 const fields = [
     {

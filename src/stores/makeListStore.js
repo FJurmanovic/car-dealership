@@ -1,15 +1,18 @@
-import {observable} from "mobx";
-import VehicleStore from './vehicleStore';
-
+import {observable, computed} from "mobx";
+import {VehicleStore} from './';
 
 class MakeListStore {
 
-    @observable makeCount = 0;
     @observable pageNum = 1;
-    @observable pageCount = 1;
 
+    @computed get makeCount() {
+        return VehicleStore.vehicleMake.length;
+    }
     
-    
+    @computed get pageCount() {
+        return Math.ceil(this.makeCount / 15);
+    }
+
     setPage(page) {
         this.pageNum = page;
     }

@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 
-import VehicleList from '../components/VehicleList'
-import FilterBar from '../components/FilterBar'
-import Pagination from '../components/Pagination'
-import SortList from '../components/SortList'
-import TotalResults from '../components/TotalResults'
+import {VehicleList, FilterBar, Pagination, SortList, TotalResults} from '../components';
 
 class ExplorePage extends Component {
     constructor(props){

@@ -1,5 +1,5 @@
 const url = "https://api.baasic.com/v1/car-dealership-assignment/resources/vehicleModel";
-import HttpClient from './httpClient';
+import {HttpClient} from './';
 
 class VehicleModelService {
     get = async (urlParams) => {

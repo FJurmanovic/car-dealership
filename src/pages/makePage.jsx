@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import MakeList from '../components/MakeList'
+import {MakeList} from '../components'
 
 class MakePage extends Component {
     render() {

@@ -10,4 +10,4 @@ class Forms extends Form {
   }
 }
 
-export default Forms;
+export {Forms};

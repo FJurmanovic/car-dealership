@@ -1,18 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import {App} from './components';
 
-import VehicleStore from './stores/vehicleStore';
-import ViewStore from './stores/viewStore';
-import EditStore from './stores/editStore';
-import AddStore from './stores/addStore';
-import AddMakeStore from './stores/addMakeStore';
-import AddModelStore from './stores/addModelStore';
-import FilterStore from './stores/filterStore';
-import MakeListStore from './stores/makeListStore';
-import ModelListStore from './stores/modelListStore';
-import EditMakeStore from './stores/editMakeStore';
-import EditModelStore from './stores/editModelStore';
+import {VehicleStore, ViewStore, EditStore, AddStore, AddMakeStore, AddModelStore, FilterStore, MakeListStore, ModelListStore, EditMakeStore, EditModelStore, ListStore} from './stores';
 
 import {Provider} from 'mobx-react';
 
@@ -29,6 +19,7 @@ const Application = () =>
         ModelListStore={ModelListStore}
         EditMakeStore={EditMakeStore}
         EditModelStore={EditModelStore}
+        ListStore={ListStore}
     >
         <App />
     </Provider>

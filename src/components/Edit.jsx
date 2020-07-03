@@ -5,7 +5,7 @@ import {firstUpper, range} from '../common/js/functions';
 
 import { observer, inject } from 'mobx-react';
 
-import RemoveAlert from './RemoveAlert';
+import {RemoveAlert} from './';
 
 @inject("EditStore")
 @observer

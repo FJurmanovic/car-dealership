@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ModelList from '../components/ModelList';
+import {ModelList} from '../components';
 
 class ModelPage extends Component {
     render() {

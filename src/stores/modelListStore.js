@@ -1,13 +1,18 @@
 import {observable, computed} from "mobx";
-import VehicleStore from './vehicleStore';
-
+import {VehicleStore, ListStore} from './';
 
 class ModelListStore {
 
-    @observable modelCount = 0;
     @observable pageNum = 1;
-    @observable pageCount = 1;
     @observable makeId = null;
+
+    @computed get modelCount() {
+        return VehicleStore.vehicleModel.filter(x => x.makeId == this.makeId).length;
+    }
+
+    @computed get pageCount() {
+        return Math.ceil(this.modelCount / 15);
+    }
     
     @computed get makeName() {
         if (VehicleStore.vehicleMake.filter(x => x.id == this.makeId)[0]){
@@ -17,7 +22,16 @@ class ModelListStore {
     }
 
     filtersSet(inputList) {
-        return VehicleStore.filtersSet(inputList);
+        VehicleStore.searchQuery = "WHERE ";
+        if (inputList.length > 0) {
+            for (const [i, filter] of Array.entries(inputList)){
+                (inputList.length > (i + 1)) ? VehicleStore.searchQuery += filter + " AND " : VehicleStore.searchQuery += filter;
+            }
+        } else {
+            VehicleStore.searchQuery = null;
+        }
+        
+        VehicleStore.pageNumber = 1;
     }
 
     setPage(page) {

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {withRouter, Link} from 'react-router-dom';
 
 import { observer, inject } from 'mobx-react';
-import Contact from './Contact';
+import {Contact} from './';
 
-import Forms from '../stores/forms/forms';
+import {Forms} from '../stores/forms';
 
 const fields = [
     {

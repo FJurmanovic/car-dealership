@@ -638,9 +638,8 @@ body {
         margin-top: 25px;
         .car-image {
             width: 100%;
-            border-top-left-radius: .7em;
-            border-top-right-radius: .7em;
-            background-color: #797979;
+            border-radius: .3em;
+            background-color: #202020;
             overflow: hidden;
 
             img {

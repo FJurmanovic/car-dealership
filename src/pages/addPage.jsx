@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import Add from '../components/Add'
+import {Add} from '../components'
 
-import Forms from '../stores/forms/forms';
+import {Forms} from '../stores/forms';
 
 const fields = [
       {

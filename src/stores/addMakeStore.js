@@ -1,5 +1,4 @@
-import VehicleStore from './vehicleStore';
-
+import {VehicleStore} from './';
 
 class AddMakeStore {
     constructor() {

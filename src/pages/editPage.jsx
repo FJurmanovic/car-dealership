@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Edit from '../components/Edit'
-import Forms from '../stores/forms/forms';
+import {Edit} from '../components';
+import {Forms} from '../stores/forms';
 
 const fields = [
       {

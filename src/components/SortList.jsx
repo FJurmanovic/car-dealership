@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {inject, observer} from 'mobx-react';
 
-@inject("VehicleStore")
+@inject("ListStore")
 @observer
 class SortList extends Component {
     render() {
@@ -9,7 +9,7 @@ class SortList extends Component {
         return (
             <div className="sort">
                 <span>Sort By: </span>
-                <select onChange={(e) => this.props.VehicleStore.handleSort(e.target.value)} value={this.props.VehicleStore.sortBy}>
+                <select onChange={(e) => this.props.ListStore.handleSort(e.target.value)} value={this.props.ListStore.sortBy}>
                     <option value="name|asc">Name (A-Z)</option>
                     <option value="name|desc">Name (Z-A)</option>
                     <option value="year|asc">Year (Low to High)</option>

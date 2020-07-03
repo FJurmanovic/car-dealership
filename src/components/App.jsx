@@ -3,17 +3,9 @@ import {observer, inject} from 'mobx-react';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
 
-import Header from '../layouts/header';
+import {Header} from '../layouts';
 
-import LandingPage from '../pages/landingPage';
-import ExplorePage from '../pages/explorePage';
-import InfoPage from '../pages/infoPage';
-import EditPage from '../pages/editPage';
-import AddPage from '../pages/addPage';
-import MakePage from '../pages/makePage';
-import ModelPage from '../pages/modelPage';
-import AddMakePage from '../pages/addMakePage';
-import AddModelPage from '../pages/addModelPage';
+import {LandingPage, ExplorePage, InfoPage, EditPage, AddPage, MakePage, ModelPage, AddMakePage, AddModelPage} from '../pages';
 
 @inject("VehicleStore")
 @observer

@@ -1,5 +1,5 @@
 import {observable, computed} from "mobx";
-import VehicleStore from './vehicleStore';
+import {VehicleStore, ListStore} from './';
 
 class FilterStore {
     @observable makeVal = null;
@@ -20,7 +20,7 @@ class FilterStore {
     @observable maxTrunkVal = 1000; 
 
     @computed get showFilters() {
-        return VehicleStore.showFilters;
+        return ListStore.showFilters;
     }
 
     @computed get vehicleEngine() {
@@ -53,6 +53,7 @@ class FilterStore {
         } else {
             this.makeVal = null;
         }
+        this.modelVal = null;
     } 
 
     modelChange(value) {
@@ -152,7 +153,7 @@ class FilterStore {
     }
 
     toggleFilters() {
-        VehicleStore.showFilters = !this.showFilters;
+        ListStore.showFilters = !this.showFilters;
     }
 
     filterVehicles() {
@@ -180,7 +181,7 @@ class FilterStore {
     }
 
     filtersSet(inputList) {
-        return VehicleStore.filtersSet(inputList);
+        return ListStore.filtersSet(inputList);
     }
 
     

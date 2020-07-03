@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import AddMake from '../components/AddMake'
+import {AddMake} from '../components'
 
-import Forms from '../stores/forms/forms';
+import {Forms} from '../stores/forms';
 
 const fields = [
     {

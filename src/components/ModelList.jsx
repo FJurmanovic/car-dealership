@@ -5,9 +5,9 @@ import {range} from '../common/js/functions';
 
 import { observer, inject } from 'mobx-react';
 
-import EditModel from '../components/EditModel';
+import {EditModel} from './';
 
-import Forms from '../stores/forms/forms';
+import {Forms} from '../stores/forms';
 
 const fields = [
     {
@@ -26,7 +26,7 @@ class ModelList extends Component {
         this.props.ModelListStore.makeId = this.props.match.params.makeId;
     }
     componentWillUnmount() {
-        this.props.ModelListStore.pageNum = 0;
+        this.props.ModelListStore.pageNum = 1;
     }
 
     render() {
