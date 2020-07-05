@@ -54,15 +54,12 @@ class Edit extends Component {
                 </div>
                 <div className="d-flex upper-info h4 my-1">
                     <span className="--full mt-2">
-                        <span className="make-group btn-group mr-2">
-                            <select className="btn-group-item" {...form.$("make").bind()}>
-                                {vehicleMake.map(make => {
-                                    return <option key={make.id} value={make.id}>{firstUpper(make.name)}</option>
-                                })}
-                            </select>
-                            <Link to="/manufacturers" className="btn-group-item btn btn-blue edit-btn">Edit</Link>
-                        </span>
-                        <select className="btn-group-item" {...form.$("model").bind()}>
+                        <select className="mr-1" {...form.$("make").bind()}>
+                            {vehicleMake.map(make => {
+                                return <option key={make.id} value={make.id}>{firstUpper(make.name)}</option>
+                            })}
+                        </select>
+                        <select className="mr-1" {...form.$("model").bind()}>
                             {vehicleModel.filter(model => model.makeId == form.$("make").value).map(model => {
                                 return <option key={model.id} value={model.id}>{firstUpper(model.name)}</option>
                             })}

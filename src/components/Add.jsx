@@ -44,23 +44,20 @@ class Add extends Component {
                 </div>
                 <div className="d-flex upper-info h4 my-1">
                     <span className="--full mt-2">
-                        <span className="make-group btn-group mr-2">
-                            <select className="btn-group-item" {...form.$("make").bind()}>
-                                <option value={null}>Select</option>
-                                {vehicleMake.map(make => {
-                                    return <option key={make.id} value={make.id}>{firstUpper(make.name)}</option>
-                                })}
-                            </select>
-                            <Link to="/manufacturers" className="btn-group-item btn btn-blue edit-btn">Edit</Link>
-                        </span>
+                        <select className="mr-1" {...form.$("make").bind()}>
+                            <option value={null}>Select make</option>
+                            {vehicleMake.map(make => {
+                                return <option key={make.id} value={make.id}>{firstUpper(make.name)}</option>
+                            })}
+                        </select>
                         <select className="mr-1" {...form.$("model").bind()}>
-                            <option value={null}>Select</option>
+                            <option value={null}>Select model</option>
                             {vehicleModel.filter(model => model.makeId == form.$("make").value).map(model => {
                                 return <option key={model.id} value={model.id}>{firstUpper(model.name)}</option>
                             })}
                         </select>
                         <select className="mr-1" {...form.$("year").bind()}>
-                            <option value={null}>Select</option>
+                            <option value={null}>Select year</option>
                             {[...range(1900, new Date().getFullYear())].map(year => {
                                 return <option key={year} value={year}>{year}</option>
                             })}
