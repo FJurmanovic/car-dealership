@@ -40,9 +40,9 @@ class EditModel extends Component {
                         onSuccess: this.hooks.onSuccess,
                         onError: this.hooks.onError
                     })} 
-                    className="abs-right btn btn-icon"
+                    className="btn btn-white btn-rounder abs-right"
                 >
-                    <div className={`${this.props.EditModelStore.iconClass}`}></div>
+                {this.props.EditModelStore.actionName}
                 </button>
             </>
         );

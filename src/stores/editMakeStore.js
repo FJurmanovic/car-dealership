@@ -5,11 +5,11 @@ class EditMakeStore {
     @observable make = {};
     @observable formName = null;
 
-    @computed get iconClass() {
+    @computed get actionName() {
         if (this.formName.value == this.make.name || this.formName.value == ""){
-            return "gg-close";
+            return "Cancel";
         }
-            return "gg-arrow-down-r";
+            return "Save";
     }
 
     saveClick(value, history) {

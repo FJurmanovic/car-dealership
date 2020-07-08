@@ -39,8 +39,8 @@ class EditMake extends Component {
                         onSuccess: this.hooks.onSuccess,
                         onError: this.hooks.onError
                     })} 
-                    className="abs-right btn btn-icon">
-                    <div className={`${this.props.EditMakeStore.iconClass}`}></div>
+                    className="btn btn-white btn-rounder abs-right">
+                    {this.props.EditMakeStore.actionName}
                 </button>
             </>
         );

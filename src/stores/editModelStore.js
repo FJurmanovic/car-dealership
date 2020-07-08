@@ -5,11 +5,11 @@ class EditModelStore {
     @observable model = {};
     @observable formName = null;
 
-    @computed get iconClass() {
+    @computed get actionName() {
         if (this.formName.value == this.model.name || this.formName.value == ""){
-            return "gg-close";
+            return "Cancel";
         }
-            return "gg-arrow-down-r";
+            return "Save";
     }
 
     saveClick(value, history) {

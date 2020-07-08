@@ -54,7 +54,7 @@ class ModelList extends Component {
                                         <EditModel model={model} form={forms} />
                                       </div>
                                     : <div className="make-info btn btn-squared">
-                                        <Link to={`/manufacturers/${makeId}/${model.id}/edit`} className="abs-right btn btn-icon"><div className="gg-pen"></div></Link>
+                                        <Link to={`/manufacturers/${makeId}/${model.id}/edit`} className="btn btn-white-transparent btn-rounder abs-right">Edit</Link>
                                         <Link to="/explore"><div className="text-white" onClick={() => this.props.ModelListStore.filtersSet([`"modelId" = '${model.id}'`])}>{name}</div></Link>
                                       </div>
                                     }
