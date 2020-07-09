@@ -33,13 +33,19 @@ class EditMake extends Component {
 
         return (
             <>
+                <button
+                    className="btn btn-white btn-rounder abs-left"
+                >
+                    Remove
+                </button>
                 <input type="text" {...form.$("name").bind()} />
                 <button 
                     onClick={e => form.onSubmit(e, {
                         onSuccess: this.hooks.onSuccess,
                         onError: this.hooks.onError
                     })} 
-                    className="btn btn-white btn-rounder abs-right">
+                    className="btn btn-white btn-rounder abs-right"
+                >
                     {this.props.EditMakeStore.actionName}
                 </button>
             </>

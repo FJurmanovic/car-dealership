@@ -34,6 +34,11 @@ class EditModel extends Component {
         const {form} = this.props;
         return (
             <>
+                <button
+                    className="btn btn-white btn-rounder abs-left"
+                >
+                    Remove
+                </button>
                 <input type="text" {...form.$("name").bind()} />
                 <button  
                     onClick={e => form.onSubmit(e, {

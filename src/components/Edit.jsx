@@ -45,7 +45,9 @@ class Edit extends Component {
                 >Save</button>
                 <button className="back-btn btn btn-link float-right" onClick={() => this.props.EditStore.removeClick()}>Remove</button>
                 {this.props.EditStore.showAlert &&
-                    <RemoveAlert store={this.props.EditStore} vehicleId={vehicleId} history={this.props.history} />
+                    <RemoveAlert store={this.props.EditStore} removeId={vehicleId} history={this.props.history}>
+                        Are you sure you want to delete {this.props.EditStore.vehicleObject.name}
+                    </RemoveAlert>
                 }
                 <div className="car-image">
                     {this.props.EditStore.showImage && 

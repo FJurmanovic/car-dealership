@@ -551,6 +551,7 @@ body {
 
         input {
             height: 80%;
+            width: 240px;
             text-align: center;
             background-color: #f8faff;
             border: 1px solid #4680ff;
@@ -559,11 +560,17 @@ body {
 
         .abs-right {
             position: absolute;
-            right: 12px;
+            right: 6px;
             top: 2px;
             z-index: 100;
             color: #000000;
-
+        }
+        .abs-left {
+            position: absolute;
+            left: 6px;
+            top: 2px;
+            z-index: 100;
+            color: #000000;
         }
 
         a {
@@ -572,6 +579,24 @@ body {
 
         &:hover {
             background-color: darken(#296cff, 5);
+        }
+
+        @media screen and (max-width: 415px) {
+            input {
+                width: 180px;
+            }
+            .abs-right, .abs-left {
+                position: relative;
+                top: 0;
+                left: 0;
+                right: 0;
+                margin: -8px 8px 0 8px;
+            }
+        }
+        @media screen and (max-width: 380px) {
+            button {
+                font-size: 12px;
+            }
         }
     }
 
