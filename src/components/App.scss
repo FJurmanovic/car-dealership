@@ -603,11 +603,13 @@ body {
                 width: 180px;
             }
             .abs-right, .abs-left {
-                position: relative;
-                top: 0;
-                left: 0;
-                right: 0;
-                margin: -8px 8px 0 8px;
+                &.edit {
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    margin: -8px 8px 0 8px;
+                }
             }
         }
         @media screen and (max-width: 380px) {

@@ -46,7 +46,7 @@ class MakeList extends Component {
                             return (
                                 <Fragment key={make.id}>
                                     {this.props.match.params.makeId == make.id && this.props.match.path == "/manufacturers/:makeId/edit"
-                                    ? <div className="make-info btn btn-squared">
+                                    ? <div className="make-info btn btn-squared edit">
                                         <EditMake make={make} form={forms} />
                                       </div>
                                     : <div className="make-info btn btn-squared">

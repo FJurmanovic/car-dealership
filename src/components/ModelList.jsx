@@ -50,7 +50,7 @@ class ModelList extends Component {
                             return (
                                 <Fragment key={model.id}>
                                     {this.props.match.params.modelId == model.id && this.props.match.path == "/manufacturers/:makeId/:modelId/edit"
-                                    ? <div className="make-info btn btn-squared">
+                                    ? <div className="make-info btn btn-squared edit">
                                         <EditModel model={model} form={forms} />
                                       </div>
                                     : <div className="make-info btn btn-squared">
