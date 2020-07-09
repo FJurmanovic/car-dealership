@@ -11,6 +11,9 @@ class VehicleModelService {
     put = async (object) => {
         return await HttpClient.put(url + `/${object.id}`, object);
     }
+    delete = async (id) => {
+        return await HttpClient.delete(url + `/${id}`);
+    }
 }
 
 export default VehicleModelService;

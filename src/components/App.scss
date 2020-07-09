@@ -20,6 +20,18 @@ body {
                         height: 30px;
                     }
                 }
+                
+                @media screen and (max-width: 840px){
+                    display: block !important;
+                    div {
+                        margin: 10px 0 !important;
+                        width: 100%;
+                        display: block !important;
+                        input, select {
+                            width: 100%;
+                        }
+                    }
+                }
             }
             .questions {
                 .questions-area {
@@ -60,6 +72,10 @@ body {
                 }
             }
         }
+        @media screen and (max-width: 840px){
+            border-left: 0;
+            border-right: 0;
+        }
     }
 
     .remove-alert {
@@ -92,6 +108,7 @@ body {
                 height: 60px;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                color: #000000;
             }
 
             .buttons {

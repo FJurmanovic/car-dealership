@@ -82,6 +82,20 @@ class VehicleStore {
         }
     }
 
+    deleteVehicleMake = async (id) => {
+        try {
+            let data = await this.vehicleMakeService.delete(id);
+            runInAction(() => {
+                data;
+                this.removeMake(id);
+            })
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error";
+            })
+        }
+    }
+
     getVehicleModel = async () => {
         try {
             let params = {
@@ -137,6 +151,20 @@ class VehicleStore {
                     this.updateModel(object);
                 }
             )}
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error";
+            })
+        }
+    }
+    
+    deleteVehicleModel = async (id) => {
+        try {
+            let data = await this.vehicleModelService.delete(id);
+            runInAction(() => {
+                data;
+                this.removeModel(id);
+            })
         } catch (error) {
             runInAction(() => {
                 this.status = "error";
@@ -211,6 +239,16 @@ class VehicleStore {
     updateMake = (makeObject) => {
         let index = this.vehicleMake.findIndex(x => x.id === makeObject.id);
         this.vehicleMake[index] = makeObject;
+    }
+
+    removeModel = (modelId) => {
+        let index = this.vehicleModel.findIndex(x => x.id === modelId);
+        this.vehicleModel.splice(index, 1);
+    }
+
+    removeMake = (makeId) => {
+        let index = this.vehicleMake.findIndex(x => x.id === makeId);
+        this.vehicleMake.splice(index, 1);
     }
 
 }
