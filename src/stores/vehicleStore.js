@@ -1,6 +1,9 @@
 import {observable, runInAction} from "mobx";
 
 import {VehicleService, VehicleModelService, VehicleMakeService} from './services';
+
+import {ToastStore} from './';
+
 class VehicleStore {
     constructor() {
         this.vehicleService = new VehicleService();
@@ -58,10 +61,12 @@ class VehicleStore {
                 data;
                 this.makePage = 0;
                 this.getVehicleMake();
+                ToastStore.push("Succesfully created make", "#00ad75");
             })
         } catch (error) {
             runInAction(() => {
                 this.status = "error";
+                ToastStore.push("Error creating make", "#ff4545");
             })
         }
     }
@@ -73,11 +78,13 @@ class VehicleStore {
                 runInAction(() => {
                     this.status = "update";
                     this.updateMake(object);
+                    ToastStore.push("Succesfully updated make", "#00ad75");
                 }
             )}
         } catch (error) {
             runInAction(() => {
                 this.status = "error";
+                ToastStore.push("Error updating make", "#ff4545");
             })
         }
     }
@@ -88,10 +95,12 @@ class VehicleStore {
             runInAction(() => {
                 data;
                 this.removeMake(id);
+                ToastStore.push("Succesfully deleted make", "#00ad75");
             })
         } catch (error) {
             runInAction(() => {
                 this.status = "error";
+                ToastStore.push("Error deleting make", "#ff4545");
             })
         }
     }
@@ -134,10 +143,12 @@ class VehicleStore {
                 data;
                 this.modelPage = 0;
                 this.getVehicleModel();
+                ToastStore.push("Succesfully created model", "#00ad75");
             })
         } catch (error) {
             runInAction(() => {
                 this.status = "error";
+                ToastStore.push("Error creating model", "#ff4545");
             })
         }
     }
@@ -149,11 +160,13 @@ class VehicleStore {
                 runInAction(() => {
                     this.status = "update";
                     this.updateModel(object);
+                    ToastStore.push("Succesfully updated model", "#00ad75");
                 }
             )}
         } catch (error) {
             runInAction(() => {
                 this.status = "error";
+                ToastStore.push("Error updating model", "#ff4545");
             })
         }
     }
@@ -164,10 +177,12 @@ class VehicleStore {
             runInAction(() => {
                 data;
                 this.removeModel(id);
+                ToastStore.push("Succesfully deleted model", "#00ad75");
             })
         } catch (error) {
             runInAction(() => {
                 this.status = "error";
+                ToastStore.push("Error deleting model", "#ff4545");
             })
         }
     }
@@ -202,10 +217,12 @@ class VehicleStore {
             runInAction(() => {
                 data;
                 this.getVehicleList();
+                ToastStore.push("Succesfully created vehicle", "#00ad75");
             })
         } catch (error) {
             runInAction(() => {
                 this.status = "error";
+                ToastStore.push("Error creating vehicle", "#ff4545");
             })
         }
     }
@@ -217,12 +234,29 @@ class VehicleStore {
                 runInAction(() => {
                     this.status = "update";
                     this.updateVehicle(object);
+                    ToastStore.push("Succesfully updated vehicle", "#00ad75")
                 }
             )}
         } catch (error) {
             runInAction(() => {
                 this.status = "error";
+                ToastStore.push("Error updating vehicle", "#ff4545");
             })
+        }
+    }
+
+    deleteVehicleById = async (id) => {
+        try {
+            let data = await this.vehicleService.delete(id);
+            runInAction(() => {
+                data;
+                ToastStore.push("Succesfully deleted vehicle", "#00ad75");
+            })
+        } catch (error) {
+            runInAction(() => {
+                this.status = "error";
+                ToastStore.push("Error deleting vehicle", "#ff4545");
+            });
         }
     }
 

@@ -1,5 +1,5 @@
 import {observable, computed, runInAction} from "mobx";
-import {VehicleStore} from './';
+import {VehicleStore, ToastStore} from './';
 import {VehicleService} from './services';
 
 class EditModelStore {
@@ -51,7 +51,7 @@ class EditModelStore {
         if(!this.vehicleExists){
             VehicleStore.deleteVehicleModel(id);
         } else {
-            alert("ERROR: This model is being used.");
+            ToastStore.push("ERROR: Model is being used", "#ffac45");
         }
         history.push(`/manufacturers/${this.model.makeId}`);
     }

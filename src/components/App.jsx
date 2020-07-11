@@ -5,6 +5,8 @@ import './App.scss';
 
 import {Header} from '../layouts';
 
+import {Toasts} from './';
+
 import {LandingPage, ExplorePage, InfoPage, EditPage, AddPage, MakePage, ModelPage, AddMakePage, AddModelPage} from '../pages';
 
 @inject("VehicleStore")
@@ -18,6 +20,7 @@ class App extends Component {
     render() {
         return(
             <Router>
+                <Toasts />
                 <Switch>
                     <Route exact path="/">
                         <LandingPage />

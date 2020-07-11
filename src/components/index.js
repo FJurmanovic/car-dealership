@@ -15,3 +15,4 @@ export {default as SortList} from './SortList';
 export {default as TotalResults} from './TotalResults';
 export {default as VehicleInformation} from './VehicleInformation';
 export {default as VehicleList} from './VehicleList'; 
+export {default as Toasts} from './Toasts'; 

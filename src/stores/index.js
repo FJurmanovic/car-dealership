@@ -10,3 +10,4 @@ export {default as MakeListStore} from './makeListStore';
 export {default as ModelListStore} from './modelListStore';
 export {default as ViewStore} from './viewStore';
 export {default as ListStore} from './listStore';
+export {default as ToastStore} from './toastStore';

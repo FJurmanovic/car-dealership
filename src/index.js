@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {App} from './components';
 
-import {VehicleStore, ViewStore, EditStore, AddStore, AddMakeStore, AddModelStore, FilterStore, MakeListStore, ModelListStore, EditMakeStore, EditModelStore, ListStore} from './stores';
+import {VehicleStore, ViewStore, EditStore, AddStore, AddMakeStore, AddModelStore, FilterStore, MakeListStore, ModelListStore, EditMakeStore, EditModelStore, ListStore, ToastStore} from './stores';
 
 import {Provider} from 'mobx-react';
 
@@ -20,6 +20,7 @@ const Application = () =>
         EditMakeStore={EditMakeStore}
         EditModelStore={EditModelStore}
         ListStore={ListStore}
+        ToastStore={ToastStore}
     >
         <App />
     </Provider>

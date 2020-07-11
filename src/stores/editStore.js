@@ -17,7 +17,7 @@ class EditStore {
         if(this.imgVal.match(/\.(jpeg|jpg|gif|png|webm)$/)){
             return this.imgVal;
         }
-        return null;
+        return "";
     }
 
     @computed get vehicleEngine() {
@@ -50,7 +50,7 @@ class EditStore {
 
     alertDeleteClick(vehicleId, history) {
         this.showAlert = false;
-        this.deleteVehicleById(vehicleId);
+        VehicleStore.deleteVehicleById(vehicleId);
         history.push("/explore");
     }
 
@@ -77,19 +77,6 @@ class EditStore {
                     this.vehicleObject = data;
                     this.loadValues(form, data);
                 }
-            })
-        } catch (error) {
-            runInAction(() => {
-                this.status = "error";
-            });
-        }
-    }
-
-    deleteVehicleById = async (id) => {
-        try {
-            let data = await this.vehicleService.delete(id);
-            runInAction(() => {
-                data;
             })
         } catch (error) {
             runInAction(() => {
