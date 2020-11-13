@@ -2,7 +2,7 @@
 
 Job application assignment for frontend developer position at [Mono](https://mono.software/).
 
-[Live preview](http://car-dealership.yurma.wtf/)
+[Live preview](http://car-dealership.jurmanovic.com/)
 
 Features
 --------
